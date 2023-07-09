@@ -3,7 +3,7 @@
 <div id="header-wrap">
 
     {% include 'mainapp/includes/header.html'%}
-	{% include 'mainapp/includes/menu.html'%}
+    {% include 'mainapp/includes/menu.html'%}
 
 </div><!--header-wrap-->
 
@@ -32,38 +32,47 @@
 </div><!--site-banner-->
 
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <table class="u-full-width">
-                    <thead>
-                    <tr>
-                        <th>Книга</th>
-                        <th>Автор</th>
-                        <th>Количество</th>
-                        <th>Стоимость</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Книга джунглей</td>
-                        <td>Редьярд Киплинг</td>
-                        <td>1</td>
-                        <td>40.00 ₽</td>
-                        <td>
-								<a href="single_product.html" class="btn btn-black">Удалить<i class="icon"></i></a>
-							</td>
-                    </tr>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="u-full-width">
+                <thead>
+                <tr>
+                    <th>Книга</th>
+                    <th>Автор</th>
+                    <th>Количество</th>
+                    <th>Стоимость</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Книга джунглей</td>
+                    <td>Редьярд Киплинг</td>
+                    <td>1</td>
+                    <td>40.00 ₽</td>
+                    <td>
+                        <a href="single_product.html" class="btn btn-black">Удалить<i class="icon"></i></a>
+                    </td>
+                </tr>
 
-                    </tbody>
-                </table>
-
-                <button class="btn btn-accent btn-pill btn-xlarge btn-full">Оформить заказ</button>
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <h1 class="page-title">Итого</h1>
+                    </div>
+                    <div class="col-md-4">
+                        <h3 class="page-title">40.00 ₽</h3>
+                    </div>
+                </div>
             </div>
-
+            <button class="btn btn-accent btn-pill btn-xlarge btn-full">Оформить заказ</button>
         </div>
+
     </div>
+</div>
 
 
 {% include 'mainapp/includes/footer.html'%}
