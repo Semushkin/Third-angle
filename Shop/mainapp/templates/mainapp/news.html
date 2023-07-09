@@ -1,0 +1,110 @@
+{% extends 'mainapp/extends/base.html'%}
+{% load static %}
+{% block  content %}
+
+<div id="header-wrap">
+	
+	{% include 'mainapp/includes/header.html'%}
+	{% include 'mainapp/includes/menu.html'%}
+
+</div><!--header-wrap-->
+
+
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="breadcrumbs">
+					<span class="item"><a href="{% url 'index' %}">Главная страница /</a></span>
+					<span class="item">Каталог</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="hero-section jarallax">
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">			
+				<h1 class="page-title">Новости</h1>
+			</div>
+		</div>
+	</div>
+
+</section>
+
+<section id="latest-blog" class="scrollspy-section padding-large">
+	<div class="container">
+		
+		<div class="row">
+			<div class="col-md-12">
+				
+				<!-- post grid -->
+				<div class="post-grid">
+					<div class="row">
+						
+						<div class="col-md-4">
+							
+							<article class="post-item">
+
+								<figure>
+									<a href="#" class="image-hvr-effect">
+										<img src="{% static 'images/post-img1.jpg' %}" alt="post" class="post-image">
+									</a>
+								</figure>
+
+								<div class="post-content">	
+									<div class="meta-date">Март 30, 2020</div>
+								    <h3 class="post-title"><a href="#">Новые поступления в жанре детских сказок!</a></h3>
+								    <p>В продаже появились новые книги в жанре детских сказок.</p>
+								</div>
+							</article>
+
+						</div>
+
+						<div class="col-md-4">
+
+							<article class="post-item">
+								<figure>
+									<a href="#" class="image-hvr-effect">
+										<img src="{% static 'images/post-img2.jpg' %}" alt="post" class="post-image">
+									</a>
+								</figure>
+								<div class="post-content">	
+									<div class="meta-date">Март 29, 2021</div>
+								    <h3 class="post-title"><a href="#">Состоялась творческая встреча с писателем!</a></h3>
+								    <p>Мистер инкогнито устроил творчесское чаепитие с поклонниками на крыше библиотеки.</p>
+								</div>
+							</article>
+						</div>
+
+						<div class="col-md-4">
+							<article class="post-item">
+								<figure>
+									<a href="#" class="image-hvr-effect">
+										<img src="{% static 'images/post-img3.png' %}" alt="post" class="post-image">
+									</a>
+								</figure>
+								<div class="post-content">		
+									<div class="meta-date">Март 27, 2022</div>
+								    <h3 class="post-title"><a href="#">Мартовская распродажа!</a></h3>
+								    <p>Успейте преобрести произведения любимых классиков.</p>
+								</div>
+							</article>
+						</div>
+
+					</div>
+				</div>
+				<!-- / post grid -->
+
+			</div>
+
+		</div>
+
+	</div>
+</section>
+
+{% include 'mainapp/includes/footer.html'%}
+
+{% endblock %}

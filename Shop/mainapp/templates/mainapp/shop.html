@@ -1,0 +1,90 @@
+{% extends 'mainapp/extends/base.html'%}
+{% load static %}
+{% block  content %}
+
+
+<div id="header-wrap">
+	
+	{% include 'mainapp/includes/header.html'%}
+	{% include 'mainapp/includes/menu.html'%}
+		
+</div><!--header-wrap-->
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="breadcrumbs">
+					<span class="item"><a href="{% url 'index' %}">Главная страница /</a></span>
+					<span class="item">Каталог</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">			
+				<div class="colored">
+					<h1 class="page-title">Каталог</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!--site-banner-->
+
+<section class="padding-large">
+	<div class="container">
+		<div class="row">
+
+			<div class="products-grid grid">
+
+			  	<figure class="product-style">
+					<img src="{% static 'images/product-item1.jpeg' %}" alt="Books" class="product-item">
+					<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>
+					<figcaption>
+						<h3>Сборник</h3>
+						<p>Стругацкие</p>
+						<div class="item-price">40.00 ₽</div>
+					</figcaption>
+				</figure>
+
+			  	<figure class="product-style">
+					<img src="{% static 'images/product-item2.jpg' %}" alt="Books" class="product-item">
+					<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>
+					<figcaption>
+						<h3>Шесть спичек</h3>
+						<p>Стругацкие</p>
+						<div class="item-price">38.00 ₽</div>
+					</figcaption>
+				</figure>
+
+			  	<figure class="product-style">
+					<img src="{% static 'images/product-item3.jpg' %}" alt="Books" class="product-item">
+					<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>
+					<figcaption>
+						<h3>Путь на Амальтею</h3>
+						<p>Стругацкие</p>
+						<div class="item-price">45.00 ₽</div>
+					</figcaption>
+				</figure>
+
+			  	<figure class="product-style">
+					<img src="{% static 'images/product-item4.jpg' %}" alt="Books" class="product-item">
+					<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>
+					<figcaption>
+						<h3>Сказка о тройке</h3>
+						<p>Стругацкие</p>
+						<div class="item-price">35.00 ₽</div>
+					</figcaption>
+				</figure>
+
+	    	</div>
+
+		</div>
+	</div>
+</section>
+
+{% include 'mainapp/includes/footer.html'%}
+
+{% endblock %}

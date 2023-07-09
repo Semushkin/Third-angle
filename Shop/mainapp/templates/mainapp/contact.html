@@ -1,0 +1,104 @@
+{% extends 'mainapp/extends/base.html'%}
+{% block  content %}
+
+
+<div id="header-wrap">
+	
+	{% include 'mainapp/includes/header.html'%}
+	{% include 'mainapp/includes/menu.html'%}
+		
+</div><!--header-wrap-->
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="breadcrumbs">
+					<span class="item"><a href="{% url 'index' %}">Главная страница /</a></span>
+					<span class="item">Каталог</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1 class="page-title">Контакты</h1>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="contact-information padding-large mt-3">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 p-0 mb-3">
+				
+				<h2>Наши контакты</h2>
+
+				<div class="contact-detail d-flex flex-wrap mt-4">
+					<div class="detail mr-6 mb-4">
+						<p>Наш магазин базируется недалеко от острова Гуам на самом дне Марианской впадины.</p>
+						<ul class="list-unstyled list-icon">
+							<li><i class="icon icon-phone"></i>+375-29-540-90-35</li>
+							<li><i class="icon icon-envelope-o"></i><a href="mailto:info@mylittlebookshop.com">info@mylittlebookshop.com</a></li>
+							<li><i class="icon icon-location2"></i>Марианская впадина, дно.</li>
+						</ul>
+					</div><!--detail-->
+					<div class="detail mb-4">
+						<h3>Мы в социальных сетях</h3>
+						<div class="social-links flex-container">
+							<a href="#" class="icon icon-facebook"></a>
+							<a href="#" class="icon icon-twitter"></a>
+						</div><!--social-links-->
+					</div><!--detail-->
+
+				</div><!--contact-detail-->
+			</div><!--col-md-6-->
+
+			<div class="col-md-6 p-0">
+				
+				<div class="contact-information">
+					<h2>Индивидуальный запрос</h2>
+					<form name="contactform" action="contact.php" method="post" class="contact-form d-flex flex-wrap mt-4">
+						<div class="row">
+					    	<div class="col-md-6">
+								<input type="text" minlength="2" name="name" placeholder="ФИО" class="u-full-width" required>
+							</div>
+							<div class="col-md-6">
+								<input type="email" name="email" placeholder="Электронная почта" class="u-full-width" required>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-12">
+
+								<textarea class="u-full-width" name="message" placeholder="Сообщение" style="height: 150px;" required></textarea>
+
+								<label>
+								    <input type="checkbox" required>
+								    <span class="label-body">Я согласен с <a href="#">правилами сайта</a></span>
+								</label>
+
+								<button type="submit" name="submit" class="btn btn-full btn-rounded">Отправить</button>
+							</div>
+						</div>
+					</form>
+
+				</div><!--contact-information-->
+
+			</div><!--col-md-6-->
+
+		</div>
+	</div>
+</section>
+
+<section class="google-map">
+	<div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="500" id="gmap_canvas" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1892992.9560633523!2d141.31469067655894!3d10.955678606344598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x67328f3cd57de715%3A0x1bbe64e7a21aa7fc!2z0JzQsNGA0LjQsNC90YHQutC40Lkg0JbQtdC70L7QsQ!5e0!3m2!1sru!2sby!4v1688741899167!5m2!1sru!2sby" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://getasearch.com/fmovies"></a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:100%;}</style><a href="https://www.embedgooglemap.net">embedgooglemap.net</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:100%;}</style></div></div>
+</section>
+
+
+{% include 'mainapp/includes/footer.html'%}
+
+{% endblock %}

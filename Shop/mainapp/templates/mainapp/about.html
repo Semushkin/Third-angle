@@ -1,0 +1,53 @@
+{% extends 'mainapp/extends/base.html'%}
+{% load static %}
+{% block  content %}
+
+<div id="header-wrap">
+	
+	{% include 'mainapp/includes/header.html'%}
+	{% include 'mainapp/includes/menu.html'%}
+		
+</div><!--header-wrap-->
+
+
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="breadcrumbs">
+					<span class="item"><a href="{% url 'index' %}">Главная страница /</a></span>
+					<span class="item">О нас</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<div class="site-banner">
+	<div class="banner-content">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">			
+					<div class="colored">
+						<h1 class="page-title">О нас</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!--site-banner-->
+
+<section class="chief-detail padding-large">
+	<div class="container">
+		<div class="row">
+			<div class="single-image col-md-12">
+				<p>В нашем магазине вы можете найти книги на любой вкус.</p>
+				<p>Если вы не найдете искомое в нашем каталоге, пишите! Мы найдем и привезем книгу для вас!</p>
+				
+			</div>
+		</div>
+	</div>
+</section>
+
+{% include 'mainapp/includes/footer.html'%}
+
+{% endblock %}
