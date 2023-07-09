@@ -1,0 +1,58 @@
+{% extends 'mainapp/extends/base.html'%}
+{% block  content %}
+
+
+<div id="header-wrap">
+
+	{% include 'mainapp/includes/header.html'%}
+	{% include 'mainapp/includes/menu.html'%}
+
+</div><!--header-wrap-->
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumbs">
+                    <span class="item"><a href="index.html">Главная страница /</a></span>
+                    <span class="item">Вход</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="padding-large">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 offset-md-4 col-sm-4 offset-sm-4">
+
+                <form>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="text-center">Логин</label>
+                            <input class="u-full-width" placeholder="Логин">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="text-center">Пароль</label>
+                            <input class="u-full-width" placeholder="Пароль">
+                        </div>
+                        <div class="col-md-6 offset-md-3">
+                            <a href="registration.html">Зарегистрироваться</a>
+                        </div>
+
+                    </div>
+
+
+
+                    <input class="button-primary col-md-12" type="submit" value="Войти">
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'mainapp/includes/footer.html'%}
+
+{% endblock %}
