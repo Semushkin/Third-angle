@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from mainapp.models import Book
 
 # Create your views here.
 
@@ -8,7 +9,10 @@ def index(request):
 
 
 def catalog(request):
-    return render(request, 'mainapp/shop.html')
+    context = {
+        'books': Book.objects.all(),
+    }
+    return render(request, 'mainapp/shop.html', context)
 
 
 def news(request):

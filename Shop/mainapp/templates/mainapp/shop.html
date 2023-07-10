@@ -39,7 +39,21 @@
 
 			<div class="products-grid grid">
 
-			  	<figure class="product-style">
+				{% for book in books %}
+
+					<figure class="product-style">
+						<img src="{{ book.foto.url }}" alt="Books" class="product-item">
+						<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>
+						<figcaption>
+							<h3>{{ book.name }}</h3>
+							<p>Стругацкие</p>
+							<div class="item-price">{{ book.price }}</div>
+						</figcaption>
+					</figure>
+
+				{% endfor %}
+
+			  	<!--figure class="product-style">
 					<img src="{% static 'images/product-item1.jpeg' %}" alt="Books" class="product-item">
 					<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>
 					<figcaption>
@@ -47,9 +61,9 @@
 						<p>Стругацкие</p>
 						<div class="item-price">40.00 ₽</div>
 					</figcaption>
-				</figure>
+				</figure-->
 
-			  	<figure class="product-style">
+			  	<!--figure class="product-style">
 					<img src="{% static 'images/product-item2.jpg' %}" alt="Books" class="product-item">
 					<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>
 					<figcaption>
@@ -57,9 +71,9 @@
 						<p>Стругацкие</p>
 						<div class="item-price">38.00 ₽</div>
 					</figcaption>
-				</figure>
+				</figure-->
 
-			  	<figure class="product-style">
+			  	<!--figure class="product-style">
 					<img src="{% static 'images/product-item3.jpg' %}" alt="Books" class="product-item">
 					<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>
 					<figcaption>
@@ -67,9 +81,9 @@
 						<p>Стругацкие</p>
 						<div class="item-price">45.00 ₽</div>
 					</figcaption>
-				</figure>
+				</figure-->
 
-			  	<figure class="product-style">
+			  	<!--figure class="product-style">
 					<img src="{% static 'images/product-item4.jpg' %}" alt="Books" class="product-item">
 					<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>
 					<figcaption>
@@ -77,7 +91,7 @@
 						<p>Стругацкие</p>
 						<div class="item-price">35.00 ₽</div>
 					</figcaption>
-				</figure>
+				</figure-->
 
 	    	</div>
 

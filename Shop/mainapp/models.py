@@ -11,6 +11,7 @@ class BookCategory(models.Model):
 
 class Book(models.Model):
     name = models.CharField(max_length=64)
+    author = models.CharField(max_length=64, blank=True)
     foto = models.ImageField(upload_to='book_images', blank=True)
     article = models.IntegerField()
     date_receipt = models.DateField()
