@@ -9,25 +9,83 @@
 
 </div><!--header-wrap-->
 <section>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="breadcrumbs">
-					<span class="item"><a href="{% url 'index' %}">Главная страница /</a></span>
-					<span class="item">Личный кабинет</span>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumbs">
+                    <span class="item"><a href="profile.html">Личный кабинет /</a></span>
+                    <span class="item">Редактирование профиля</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
-<section>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<h1 class="page-title">Редактирование информации</h1>
-			</div>
-		</div>
-	</div>
+
+<section class="padding-large">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 offset-md-4 col-sm-4 offset-sm-4">
+
+                <form>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="text-center">Имя</label>
+                            <input class="u-full-width" placeholder="Старое имя">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="text-center">Фамилия</label>
+                            <input class="u-full-width" placeholder="Старая фамилия">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="text-center">Пол</label>
+                            <div class="custom-control custom-radio col-md-3 offset-md-2">
+                                <input type="radio" id="male" name="customRadioButton" class="custom-control-input" checked>
+                                <label for="male" class="custom-control-label">Мужской</label>
+                            </div>
+                            <div class="custom-control custom-radio col-md-3 offset-md-2">
+                                <input type="radio" id="female" name="customRadioButton" class="custom-control-input">
+                                <label for="female" class="custom-control-label">Женский</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="text-center">Возраст</label>
+                            <div class="form-group">
+                                <input type="number" class="form-control" id="age" value="22">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="text-center">Адрес</label>
+                            <input class="u-full-width" placeholder="Старый адрес">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="text-center">Телефон</label>
+                            <input class="u-full-width" placeholder="Старый телефон">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="text-center">Электронная почта</label>
+                            <input class="u-full-width" placeholder="Старая электронная почта">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="text-center">Логин</label>
+                            <input class="u-full-width" placeholder="Старый логин">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="text-center">Пароль</label>
+                            <input class="u-full-width" placeholder="Пароль">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="text-center">Введите пароль еще раз</label>
+                            <input class="u-full-width" placeholder="Пароль">
+                        </div>
+                    </div>
+
+
+                    <input class="button-primary col-md-12" type="submit" value="Сохранить">
+                </form>
+
+            </div>
+        </div>
+    </div>
 </section>
 
 

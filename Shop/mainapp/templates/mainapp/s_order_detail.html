@@ -1,0 +1,113 @@
+{% extends 'mainapp/extends/base.html'%}
+{% block  content %}
+
+
+<div id="header-wrap">
+	
+	{% include 'mainapp/includes/header.html'%}
+	{% include 'mainapp/includes/menu.html'%}
+		
+</div><!--header-wrap-->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumbs">
+                    <span class="item"><a href="order_list.html">Рабочий кабинет /</a></span>
+                    <span class="item">Карточка заказа</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-title">Карточка заказа</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <label class="text">Номер заказа</label>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="text">1</span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <label class="text">Дата заказа</label>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="text">29.05.2021</span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <label class="text">Статус</label>
+                        </div>
+                        <div class="col-md-4">
+                        <select class="u-full-width" id="exampleRecipientInput">
+                            <option value="Option 1">ожидает обработки</option>
+                            <option value="Option 2">в обработке</option>
+                            <option value="Option 3">ожидает отгрузки</option>
+                            <option value="Option 4">закрыт</option>
+                        </select>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        <div class="col-md-12">
+            <table class="u-full-width">
+                <thead>
+                <tr>
+                    <th>Книга</th>
+                    <th>Автор</th>
+                    <th>Количество</th>
+                    <th>Стоимость</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Книга джунглей</td>
+                    <td>Редьярд Киплинг</td>
+                    <td>
+                        1
+                    </td>
+                    <td>40.00 ₽</td>
+                </tr>
+
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <h1>Итого</h1>
+                    </div>
+                    <div class="col-md-4">
+                        <h1>40.00 ₽</h1>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+{% include 'mainapp/includes/footer.html'%}
+
+{% endblock %}
