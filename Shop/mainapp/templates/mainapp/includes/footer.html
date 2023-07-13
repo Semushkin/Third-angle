@@ -1,3 +1,4 @@
+{% load static %}
 <footer id="footer">
 	<div class="container">
 		<div class="row">
@@ -6,7 +7,7 @@
 
 				<div class="footer-item">
 					<div class="company-brand">
-						<a href="{% url 'index' %}"><img src="static/images/main-logo.png" alt="logo" class="footer-logo"></a>
+						<a href="{% url 'index' %}"><img src="{% static 'images/main-logo.png' %}" alt="logo" class="footer-logo"></a>
 						<p>Книги для души и тела!</p>
 					</div>
 				</div>
@@ -37,16 +38,16 @@
 					<h5>АККАУНТ</h5>
 					<ul class="menu-list">
 						<li class="menu-item">
-							<a href="login.html">ВХОД</a>
+							<a href="{% url 'login' %}">ВХОД</a>
 						</li>
 						<li class="menu-item">
-							<a href="registration.html">РЕГИСТРАЦИЯ</a>
+							<a href="{% url 'registration' %}">РЕГИСТРАЦИЯ</a>
 						</li>
 						<li class="menu-item">
-							<a href="cart.html">КОРЗИНА</a>
+							<a href="{% url 'cart' %}">КОРЗИНА</a>
 						</li>
 						<li class="menu-item">
-							<a href="profile.htm">ЛИЧНЫЙ КАБИНЕТ</a>
+							<a href="{% url 'profile' %}">ЛИЧНЫЙ КАБИНЕТ</a>
 						</li>
 					</ul>
 				</div>
@@ -64,7 +65,7 @@
 							<a href="{% url 'contacts' %}">КОНТАКТЫ</a>
 						</li>
 						<li class="menu-item">
-							<a href="rules.html">ИНФОРМАЦИЯ ДЛЯ ПОСЕТИТЕЛЕЙ</a>
+							<a href="{% url 'rules' %}">ИНФОРМАЦИЯ ДЛЯ ПОСЕТИТЕЛЕЙ</a>
 						</li>
 					</ul>
 				</div>

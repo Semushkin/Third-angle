@@ -1,0 +1,109 @@
+{% extends 'mainapp/extends/base.html'%}
+{% load static %}
+{% block  content %}
+
+
+<div id="header-wrap">
+
+    {% include 'mainapp/includes/header.html'%}
+    {% include 'mainapp/includes/menu.html'%}
+
+</div><!--header-wrap-->
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumbs">
+                    <span class="item"><a href="{% url 'm_profile' %}">Рабочий кабинет /</a></span>
+                    <span class="item">Новости</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <a href="{% url 'products_list' %}">
+                        <button type="button" class="btn btn-accent btn-full">Список книг</button>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{% url 'news_list' %}">
+                        <button type="button" class="btn btn-accent btn-full">Список новостей</button>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{% url 'quotes_list' %}">
+                        <button type="button" class="btn btn-accent btn-full">Список цитат</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Список новостей</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <a href="{% url 'new_create' %}">
+                        <button type="button" class="btn btn-xlarge btn-outline-accent btn-pill btn-full">Создать
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <table class="u-full-width">
+            <thead>
+            <tr>
+                <th>Номер</th>
+                <th>Дата новости</th>
+                <th>Название</th>
+                <th>Краткое содержание</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><a href="{% url 'm_new_detail' %}" class="nav-link"
+                >1</a></td>
+                <td>29.05.2021</td>
+                <td>
+                    Распродажа
+                </td>
+                <td>Вас ждет распродажа с понедельника</td>
+                <td>
+                    <a href="#" class="btn-black">Редактировать<i class="icon"></i></a>
+                </td>
+                <td>
+                    <a href="#" class="btn-black">Удалить<i class="icon"></i></a>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+{% include 'mainapp/includes/footer.html'%}
+
+{% endblock %}

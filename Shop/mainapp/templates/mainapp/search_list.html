@@ -13,8 +13,8 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="breadcrumbs">
-					<span class="item"><a href="{% url 'index' %}">Главная страница /</a></span>
-					<span class="item">Рабочий кабинет</span>
+					<span class="item"><a href="{% url 's_profile' %}">Рабочий кабинет /</a></span>
+					<span class="item">Список запросов</span>
 				</div>
 			</div>
 		</div>
@@ -24,10 +24,10 @@
 	<div class="container">
 		<div class="row">
                                 <div class="col-md-6"><div class="col-md-6">
-                        <a href="search_list.html"><button type="button" class="btn btn-accent btn-full">Список запросов</button></a>
+                        <a href="{% url 'search_list' %}"><button type="button" class="btn btn-accent btn-full">Список запросов</button></a>
                     </div>
                                     <div class="col-md-6">
-                        <a href="order_list.html"><button type="button" class="btn btn-accent btn-full">Список заказов</button></a>
+                        <a href="{% url 'order_list' %}"><button type="button" class="btn btn-accent btn-full">Список заказов</button></a>
                     </div>
             		</div></div>
 	</div>
@@ -54,7 +54,7 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td><a href="search_detail.html" class="nav-link"
+                                    <td><a href="{% url 's_search_detail' %}" class="nav-link"
                                     >1</a></td>
                                     <td>29.05.2021</td>
                                     <td>В обработке</td>

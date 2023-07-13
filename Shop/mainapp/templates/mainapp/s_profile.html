@@ -1,0 +1,86 @@
+{% extends 'mainapp/extends/base.html'%}
+{% load static %}
+{% block  content %}
+
+
+<div id="header-wrap">
+
+    {% include 'mainapp/includes/header.html'%}
+	{% include 'mainapp/includes/menu.html'%}
+
+</div><!--header-wrap-->
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumbs">
+                    <span class="item"><a href="{% url 'index' %}">Главная страница /</a></span>
+                    <span class="item">Рабочий кабинет продавца</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="padding-large">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <label class="text">Имя</label>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="text">Матвей</span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <label class="text">Фамилия</label>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="text">Хайкин</span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <label class="text">Телефон</label>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="text">+375-29-123-45-67</span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <label class="text">Логин</label>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="text">TEO</span>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+	<div class="container">
+		<div class="row">
+                                <div class="col-md-6"><div class="col-md-6">
+                        <a href="{% url 'search_list' %}"><button type="button" class="btn btn-accent btn-full">Список запросов</button></a>
+                    </div>
+                                    <div class="col-md-6">
+                        <a href="{% url 'order_list' %}"><button type="button" class="btn btn-accent btn-full">Список заказов</button></a>
+                    </div>
+            		</div></div>
+	</div>
+</section>
+
+{% include 'mainapp/includes/footer.html'%}
+
+{% endblock %}

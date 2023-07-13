@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="breadcrumbs">
-                    <span class="item"><a href="index.html">Главная страница /</a></span>
+                    <span class="item"><a href="{% url 'index' %}">Главная страница /</a></span>
                     <span class="item">Вход</span>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                             <input class="u-full-width" placeholder="Пароль">
                         </div>
                         <div class="col-md-6 offset-md-3">
-                            <a href="registration.html">Зарегистрироваться</a>
+                            <a href="{% url 'registration' %}">Зарегистрироваться</a>
                         </div>
 
                     </div>

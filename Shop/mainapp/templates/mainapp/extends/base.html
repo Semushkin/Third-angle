@@ -20,9 +20,10 @@
 	    <link rel="stylesheet" type="text/css" href="{% static 'css/vendor.css' %}">
 	    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 
+
 		<!-- script
 		================================================== -->
-		<script src="js/modernizr.js"></script>
+		<script src='{% static "js/modernizr.js" %}'></script>
 
 	</head>
 
@@ -31,9 +32,9 @@
 {% block content %}
 {% endblock %}
 
-<script src="static/js/jquery-1.11.0.min.js"></script>
-<script src="static/js/plugins.js"></script>
-<script src="static/js/script.js"></script>
+<script src='{% static "js/jquery-1.11.0.min.js" %}'></script>
+<script src='{% static "js/plugins.js" %}'></script>
+<script src='{% static "js/script.js" %}'></script>
 <script type="text/javascript">
 try{
 var el=document.getElementById('navbar').getElementsByTagName('a');

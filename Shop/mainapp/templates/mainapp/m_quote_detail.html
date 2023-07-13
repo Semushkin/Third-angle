@@ -1,0 +1,93 @@
+{% extends 'mainapp/extends/base.html'%}
+{% load static %}
+{% block  content %}
+
+
+<div id="header-wrap">
+
+    {% include 'mainapp/includes/header.html'%}
+    {% include 'mainapp/includes/menu.html'%}
+
+</div><!--header-wrap-->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumbs">
+                    <span class="item"><a href="{% url 'quotes_list' %}">Список цитат /</a></span>
+                    <span class="item">Карточка цитаты</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="padding-large">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <label class="text">Название</label>
+                        </div>
+                        <div class="col-md-12">
+                            <span class="text">Больше всего</span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <label class="text">Содержание</label>
+                        </div>
+                        <div class="col-md-12">
+                            <span class="text">"Больше всего мне хочется стать таким человеком, который сумел бы сделать мир немного лучше.”</span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <label class="text">Автор</label>
+                        </div>
+                        <div class="col-md-12">
+                            <span class="text">Эрленд Лу, "Наивно. Супер"</span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <label class="text">Активный</label>
+                        </div>
+                        <div class="col-md-12">
+                            Нет
+                        </div>
+                    </div>
+<div class="col-md-12">
+                        <div class="col-md-6">
+                            <a>
+                                <button type="button" class="btn btn-accent btn-full">Активировать</button>
+                            </a>
+                        </div>
+</div>
+
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <a href="{% url 'quote_edit' %}">
+                                <button type="button" class="btn btn-accent btn-full">Редактировать</button>
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <a>
+                                <button type="button" class="btn btn-accent btn-full">Удалить</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% include 'mainapp/includes/footer.html'%}
+
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'mainapp/extends/base.html'%}
+{% load static %}
+{% block  content %}
+
+
+<div id="header-wrap">
+
+    {% include 'mainapp/includes/header.html'%}
+    {% include 'mainapp/includes/menu.html'%}
+
+</div><!--header-wrap-->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumbs">
+                    <span class="item"><a href="{% url 'news_list' %}">Список новостей /</a></span>
+                    <span class="item">Карточка новости</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="padding-large">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <label class="text">Название</label>
+                        </div>
+                        <div class="col-md-12">
+                            <span class="text">Новые поступления в жанре детских сказок!</span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <label class="text">Краткое содержание</label>
+                        </div>
+                        <div class="col-md-12">
+                            <span class="text">Приглашаем в гости</span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <label class="text">Текст новости</label>
+                        </div>
+                        <div class="col-md-12">
+                            <span class="text">Приглашаем в гости в честь поступления новой партии книг!</span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <label class="text">Изображение</label>
+                        </div>
+                        <div class="col-md-12">
+                            <figure>
+                        <a href="single_new.html" class="image-hvr-effect">
+                            <img src="{% static 'images/post-img1.jpg' %}" alt="post" class="post-image">
+                        </a>
+                    </figure>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <a href="{% url 'new_edit' %}">
+                                <button type="button" class="btn btn-accent btn-full">Редактировать</button>
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <a>
+                                <button type="button" class="btn btn-accent btn-full">Удалить</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% include 'mainapp/includes/footer.html'%}
+
+{% endblock %}

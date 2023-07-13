@@ -1,0 +1,164 @@
+{% extends 'mainapp/extends/base.html'%}
+{% load static %}
+{% block  content %}
+
+
+<div id="header-wrap">
+
+    {% include 'mainapp/includes/header.html'%}
+    {% include 'mainapp/includes/menu.html'%}
+
+</div><!--header-wrap-->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumbs">
+                    <span class="item"><a href="{% url 'products_list' %}">Список книг /</a></span>
+                    <span class="item">Создание</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="padding-large">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <label class="text">Название</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input class="u-full-width" placeholder="Книга Джунглей">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <label class="text">Автор</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input class="u-full-width" placeholder="Редьярд Киплинг">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <label class="text">Артикул</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input class="u-full-width" placeholder="123456">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <label class="text">Дата поступления</label>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="md-form md-outline input-with-post-icon datepicker">
+                                <input placeholder="Select date" type="date" id="example" class="form-control" value="2018-10-27">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="accordion" id="accordionExample">
+                                        <div class="accordion-item">
+                                            <label class="accordion-header" id="headingOne">
+                                                <button class="accordion-button collapsed btn-wrap" type="button"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target="#collapseOne" aria-expanded="false"
+                                                        aria-controls="collapseOne">
+                                                    Жанр
+                                                </button>
+                                            </label>
+                                            <div id="collapseOne" class="accordion-collapse collapse"
+                                                 aria-labelledby="headingOne">
+                                                <div class="accordion-body">
+
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="checkbox"
+                                                               id="inlineCheckbox1" value="option1" checked/>
+                                                        <label class="form-check-label"
+                                                               for="inlineCheckbox1">Сказки</label>
+                                                    </div>
+
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="checkbox"
+                                                               id="inlineCheckbox2" value="option2"/>
+                                                        <label class="form-check-label"
+                                                               for="inlineCheckbox2">Научное</label>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <label class="text">Описание</label>
+                        </div>
+                        <div class="col-md-12">
+                            <textarea class="u-full-width" name="message" placeholder="«Книга джунглей» – бессмертное произведение великого английского писателя Редьярда Киплинга. В
+                        настоящее издание включены три из семи рассказов «Книги джунглей» – о жизни и приключениях
+                        мальчика Маугли, выросшего в волчьей стае и сумевшего победить страшного тигра Шер Хана.
+
+                        Необычайно выразительные иллюстрации Квентина Гребана переносят читателя в фантастический мир
+                        этой удивительной книги." style="height: 150px;"
+                                      required></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <label class="text">Цена (₽)</label>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-outline" style="width: 22rem;">
+                                <input step="0.01" value="40.00" type="number" id="typeNumber"
+                                       class="form-control form-icon-trailing"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <label class="text">Изображение</label>
+                        </div>
+                                                <div class="col-md-12">
+                            <input class="u-full-width" placeholder="main-banner2.jpg">
+                        </div>
+                        <div class="col-md-12">
+                            <figure>
+                                <div class="col-md-12">
+                                    <a href="#" class="product-image"><img src="{% static 'images/main-banner2.jpg' %}"></a>
+                                </div>
+                            </figure>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <a href="{% url 'new_edit' %}">
+                                <button type="button" class="btn btn-accent btn-full">Сохранить</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% include 'mainapp/includes/footer.html'%}
+
+{% endblock %}

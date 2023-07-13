@@ -1,4 +1,5 @@
 {% extends 'mainapp/extends/base.html'%}
+{% load static %}
 {% block  content %}
 
 
@@ -91,7 +92,7 @@
                         </div>
                     </div>
                     <div class="col-md-7">
-                        <a href="edit_profile.html"><button type="button" class="btn btn-accent btn-full">Редактировать профиль</button></a>
+                        <a href="{% url 'edit_profile' %}"><button type="button" class="btn btn-accent btn-full">Редактировать профиль</button></a>
                     </div>
                 </div>
 
@@ -128,7 +129,7 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td><a href="order_detail.html" class="nav-link"
+                                    <td><a href="{% url 'order_detail' %}" class="nav-link"
                                     >1</a></td>
                                     <td>29.05.2021</td>
                                     <td>
@@ -176,7 +177,7 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td><a href="search_detail.html" class="nav-link"
+                                    <td><a href="{% url 'search_detail' %}" class="nav-link"
                                     >1</a></td>
                                     <td>29.05.2021</td>
                                     <td>В обработке</td>

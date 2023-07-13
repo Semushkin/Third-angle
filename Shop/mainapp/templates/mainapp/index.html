@@ -25,7 +25,7 @@
 							<h2 class="banner-title">Алиса в стране чудес</h2>
 							<p>Книга, на которой выросло несколько поколений.</p>
 							<div class="btn-wrap">
-								<a href="single_product.html" class="btn btn-outline-accent btn-accent-arrow">Подробности<i class="icon icon-ns-arrow-right"></i></a>
+								<a href="{% url 'product_detail' %}" class="btn btn-outline-accent btn-accent-arrow">Подробности<i class="icon icon-ns-arrow-right"></i></a>
 							</div>
 						</div><!--banner-content--> 
 						<img src="{% static 'images/main-banner1.jpg' %}" alt="banner" class="banner-image">
@@ -36,7 +36,7 @@
 							<h2 class="banner-title">Книга джунглей</h2>
 							<p>По этой книге до сих пор снимают фильмы.</p>
 							<div class="btn-wrap">
-								<a href="single_product.html" class="btn btn-outline-accent btn-accent-arrow">Подробности<i class="icon icon-ns-arrow-right"></i></a>
+								<a href="{% url 'product_detail' %}" class="btn btn-outline-accent btn-accent-arrow">Подробности<i class="icon icon-ns-arrow-right"></i></a>
 							</div>
 						</div><!--banner-content--> 
 						<img src="{% static 'images/main-banner2.jpg' %}" alt="banner" class="banner-image">
@@ -141,7 +141,7 @@
 		<h2 class="section-title divider">Цитата дня</h2>
 		<blockquote data-aos="fade-up">
 			<q>“Больше всего мне хочется стать таким человеком, который сумел бы сделать мир немного лучше.”</q>
-			<div class="author-name">Эрленд Лу, "Наивно. Супер"</div>
+			<div class="author-name"><input type="checkbox"></div>
 		</blockquote>
 	</div>		
 </section>
@@ -166,14 +166,14 @@
 						<article class="column" data-aos="fade-up">
 
 							<figure>
-								<a href="single_new.html" class="image-hvr-effect">
+								<a href="{% url 'new_detail' %}" class="image-hvr-effect">
 									<img src="{% static 'images/post-img1.jpg' %}" alt="post" class="post-image">
 								</a>
 							</figure>
 
 							<div class="post-item">	
 								<div class="meta-date">Март 30, 2020</div>
-							    <h3><a href="single_new.html">Новые поступления в жанре детских сказок!</a></h3>
+							    <h3><a href="{% url 'new_detail' %}">Новые поступления в жанре детских сказок!</a></h3>
 
 							    <div class="links-element">
 								    <div class="categories"></div>
@@ -197,13 +197,13 @@
 
 						<article class="column" data-aos="fade-down">
 							<figure>
-								<a href="single_new.html" class="image-hvr-effect">
+								<a href="{% url 'new_detail' %}" class="image-hvr-effect">
 									<img src="{% static 'images/post-img2.jpg' %}" alt="post" class="post-image">
 								</a>
 							</figure>
 							<div class="post-item">	
 								<div class="meta-date">Март 29, 2021</div>
-							    <h3><a href="single_new.html">Состоялась творческая встреча с писателем!</a></h3>
+							    <h3><a href="{% url 'new_detail' %}">Состоялась творческая встреча с писателем!</a></h3>
 
 							    <div class="links-element">
 								    <div class="categories"></div>
@@ -227,13 +227,13 @@
 
 						<article class="column" data-aos="fade-up">
 							<figure>
-								<a href="single_new.html" class="image-hvr-effect">
+								<a href="{% url 'new_detail' %}" class="image-hvr-effect">
 									<img src="{% static 'images/post-img3.png' %}" alt="post" class="post-image">
 								</a>
 							</figure>
 							<div class="post-item">		
 								<div class="meta-date">Март 27, 2022</div>
-							    <h3><a href="single_new.html">Мартовская распродажа!</a></h3>
+							    <h3><a href="{% url 'new_detail' %}">Мартовская распродажа!</a></h3>
 
 							    <div class="links-element">
 								    <div class="categories"></div>
@@ -259,7 +259,7 @@
 				<div class="row">
 
 					<div class="btn-wrap align-center">
-						<a href="news.html" class="btn btn-outline-accent btn-accent-arrow" tabindex="0">Читать все новости<i class="icon icon-ns-arrow-right"></i></a>
+						<a href="{% url 'news' %}" class="btn btn-outline-accent btn-accent-arrow" tabindex="0">Читать все новости<i class="icon icon-ns-arrow-right"></i></a>
 					</div>
 				</div>
 

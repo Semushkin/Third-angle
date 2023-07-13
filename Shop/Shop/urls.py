@@ -25,6 +25,20 @@ urlpatterns = [
     path('search_list/', search_list, name='search_list'),
     path('new_detail/', new_detail, name='new_detail'),
     path('product_detail/', product_detail, name='product_detail'),
+    path('m_profile/', m_profile, name='m_profile'),
+    path('s_profile/', s_profile, name='s_profile'),
+    path('news_list/', news_list, name='news_list'),
+    path('new_create/', new_create, name='new_create'),
+    path('new_edit/', new_edit, name='new_edit'),
+    path('quotes_list/', quotes_list, name='quotes_list'),
+    path('quote_create/', quote_create, name='quote_create'),
+    path('quote_edit/', quote_edit, name='quote_edit'),
+    path('products_list/', products_list, name='products_list'),
+    path('product_create/', product_create, name='product_create'),
+    path('product_edit/', product_edit, name='product_edit'),
+    path('m_quote_detail/', m_quote_detail, name='m_quote_detail'),
+    path('m_new_detail/', m_new_detail, name='m_new_detail'),
+    path('m_product_detail/', m_product_detail, name='m_product_detail'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

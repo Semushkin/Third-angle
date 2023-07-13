@@ -12,7 +12,7 @@ def catalog(request):
     context = {
         'books': Book.objects.all(),
     }
-    return render(request, 'mainapp/shop.html', context)
+    return render(request, 'mainapp/catalog.html', context)
 
 
 def news(request):
@@ -32,7 +32,7 @@ def cart(request):
 
 
 def edit_profile(request):
-    return render(request, 'mainapp/edit_profile.html')
+    return render(request, 'mainapp/profile_edit.html')
 
 
 def login(request):
@@ -76,8 +76,68 @@ def search_list(request):
 
 
 def new_detail(request):
-    return render(request, 'mainapp/single_new.html')
+    return render(request, 'mainapp/new_detail.html')
 
 
 def product_detail(request):
-    return render(request, 'mainapp/single_product.html')
+    return render(request, 'mainapp/product_detail.html')
+
+
+def m_profile(request):
+    return render(request, 'mainapp/m_profile.html')
+
+
+def s_profile(request):
+    return render(request, 'mainapp/s_profile.html')
+
+
+def news_list(request):
+    return render(request, 'mainapp/news_list.html')
+
+
+def new_create(request):
+    return render(request, 'mainapp/new_create.html')
+
+
+def new_edit(request):
+    return render(request, 'mainapp/new_edit.html')
+
+
+def quotes_list(request):
+    return render(request, 'mainapp/quotes_list.html')
+
+
+def quote_create(request):
+    return render(request, 'mainapp/quote_create.html')
+
+
+def quote_edit(request):
+    return render(request, 'mainapp/quote_edit.html')
+
+
+def products_list(request):
+    context = {
+        'books': Book.objects.all(),
+    }
+    return render(request, 'mainapp/products_list.html', context)
+
+
+def product_create(request):
+    return render(request, 'mainapp/product_create.html')
+
+
+def product_edit(request):
+    return render(request, 'mainapp/product_edit.html')
+
+
+def m_quote_detail(request):
+    return render(request, 'mainapp/m_quote_detail.html')
+
+
+def m_new_detail(request):
+    return render(request, 'mainapp/m_new_detail.html')
+
+
+def m_product_detail(request):
+    return render(request, 'mainapp/m_product_detail.html')
+
