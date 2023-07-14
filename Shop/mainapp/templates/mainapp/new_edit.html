@@ -6,23 +6,83 @@
 <div id="header-wrap">
 
     {% include 'mainapp/includes/header.html'%}
-	{% include 'mainapp/includes/menu.html'%}
+    {% include 'mainapp/includes/menu.html'%}
 
 </div><!--header-wrap-->
-
 <section>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="breadcrumbs">
-                    <span class="item"><a href="{% url 'index' %}">Рабочий кабинет /</a></span>
-                    <span class="item">Редактирвоание новости</span>
+                    <span class="item"><a href="{% url 'news_list' %}">Список новостей /</a></span>
+                    <span class="item">Редактирование</span>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
+<section class="padding-large">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <label class="text">Название</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input class="u-full-width" placeholder="Название" value="Приглашаем в гости">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <label class="text">Краткое содержание</label>
+                        </div>
+                        <div class="col-md-12">
+                            <textarea class="u-full-width" name="message" placeholder="Текст" style="height: 150px;"
+                                      required>Приглашаем в гости!</textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <label class="text">Содержание</label>
+                        </div>
+                        <div class="col-md-12">
+                            <textarea class="u-full-width" name="message" placeholder="Текст" style="height: 150px;"
+                                      required>Приглашаем в гости в честь поступления новой партии книг!</textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <label class="text">Изображение</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input class="u-full-width" placeholder="Название файла" value="post-img1.jpg">
+                        </div>
+                        <div class="col-md-12">
+                            <figure>
+                        <a href="#" class="image-hvr-effect">
+                            <img src="{% static 'images/post-img1.jpg' %}" alt="post" class="post-image">
+                        </a>
+                    </figure>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <a href="{% url 'new_edit' %}">
+                                <button type="button" class="btn btn-accent btn-full">Сохранить</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
 
 
 {% include 'mainapp/includes/footer.html'%}
