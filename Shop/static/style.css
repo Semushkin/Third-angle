@@ -65,6 +65,16 @@ body {
 body.no-scroll {
     overflow: hidden;
 }
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #C5A992;
+    border-color: #C5A992;
+}
+.v-divider{
+ width:1px;
+ border-right:1px solid #C5A992;
+}
 a {
   color: var(--accent-color);
   transition: 0.3s color ease-out;
@@ -468,7 +478,7 @@ button {
   position: relative;
   border: 1px solid transparent;
   border-radius: 0;
-  padding: 0.75em 1.5em;
+  padding: 0.75em 0.75em;
   margin-top: 15px;
   font-size: 15px;
   font-weight: bold;
@@ -1812,13 +1822,13 @@ footer#footer {
 .product-style button.add-to-cart {
     background: #000;
     color: #fff;
-    width: 70%;
+    width: 100%;
     text-transform: uppercase;
     text-align: center;
     line-height: 3;
     position: absolute;
     bottom: 300px;
-    left: 40px;
+    left: 0px;
     z-index: 9;
     opacity: 0;
     transition: 0.5s ease-out;
@@ -1863,3 +1873,10 @@ footer#footer {
     width: 100%;
   }
 }
+
+@media (max-width: 576px) {
+    .col-xs-12 {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%
+    }
