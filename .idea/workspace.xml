@@ -5,21 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25b6bceb-7d50-49d5-9c48-40af1c5286fb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Shop/Shop/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/Shop/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shop/authapp/form.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -36,13 +45,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/home/anton/GeekBrains/Python_Team_Dev/Third-angle/Shop/manage.py"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/anton/GeekBrains/Python_Team_Dev/Third-angle/Shop/manage.py&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Third-angle" type="PythonConfigurationType" factoryName="Python">
       <module name="Third-angle" />

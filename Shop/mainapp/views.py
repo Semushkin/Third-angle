@@ -1,5 +1,10 @@
 from django.shortcuts import render
 from mainapp.models import Book
+from authapp.forms import UserRegisterForm, UserLoginForm
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -35,11 +40,47 @@ def cart(request):
 
 
 def edit_profile(request):
-    return render(request, 'mainapp/profile_edit.html')
+    if request.method == 'POST':
+        form = UserRegisterForm(instance=request.user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('profile'))
+        else:
+            print(f'Ошибка редактирования формы профиля пользователя "{form.errors}"')
+    else:
+        form = UserRegisterForm(instance=request.user)
+    context = {
+        'form': form
+    }
+    return render(request, 'mainapp/profile_edit.html', context)
 
 
 def login(request):
-    return render(request, 'mainapp/login.html')
+    if request.method == 'POST':
+        form = UserLoginForm(data=request.POST)
+        if form.is_valid():
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            user = auth.authenticate(username=username, password=password)
+            # auth.login(request, user)
+            if user.is_active:
+                auth.login(request, user)
+                return HttpResponseRedirect(reverse('index'))
+        else:
+            print(f'Ошибка формы авторизации "{form.errors}"')
+    else:
+        form = UserLoginForm()
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'mainapp/login.html', context)
+
+
+def logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect(reverse('index'))
 
 
 def order_detail(request):
@@ -55,7 +96,19 @@ def profile(request):
 
 
 def registration(request):
-    return render(request, 'mainapp/registration.html')
+    if request.method == 'POST':
+        form = UserRegisterForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('index'))
+        else:
+            print(f'Ошибка формы регистрации формы "{form.errors}"')
+    else:
+        form = UserRegisterForm()
+    context = {
+     'form': form
+    }
+    return render(request, 'mainapp/registration.html', context)
 
 
 def rules(request):
