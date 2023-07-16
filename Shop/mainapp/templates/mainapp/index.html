@@ -20,27 +20,41 @@
 				</button>
 
 				<div class="main-slider pattern-overlay">
+					{% for book in books %}
+{% if book.id < 3 %}
 					<div class="slider-item">
 						<div class="banner-content">
-							<h2 class="banner-title">Алиса в стране чудес</h2>
-							<p>Книга, на которой выросло несколько поколений.</p>
+							<h2 class="banner-title">{{ book.name }}</h2>
+							<p>{{ book.description }}</p>
 							<div class="btn-wrap">
 								<a href="{% url 'product_detail' %}" class="btn btn-outline-accent btn-accent-arrow">Подробности<i class="icon icon-ns-arrow-right"></i></a>
 							</div>
-						</div><!--banner-content--> 
-						<img src="{% static 'images/main-banner1.jpg' %}" alt="banner" class="banner-image">
-					</div><!--slider-item-->
+						</div>
+						<img src="{{ book.foto.url }}" alt="banner" class="banner-image" width="400" height="500">
+					</div>
+{% endif %}
+					{% endfor %}
+<!--					<div class="slider-item">-->
+<!--						<div class="banner-content">-->
+<!--							<h2 class="banner-title">Алиса в стране чудес</h2>-->
+<!--							<p>Книга, на которой выросло несколько поколений.</p>-->
+<!--							<div class="btn-wrap">-->
+<!--								<a href="{% url 'product_detail' %}" class="btn btn-outline-accent btn-accent-arrow">Подробности<i class="icon icon-ns-arrow-right"></i></a>-->
+<!--							</div>-->
+<!--						</div>&lt;!&ndash;banner-content&ndash;&gt;-->
+<!--						<img src="{% static 'images/main-banner1.jpg' %}" alt="banner" class="banner-image">-->
+<!--					</div>&lt;!&ndash;slider-item&ndash;&gt;-->
 
-					<div class="slider-item">
-						<div class="banner-content">
-							<h2 class="banner-title">Книга джунглей</h2>
-							<p>По этой книге до сих пор снимают фильмы.</p>
-							<div class="btn-wrap">
-								<a href="{% url 'product_detail' %}" class="btn btn-outline-accent btn-accent-arrow">Подробности<i class="icon icon-ns-arrow-right"></i></a>
-							</div>
-						</div><!--banner-content--> 
-						<img src="{% static 'images/main-banner2.jpg' %}" alt="banner" class="banner-image">
-					</div><!--slider-item-->
+<!--					<div class="slider-item">-->
+<!--						<div class="banner-content">-->
+<!--							<h2 class="banner-title">Книга джунглей</h2>-->
+<!--							<p>По этой книге до сих пор снимают фильмы.</p>-->
+<!--							<div class="btn-wrap">-->
+<!--								<a href="{% url 'product_detail' %}" class="btn btn-outline-accent btn-accent-arrow">Подробности<i class="icon icon-ns-arrow-right"></i></a>-->
+<!--							</div>-->
+<!--						</div>&lt;!&ndash;banner-content&ndash;&gt;-->
+<!--						<img src="{% static 'images/main-banner2.jpg' %}" alt="banner" class="banner-image">-->
+<!--					</div>&lt;!&ndash;slider-item&ndash;&gt;-->
 
 				</div><!--slider-->
 					
@@ -68,54 +82,68 @@
 
 			<div class="product-list" data-aos="fade-up">
 				<div class="row">
-
+{% for book in books %}
+					{% if book.id < 5 %}
 					<div class="col-md-3">
 						<figure class="product-style">
-							<img src="{% static 'images/product-item1.jpeg' %}" alt="Books" class="product-item">
+							<img src="{{ book.foto.url }}" alt="Books" class="product-item">
 								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>
 							<figcaption>
-								<h3>Сборник</h3>
-								<p>Стругацкие</p>
-								<div class="item-price">40.00 ₽</div>
+								<h3>{{ book.name }}</h3>
+								<p>{{ book.author }}</p>
+								<div class="item-price">{{ book.price }} ₽</div>
 							</figcaption>
 						</figure>
 					</div>
+					{% endif %}
+					{% endfor %}
+<!--					<div class="col-md-3">-->
+<!--						<figure class="product-style">-->
+<!--							<img src="{% static 'images/product-item1.jpeg' %}" alt="Books" class="product-item">-->
+<!--								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>-->
+<!--							<figcaption>-->
+<!--								<h3>Сборник</h3>-->
+<!--								<p>Стругацкие</p>-->
+<!--								<div class="item-price">40.00 ₽</div>-->
+<!--							</figcaption>-->
+<!--						</figure>-->
+<!--					</div>-->
 
-					<div class="col-md-3">
-						<figure class="product-style">
-							<img src="{% static 'images/product-item2.jpg' %}" alt="Books" class="product-item">
-								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>
-							<figcaption>
-								<h3>Шесть спичек</h3>
-								<p>Стругацкие</p>
-								<div class="item-price">38.00 ₽</div>
-							</figcaption>
-						</figure>
-					</div>
+<!--					<div class="col-md-3">-->
+<!--						<figure class="product-style">-->
+<!--							<img src="{% static 'images/product-item2.jpg' %}" alt="Books" class="product-item">-->
+<!--								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>-->
+<!--							<figcaption>-->
+<!--								<h3>Шесть спичек</h3>-->
+<!--								<p>Стругацкие</p>-->
+<!--								<div class="item-price">38.00 ₽</div>-->
+<!--							</figcaption>-->
+<!--						</figure>-->
+<!--					</div>-->
 
-					<div class="col-md-3">
-						<figure class="product-style">
-							<img src="{% static 'images/product-item3.jpg' %}" alt="Books" class="product-item">
-								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>
-							<figcaption>
-								<h3>Путь на Амальтею</h3>
-								<p>Стругацкие</p>
-								<div class="item-price">45.00 ₽</div>
-							</figcaption>
-						</figure>
-					</div>
+<!--					<div class="col-md-3">-->
+<!--						<figure class="product-style">-->
+<!--							<img src="{% static 'images/product-item3.jpg' %}" alt="Books" class="product-item">-->
+<!--								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>-->
+<!--							<figcaption>-->
+<!--								<h3>Путь на Амальтею</h3>-->
+<!--								<p>Стругацкие</p>-->
+<!--								<div class="item-price">45.00 ₽</div>-->
+<!--							</figcaption>-->
+<!--						</figure>-->
+<!--					</div>-->
 
-					<div class="col-md-3">
-						<figure class="product-style">
-							<img src="{% static 'images/product-item4.jpg' %}" alt="Books" class="product-item">
-								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>
-							<figcaption>
-								<h3>Сказка о тройке</h3>
-								<p>Стругацкие</p>
-								<div class="item-price">35.00 ₽</div>
-							</figcaption>
-						</figure>
-					</div>
+<!--					<div class="col-md-3">-->
+<!--						<figure class="product-style">-->
+<!--							<img src="{% static 'images/product-item4.jpg' %}" alt="Books" class="product-item">-->
+<!--								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>-->
+<!--							<figcaption>-->
+<!--								<h3>Сказка о тройке</h3>-->
+<!--								<p>Стругацкие</p>-->
+<!--								<div class="item-price">35.00 ₽</div>-->
+<!--							</figcaption>-->
+<!--						</figure>-->
+<!--					</div>-->
 
 			    </div><!--ft-books-slider-->
 			</div><!--grid-->

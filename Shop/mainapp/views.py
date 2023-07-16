@@ -5,7 +5,10 @@ from mainapp.models import Book
 
 
 def index(request):
-    return render(request, 'mainapp/index.html')
+    context = {
+        'books': Book.objects.all(),
+    }
+    return render(request, 'mainapp/index.html', context)
 
 
 def catalog(request):
