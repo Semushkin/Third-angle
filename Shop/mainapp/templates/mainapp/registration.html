@@ -24,69 +24,86 @@
 
 <section class="padding-large">
     <div class="container">
+        {% if form.errors %}
+            <div class="row">
+                <div class="col-md-12 offset-md-12 col-sm-12 offset-sm-12">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <p>Ошибка заполнения формы</p>
+                        {{ form.errors }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
         <div class="row">
             <div class="col-md-4 offset-md-4 col-sm-4 offset-sm-4">
                 <div class="col-md-12">
-                    <form onsubmit="return checkForm(this);">
+                    <form onsubmit="return checkForm(this);" action="{% url 'registration' %}" method="post">
+                        {% csrf_token %}
                         <div class="row">
+                            <label class="u-full-width text-center">Имя</label>
+                            <!--input class="u-full-width" onkeydown="return /[a-zA-Zа-яА-Я]/i.test(event.key)"
+                                   placeholder="Имя" required-->
+                            {{ form.first_name }}
+                            <label class="u-full-width text-center">Фамилия</label>
+                            <!--input class="u-full-width" onkeydown="return /[a-zA-Zа-яА-Я]/i.test(event.key)"
+                                   placeholder="Фамилия"-->
+                            {{ form.last_name }}
+                            <label class="u-full-width text-center">Пол</label>
+                            <div class="custom-control custom-radio col-md-3 offset-md-2">
+                                <input type="radio" id="male" name="customRadioButton" class="custom-control-input">
+                                <label for="male" class="custom-control-label">Мужской</label>
+                            </div>
+                            <div class="custom-control custom-radio col-md-3 offset-md-2">
+                                <input type="radio" id="female" name="customRadioButton"
+                                       class="custom-control-input">
+                                <label for="female" class="custom-control-label">Женский</label>
+                            </div>
 
-                                <label class="u-full-width text-center">Имя</label>
-                                <input class="u-full-width" onkeydown="return /[a-zA-Zа-яА-Я]/i.test(event.key)"
-                                       placeholder="Имя" required>
+                            <label class="u-full-width text-center">Возраст</label>
+                            <div class="form-group u-full-width">
+                                <!--input type="number" class="form-control" id="age"-->
+                                {{ form.age }}
+                            </div>
 
+                            <label class="u-full-width text-center">Адрес</label>
+                            <!--textarea class="u-full-width" name="message"
+                                      style="height: 150px;" required></textarea-->
+                                {{ form.address }}
 
-                                <label class="u-full-width text-center">Фамилия</label>
-                                <input class="u-full-width" onkeydown="return /[a-zA-Zа-яА-Я]/i.test(event.key)"
-                                       placeholder="Фамилия">
+                            <label class="u-full-width text-center">Телефон</label>
+                            <!--input class="u-full-width" type="tel" id="phone" name="phone"
+                                   value="+7 (___) ___ - __ - __" mask="+7 (___) ___ - __ - __"
+                                   placeholder="+7 (___) ___ - __ - __"-->
+                            {{ form.telephone }}
 
-                                <label class="u-full-width text-center">Пол</label>
-                                <div class="custom-control custom-radio col-md-3 offset-md-2">
-                                    <input type="radio" id="male" name="customRadioButton" class="custom-control-input">
-                                    <label for="male" class="custom-control-label">Мужской</label>
-                                </div>
-                                <div class="custom-control custom-radio col-md-3 offset-md-2">
-                                    <input type="radio" id="female" name="customRadioButton"
-                                           class="custom-control-input">
-                                    <label for="female" class="custom-control-label">Женский</label>
-                                </div>
+                            <label class="u-full-width text-center">Электронная почта</label>
+                            <!--input class="u-full-width" type="email" name="email" placeholder="Электронная почта"
+                                   required-->
+                            {{ form.email }}
 
-                                <label class="u-full-width text-center">Возраст</label>
-                                <div class="form-group u-full-width">
-                                    <input type="number" class="form-control" id="age">
-                                </div>
+                            <label class="u-full-width text-center">Логин</label>
+                            <!--input class="u-full-width" placeholder="Логин" name="username"
+                                   onkeydown="return /[a-zA-Z0-9_]/i.test(event.key)" required-->
+                            {{ form.username }}
 
-                                <label class="u-full-width text-center">Адрес</label>
-                                <textarea class="u-full-width" name="message"
-                                          style="height: 150px;" required></textarea>
+                            <label class="u-full-width text-center">Пароль</label>
+                            <!--input class="u-full-width"  type="password" name="password" autocomplete="current-password" required="" id="id_password"placeholder="Пароль" required>
+                            <i class="far fa-eye" id="togglePassword"
+                               style="margin-left: -30px; padding-top: 10px; cursor: pointer;"></i-->
+                            {{ form.password1 }}
 
-                                <label class="u-full-width text-center">Телефон</label>
-                                <input class="u-full-width" type="tel" id="phone" name="phone"
-                                       value="+7 (___) ___ - __ - __" mask="+7 (___) ___ - __ - __"
-                                       placeholder="+7 (___) ___ - __ - __">
+                            <label class="u-full-width text-center">Введите пароль еще раз</label>
+                            <!--input class="u-full-width" type="password" name="pwd2" autocomplete="current-password"
+                                   required="" id="id_password2" placeholder="Пароль" required>
+                            <i class="far fa-eye" id="togglePassword2"
+                               style="margin-left: -30px; padding-top: 10px; cursor: pointer;"></i-->
+                             {{ form.password2 }}
 
-                                <label class="u-full-width text-center">Электронная почта</label>
-                                <input class="u-full-width" type="email" name="email" placeholder="Электронная почта"
-                                       required>
-
-                                <label class="u-full-width text-center">Логин</label>
-                                <input class="u-full-width" placeholder="Логин" name="username"
-                                       onkeydown="return /[a-zA-Z0-9_]/i.test(event.key)" required>
-
-                                <label class="u-full-width text-center">Пароль</label>
-                                <input class="u-full-width"  type="password" name="password" autocomplete="current-password" required="" id="id_password"placeholder="Пароль" required>
-                            <i class="far fa-eye" id="togglePassword" style="margin-left: -30px; padding-top: 10px; cursor: pointer;"></i>
-
-                                <label class="u-full-width text-center">Введите пароль еще раз</label>
-                                <input class="u-full-width" type="password" name="pwd2" autocomplete="current-password"
-                                       required="" id="id_password2" placeholder="Пароль" required>
-                                <i class="far fa-eye" id="togglePassword2"
-                                   style="margin-left: -30px; padding-top: 10px; cursor: pointer;"></i>
-
-                                <label>
-                                    <input type="checkbox" required>
-                                    <span class="label-body">Я согласен с <a
-                                            href="{% url 'rules' %}">правилами сайта</a></span>
-                                </label>
+                            <label>
+                                <input type="checkbox" required>
+                                <span class="label-body">Я согласен с <a
+                                        href="{% url 'rules' %}">правилами сайта</a></span>
+                            </label>
 
                         </div>
 
