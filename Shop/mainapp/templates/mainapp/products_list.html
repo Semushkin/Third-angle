@@ -112,7 +112,7 @@
             {% for book in books %}
             <tbody>
             <tr>
-                <td><a href="{% url 'm_product_detail' %}" class="nav-link"
+                <td class="page-item active"><a href="{% url 'm_product_detail' %}" class="page-link nav-link"
                 >{{ book.id }}</a></td>
                 <td>{{ book.name }}</td>
                 <td>

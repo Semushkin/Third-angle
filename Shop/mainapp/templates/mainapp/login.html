@@ -4,8 +4,8 @@
 
 <div id="header-wrap">
 
-	{% include 'mainapp/includes/header.html'%}
-	{% include 'mainapp/includes/menu.html'%}
+    {% include 'mainapp/includes/header.html'%}
+    {% include 'mainapp/includes/menu.html'%}
 
 </div><!--header-wrap-->
 
@@ -26,31 +26,33 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 offset-md-4 col-sm-4 offset-sm-4">
+                <div class="col-md-12">
+                    <form>
+                        <div class="row">
 
-                <form>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label class="text-center">Логин</label>
-                            <input class="u-full-width" placeholder="Логин">
+                            <label class="u-full-width text-center">Логин</label>
+                            <input class="u-full-width" placeholder="Логин" required>
+
+
+                            <label class="u-full-width text-center">Пароль</label>
+                            <input class="u-full-width" type="password" name="password" autocomplete="current-password"
+                                   required="" id="id_password" placeholder="Пароль" required>
+                            <i class="far fa-eye" id="togglePassword"
+                               style="margin-left: -30px; padding-top: 10px; cursor: pointer;"></i>
+
+
+                            <a class="text-center u-full-width" href="{% url 'registration' %}">Зарегистрироваться</a>
+
+
                         </div>
-                        <div class="col-md-12">
-                            <label class="text-center">Пароль</label>
-                            <input class="u-full-width" placeholder="Пароль">
-                        </div>
-                        <div class="col-md-6 offset-md-3">
-                            <a href="{% url 'registration' %}">Зарегистрироваться</a>
-                        </div>
-
-                    </div>
 
 
+                        <input class="button-primary col-md-12" type="submit" value="Войти">
+                    </form>
 
-                    <input class="button-primary col-md-12" type="submit" value="Войти">
-                </form>
-
+                </div>
             </div>
         </div>
-    </div>
 </section>
 
 {% include 'mainapp/includes/footer.html'%}
