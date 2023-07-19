@@ -144,7 +144,7 @@
             <div class="col-md-9">
                 <div class="products-grid grid">
 
-                    {% for book in books %}
+                    {% for book in page_obj.object_list %}
 
                     <figure class="product-style">
                         <img src="{{ book.foto.url }}" alt="Books" class="product-item">
@@ -159,30 +159,13 @@
                     {% endfor %}
 
                 </div>
+                {% include 'mainapp/includes/pagination.html'%}
             </div>
 
         </div>
     </div>
 </section>
-<section>
-    <div class="row justify-content-center align-items-center mt-3 mb-n3">
-        <nav aria-label="...">
-            <ul class="pagination">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active">
-                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</section>
+
 
 {% include 'mainapp/includes/footer.html'%}
 
