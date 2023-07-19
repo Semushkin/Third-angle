@@ -23,59 +23,90 @@
 
 <section class="padding-large">
     <div class="container">
+                {% if form.errors %}
+            <div class="row">
+                <div class="col-md-12 offset-md-12 col-sm-12 offset-sm-12">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <p>Ошибка заполнения формы</p>
+                        {{ form.errors }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if form_pass.errors %}
+            <div class="row">
+                <div class="col-md-12 offset-md-12 col-sm-12 offset-sm-12">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <p>Ошибка смены пароля</p>
+                        {{ form_pass.errors }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
         <div class="row">
             <div class="col-md-4 offset-md-4 col-sm-4 offset-sm-4">
 
-                <form>
+                <form action="{% url 'edit_profile' %}" method="post">
+                    {% csrf_token %}
                     <div class="row">
                         <div class="col-md-12">
                             <label class="text-center">Имя</label>
-                            <input class="u-full-width" placeholder="Имя" value="Старое имя">
+                            <!--input class="u-full-width" placeholder="Имя" value="Старое имя"-->
+                            {{ form.first_name }}
                         </div>
                         <div class="col-md-12">
                             <label class="text-center">Фамилия</label>
-                            <input class="u-full-width" placeholder="Фамилия" value="Старая фамилия">
+                            <!--input class="u-full-width" placeholder="Фамилия" value="Старая фамилия"-->
+                            {{ form.last_name }}
                         </div>
                         <div class="col-md-12">
                             <label class="text-center">Пол</label>
-                            <div class="custom-control custom-radio col-md-3 offset-md-2">
+                            <!--div class="custom-control custom-radio col-md-3 offset-md-2">
                                 <input type="radio" id="male" name="customRadioButton" class="custom-control-input" checked>
                                 <label for="male" class="custom-control-label">Мужской</label>
                             </div>
                             <div class="custom-control custom-radio col-md-3 offset-md-2">
                                 <input type="radio" id="female" name="customRadioButton" class="custom-control-input">
                                 <label for="female" class="custom-control-label">Женский</label>
-                            </div>
+                            </div-->
+                            {{ form.gender }}
                         </div>
                         <div class="col-md-12">
                             <label class="text-center">Возраст</label>
-                            <div class="form-group">
+                            {{ form.age }}
+                            <!--div class="form-group">
                                 <input type="number" class="form-control" id="age" value="22">
-                            </div>
+                            </div-->
                         </div>
                         <div class="col-md-12">
                             <label class="text-center">Адрес</label>
-                            <input class="u-full-width" placeholder="Адрес" value="Старый адрес">
+                            <!--input class="u-full-width" placeholder="Адрес" value="Старый адрес"-->
+                            {{ form.address }}
                         </div>
                         <div class="col-md-12">
                             <label class="text-center">Телефон</label>
-                            <input class="u-full-width" placeholder="Телефон" value="Старый телефон">
+                            <!--input class="u-full-width" placeholder="Телефон" value="Старый телефон"-->
+                            {{ form.telephone }}
                         </div>
                         <div class="col-md-12">
                             <label class="text-center">Электронная почта</label>
-                            <input class="u-full-width" placeholder="Электронная почта" value="Старая электронная почта">
+                            <!--input class="u-full-width" placeholder="Электронная почта" value="Старая электронная почта"-->
+                            {{ form.email }}
                         </div>
                         <div class="col-md-12">
                             <label class="text-center">Логин</label>
-                            <input class="u-full-width" placeholder="Логин" value="Старый логин">
+                            <!--input class="u-full-width" placeholder="Логин" value="Старый логин"-->
+                            {{ form.username }}
                         </div>
                         <div class="col-md-12">
                             <label class="text-center">Пароль</label>
-                            <input class="u-full-width" placeholder="Пароль">
+                            <!--input class="u-full-width" placeholder="Пароль"-->
+                            {{ form_pass.new_password1 }}
                         </div>
                         <div class="col-md-12">
                             <label class="text-center">Введите пароль еще раз</label>
-                            <input class="u-full-width" placeholder="Пароль">
+                            <!--input class="u-full-width" placeholder="Пароль"-->
+                            {{ form_pass.new_password2 }}
                         </div>
                     </div>
 
