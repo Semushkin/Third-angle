@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from mainapp.models import Book
-from authapp.forms import UserRegisterForm, UserLoginForm
+from authapp.forms import UserRegisterForm, UserLoginForm, UserEditForm, SetNewPassword
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import auth
@@ -44,18 +44,30 @@ def cart(request):
     return render(request, 'mainapp/cart.html')
 
 
+@login_required
 def edit_profile(request):
+    error = False
     if request.method == 'POST':
-        form = UserRegisterForm(instance=request.user, data=request.POST)
+        form = UserEditForm(instance=request.user, data=request.POST)
+        form_pass = SetNewPassword(request.user, data=request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('profile'))
+            if request.POST.get('new_password1'):
+                if form_pass.is_valid():
+                    form_pass.save()
+                else:
+                    print(f'Ошибка редактирования формы профиля пользователя "{form_pass.errors}"')
+                    error = True
+            if not error:
+                return HttpResponseRedirect(reverse('profile'))
         else:
             print(f'Ошибка редактирования формы профиля пользователя "{form.errors}"')
     else:
-        form = UserRegisterForm(instance=request.user)
+        form = UserEditForm(instance=request.user)
+        form_pass = SetNewPassword(request.user)
     context = {
-        'form': form
+        'form': form,
+        'form_pass': form_pass,
     }
     return render(request, 'mainapp/profile_edit.html', context)
 
@@ -83,6 +95,7 @@ def login(request):
     return render(request, 'mainapp/login.html', context)
 
 
+@login_required
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect(reverse('index'))
@@ -96,6 +109,7 @@ def order_list(request):
     return render(request, 'mainapp/order_list.html')
 
 
+@login_required
 def profile(request):
     return render(request, 'mainapp/profile.html')
 
