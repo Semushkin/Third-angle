@@ -31,19 +31,18 @@
                         {% csrf_token %}
                         <div class="row">
                             {% if form.errors %}
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    {{ form.errors }}
-                                </div>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ form.errors }}
+                            </div>
                             {% endif %}
                             <label class="u-full-width text-center">Логин</label>
-                            <!--input class="u-full-width" placeholder="Логин" required-->
+
                             {{ form.username }}
                             <label class="u-full-width text-center">Пароль</label>
                             {{ form.password }}
-                            <!--input class="u-full-width" type="password" name="password" autocomplete="current-password"
-                                   required="" id="id_password" placeholder="Пароль" required>
+
                             <i class="far fa-eye" id="togglePassword"
-                               style="margin-left: -30px; padding-top: 10px; cursor: pointer;"></i-->
+                               style="margin-left: -30px; padding-top: 10px; cursor: pointer;"></i>
                             <a class="text-center u-full-width" href="{% url 'registration' %}">Зарегистрироваться</a>
                         </div>
                         <input class="button-primary col-md-12" type="submit" value="Войти">
@@ -52,6 +51,7 @@
                 </div>
             </div>
         </div>
+    </div>
 </section>
 
 {% include 'mainapp/includes/footer.html'%}

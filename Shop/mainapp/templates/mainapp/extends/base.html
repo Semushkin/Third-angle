@@ -39,7 +39,7 @@
 <script src='{% static "js/validation.js" %}'></script>
 <script src='{% static "js/phonemask.min.js" %}'></script>
 <script type="text/javascript">
-const cssPhone = 'input[name="phone"';
+const cssPhone = 'input[name="telephone"';
 (new phoneMask()).init(cssPhone);
 </script>
 <script type="text/javascript">
@@ -61,6 +61,18 @@ const togglePassword = document.querySelector('#togglePassword');
     // toggle the type attribute
     const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
     password.setAttribute('type', type);
+    // toggle the eye slash icon
+    this.classList.toggle('fa-eye-slash');
+});
+</script>
+<script type="text/javascript">
+const togglePassword1 = document.querySelector('#togglePassword1');
+  const password1 = document.querySelector('#id_password1');
+
+  togglePassword1.addEventListener('click', function (e) {
+    // toggle the type attribute
+    const type = password1.getAttribute('type') === 'password' ? 'text' : 'password';
+    password1.setAttribute('type', type);
     // toggle the eye slash icon
     this.classList.toggle('fa-eye-slash');
 });
