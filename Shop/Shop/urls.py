@@ -3,6 +3,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 from mainapp.views import *
+from authapp.views import *
+from basketapp.views import *
+from sellerapp.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),

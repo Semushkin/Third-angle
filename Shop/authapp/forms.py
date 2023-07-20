@@ -28,6 +28,7 @@ class UserRegisterForm(UserCreationForm):
         self.fields['last_name'].widget.attrs['onkeydown'] = 'return /[a-zA-Zа-яА-Я]/i.test(event.key)'
         self.fields['first_name'].widget.attrs['placeholder'] = 'Введите имя'
         self.fields['first_name'].widget.attrs['onkeydown'] = 'return /[a-zA-Zа-яА-Я]/i.test(event.key)'
+        self.fields['gender'].widget.attrs['placeholder'] = 'Укажите пол'
         self.fields['email'].widget.attrs['placeholder'] = 'Введите email'
         self.fields['age'].widget.attrs['placeholder'] = 'Введите возраст'
         self.fields['address'].widget.attrs['placeholder'] = 'Введите адрес'
