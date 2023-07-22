@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 namespace Thrid_angle.Database.RestAPI.DTO
 {
     [Table("QuoteCard")]
-    internal class QuoteCard  // карточка цитаты
+    public class QuoteCard  // карточка цитаты
     {
         [Key]
-        internal Guid IdQuote { get ; set; }
-        internal string QuoteTitle { get; set; }
-        internal string QuoteText { get; set; }
-        internal string QuoteAutor { get; set; }
-        internal DateTime DateCreationQuote { get; set; }
-        internal DateTime DateUpdateQuote { get; set; }
+        public Guid IdQuote { get ; set; }
+        public string QuoteTitle { get; set; }
+        public string QuoteText { get; set; }
+        public string QuoteAutor { get; set; }
+        public DateTime DateCreationQuote { get; set; }
+        public DateTime DateUpdateQuote { get; set; }
 
     }
 }

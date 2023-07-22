@@ -10,15 +10,15 @@ using Microsoft.EntityFrameworkCore.Sqlite;
 namespace Thrid_angle.Database.RestAPI.DTO
 {
     [Table("RequestCard")]
-    internal class RequestCard // карточка запроса
+    public class RequestCard // карточка запроса
     {
         [Key]
-        internal Guid IdRequestCard { get ; set; }
-        internal  string CommentTextCard { get; set; }
-        internal int NumberStars { get; set; } // количество звездочек
-        internal Guid IdUser { get; set; }
-        internal Guid IdBook { get; set; }
-        internal DateTime DateRequestCreation { get; set; }
-        internal DateTime DateRequestUpdation { get; set; }
+        public Guid IdRequestCard { get ; set; }
+        public string CommentTextCard { get; set; }
+        public int NumberStars { get; set; } // количество звездочек
+        public Guid IdUser { get; set; }
+        public Guid IdBook { get; set; }
+        public DateTime DateRequestCreation { get; set; }
+        public DateTime DateRequestUpdation { get; set; }
     }
 }

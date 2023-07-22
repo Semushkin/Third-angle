@@ -40,12 +40,19 @@ namespace Thrid_angle.Database.RestAPI.Mehtods
         internal UserCard IDReadDatabaseUserCard(Guid Id) { UserCard t = db.DbUserCard.Find(Id); return t; }
 
 
-        internal void UpdateDatabaseBaskets(Baskets baskets) { db.DbBaskets.Add(baskets); }
-        internal void UpdateDatabaseBookCard(BookCard bookCard) { db.DbBookCard.Add(bookCard); }
-        internal void UpdateDatabaseOrderCard(OrderCard orderCard) { db.DbOrderCard.Add(orderCard); }
-        internal void UpdateDatabaseQuoteCard(QuoteCard quoteCard) { db.DbQuoteCard.Add(quoteCard); }
-        internal void UpdateDatabaseRequestCard(RequestCard requestCard) { db.DbRequestCard.Add(requestCard); }
+        internal void UpdateDatabaseBaskets(Baskets baskets) { db.DbBaskets.Add(baskets); db.SaveChanges(); }
+        internal void UpdateDatabaseBookCard(BookCard bookCard) { db.DbBookCard.Add(bookCard); db.SaveChanges(); }
+        internal void UpdateDatabaseOrderCard(OrderCard orderCard) { db.DbOrderCard.Add(orderCard); db.SaveChanges(); }
+        internal void UpdateDatabaseQuoteCard(QuoteCard quoteCard) { db.DbQuoteCard.Add(quoteCard); db.SaveChanges(); }
+        internal void UpdateDatabaseRequestCard(RequestCard requestCard) { db.DbRequestCard.Add(requestCard); db.SaveChanges(); }
         internal void UpdateDatabaseUserCard(UserCard userCard) { db.DbUserCard.Add(userCard); }
+
+        internal void DeleteDatabaseBaskets(Guid Id) { db.DbBaskets.Where(d => d.IdBasket == Id).ExecuteDelete(); db.SaveChanges(); }
+        internal void DeleteDatabaseBookCard(Guid Id) { db.DbBookCard.Where(d => d.IdBook == Id).ExecuteDelete(); db.SaveChanges(); }
+        internal void DeleteDatabaseOrderCard(Guid Id) { db.DbOrderCard.Where(d => d.IdOrder == Id).ExecuteDelete(); db.SaveChanges(); }
+        internal void DeleteDatabaseQuoteCard(Guid Id) { db.DbQuoteCard.Where(d => d.IdQuote == Id).ExecuteDelete(); db.SaveChanges(); }
+        internal void DeleteDatabaseRequestCard(Guid Id) { db.DbRequestCard.Where(d => d.IdRequestCard == Id).ExecuteDelete(); db.SaveChanges(); }
+        internal void DeleteDatabaseUserCard(Guid Id) { db.DbUserCard.Where(d => d.IdUser == Id).ExecuteDelete(); db.SaveChanges(); }
 
 
     }

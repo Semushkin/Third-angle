@@ -10,21 +10,21 @@ using System.Threading.Tasks;
 namespace Thrid_angle.Database.RestAPI.DTO
 {
     [Table("UserCard")]
-    internal class UserCard
+    public class UserCard
     {
         [Key]
-        internal Guid IdUser { get; set; }
-        internal string UserName { get; set; }
-        internal string SurnameUser { get; set; }
-        internal string FloorUser { get; set; }
-        internal int AgeUser { get; set; }
-        internal string AddressUser { get; set;}
-        internal string TelephoneUser { get; set; }
-        internal string EmailUser { get; set; }
-        internal string LoginUser { get; set; }
-        internal string PasswordUser { get; set; }
-        internal DateTime DateCreationUser { get; set; }
-        internal DateTime UpdateDateUser { get; set; }
+        public Guid IdUser { get; set; }
+        public string UserName { get; set; }
+        public string SurnameUser { get; set; }
+        public string FloorUser { get; set; }
+        public int AgeUser { get; set; }
+        public string AddressUser { get; set;}
+        public string TelephoneUser { get; set; }
+        public string EmailUser { get; set; }
+        public string LoginUser { get; set; }
+        public string PasswordUser { get; set; }
+        public DateTime DateCreationUser { get; set; }
+        public DateTime UpdateDateUser { get; set; }
         
     }
    
