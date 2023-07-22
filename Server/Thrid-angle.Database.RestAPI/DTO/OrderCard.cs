@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 namespace Thrid_angle.Database.RestAPI.DTO
 {
     [Table("OrderCard")]
-    internal class OrderCard // карточка заказа
+    public class OrderCard // карточка заказа
     {
         [Key]
-        internal Guid IdOrder { get ; set ; }
-        internal String OrderCardBooksList { get; set; } // список книг заказа
-        internal DateTime DateCreationOrderCard { get; set; }
-        internal DateTime DateUpdateOrderCard { get; set; }
-        internal string StatusOrderCard { get; set; }
-        internal Guid IdUsers { get; set; }
+        public Guid IdOrder { get ; set ; }
+        public String OrderCardBooksList { get; set; } // список книг заказа
+        public DateTime DateCreationOrderCard { get; set; }
+        public DateTime DateUpdateOrderCard { get; set; }
+        public string StatusOrderCard { get; set; }
+        public Guid IdUsers { get; set; }
     }
 }

@@ -10,20 +10,20 @@ namespace Thrid_angle.Database.RestAPI.DTO
 {
 
     [Table("BookCard")]
-    internal class BookCard // карточка книги
+    public class BookCard // карточка книги
     {
         [Key]
-        internal Guid IdBook { get ; set; }
-        internal string NameBook { get; set; }
-        internal string AuthorBook {get; set;}
-        internal int PhotoBook { get; set; } // номер фотографии 
-        internal string VendorCodeBook { get; set; } // артикул
-        internal DateTime RecieptDateBook { get; set; } // дата поступления
-        internal string GenreBook { get; set; } // жанр
-        internal string DescriptionBook { get; set; }    // описание книги
-        internal decimal PriceBook { get; set; } // цена
-        internal DateTime DateCreationBook { get; set; } // дата создания книги
-        internal  DateTime DateUpdateBook { get; set; } // дата обновления книги
+        public Guid IdBook { get ; set; }
+        public string NameBook { get; set; }
+        public string AuthorBook {get; set;}
+        public int PhotoBook { get; set; } // номер фотографии 
+        public string VendorCodeBook { get; set; } // артикул
+        public DateTime RecieptDateBook { get; set; } // дата поступления
+        public string GenreBook { get; set; } // жанр
+        public string DescriptionBook { get; set; }    // описание книги
+        public decimal PriceBook { get; set; } // цена
+        public DateTime DateCreationBook { get; set; } // дата создания книги
+        public DateTime DateUpdateBook { get; set; } // дата обновления книги
 
 
     }

@@ -11,7 +11,7 @@ using Thrid_angle.Database.RestAPI.Database;
 namespace Thrid_angle.Database.RestAPI.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230718074326_InitialCreate")]
+    [Migration("20230722130624_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

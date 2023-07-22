@@ -10,16 +10,16 @@ using System.Threading.Tasks;
 namespace Thrid_angle.Database.RestAPI.DTO
 {
     [Table("Baskets")]
-    internal class Baskets
+    public class Baskets
     {
         [Key]
-        internal Guid IdBasket { get; set; }
-        internal Guid IdUser { get; set; }
-        internal Guid IdBook { get; set; }
-        internal int QuantityBooks { get; set; }
-        internal int PricePerBook { get; set; }  // цена за книгу
-        internal DateTime DateCreationBasket { get; set; }
-        internal DateTime DateUbdateBasket { get; set; }
+        public Guid IdBasket { get; set; }
+        public Guid IdUser { get; set; }
+        public Guid IdBook { get; set; }
+        public int QuantityBooks { get; set; }
+        public int PricePerBook { get; set; }  // цена за книгу
+        public DateTime DateCreationBasket { get; set; }
+        public DateTime DateUbdateBasket { get; set; }
 
     }
 }
