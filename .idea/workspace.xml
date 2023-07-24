@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="25b6bceb-7d50-49d5-9c48-40af1c5286fb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/authapp/form.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/authapp/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/registration.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/authapp/templates/authapp/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/authapp/templates/authapp/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/m_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/m_profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/s_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/s_profile.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
