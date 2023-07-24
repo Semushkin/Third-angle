@@ -11,6 +11,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
     path('catalog/', catalog, name='catalog'),
+    path('search_result/', search_result, name='search_result'),
     path('news/', news, name='news'),
     path('contacts/', contacts, name='contacts'),
     path('about/', about, name='about'),

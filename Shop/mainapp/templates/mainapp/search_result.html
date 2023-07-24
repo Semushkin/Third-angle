@@ -26,7 +26,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="colored">
-                    <h1 class="page-title">Каталог</h1>
+                    <h1 class="page-title">Результаты поиска</h1>
                 </div>
             </div>
         </div>
@@ -42,7 +42,9 @@
                         <h2>Поиск</h2>
                     </div>
                     <form method="get" class="search-box" action="{% url 'search_result' %}">
-                        <input name="q" value="{{ request.GET.q }}" class="search-field text search-input col-md-12 col-sm-12 col-xs-12" placeholder="Search" type="search">
+                        <input name="q" value="{{ request.GET.q }}"
+                               class="search-field text search-input col-md-12 col-sm-12 col-xs-12" placeholder="Search"
+                               type="search">
                     </form>
                 </div>
 
@@ -142,13 +144,15 @@
                 </div>
             </div>
             <div class="col-md-9">
+                Найдено совпадений : {{ object_list.count }}
                 <div class="products-grid grid">
 
-                    {% for book in page_obj.object_list %}
+                    {% for book in page_obj %}
 
                     <figure class="product-style">
                         <img src="{{ book.foto.url }}" alt="Books" class="product-item">
-                        <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>
+                        <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart
+                        </button>
                         <figcaption>
                             <h3>{{ book.name }}</h3>
                             <p>{{ book.author }}</p>

@@ -5,24 +5,24 @@
             <li class="page-item"><a class="page-link"
                                      href="?page=1">Начало</a></li>
             <li class="page-item"><a class="page-link"
-                                     href="?page={{ page_obj.previous_page_number }}">Назад</a></li>
+                                     href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Назад</a></li>
             {% endif %}
             {% for item in page_obj.paginator.page_range %}
             <li class="page-item
         {% if item == page_obj.number %}active">
-                <a class="page-link" href="?page={{ item }}">{{ item }}</a>
+                <a class="page-link" href="?page={{ item }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ item }}</a>
             </li>
             {% elif item > page_obj.number|add:'-2' and item < page_obj.number|add:'2' %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ item }}">{{ item }}</a>
+                <a class="page-link" href="?page={{ item }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ item }}</a>
             </li>
             {% endif %}
             {% endfor %}
             {% if page_obj.has_next %}
             <li class="page-item"><a class="page-link"
-                                     href="?page={{ page_obj.next_page_number }}">Вперед</a></li>
+                                     href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Вперед</a></li>
             <li class="page-item"><a class="page-link"
-                                     href="?page={{ page_obj.paginator.num_pages }}">Конец</a></li>
+                                     href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Конец</a></li>
             {% endif %}
         </ul>
     </nav>

@@ -44,8 +44,8 @@
                             <a href="#" class="search-button search-toggle" data-selector="#header-wrap">
                                 <i class="icon icon-search"></i>
                             </a>
-                            <form role="search" method="get" class="search-box">
-                                <input class="search-field text search-input" placeholder="Search" type="search">
+                            <form method="get" class="search-box" action="{% url 'search_result' %}">
+                                <input name="q" value="{{ request.GET.q }}" class="search-field text search-input" placeholder="Search" type="search">
                             </form>
                         </div>
                     </div>
