@@ -142,23 +142,8 @@
                 </div>
             </div>
             <div class="col-md-9">
-                <div class="products-grid grid">
 
-                    {% for book in page_obj.object_list %}
-
-                    <figure class="product-style">
-                        <img src="{{ book.foto.url }}" alt="Books" class="product-item">
-                        <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>
-                        <figcaption>
-                            <h3>{{ book.name }}</h3>
-                            <p>{{ book.author }}</p>
-                            <div class="item-price">{{ book.price }} ₽</div>
-                        </figcaption>
-                    </figure>
-
-                    {% endfor %}
-
-                </div>
+                {% include 'mainapp/includes/goods_card.html'%}
                 {% include 'mainapp/includes/pagination.html'%}
             </div>
 

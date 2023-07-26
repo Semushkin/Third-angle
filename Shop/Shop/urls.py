@@ -6,6 +6,7 @@ from mainapp.views import *
 from authapp.views import *
 from basketapp.views import *
 from sellerapp.views import *
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -43,6 +44,8 @@ urlpatterns = [
     path('m_quote_detail/', m_quote_detail, name='m_quote_detail'),
     path('m_new_detail/', m_new_detail, name='m_new_detail'),
     path('m_product_detail/', m_product_detail, name='m_product_detail'),
+
+    path('basket/', include('basketapp.urls', namespace='basket')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

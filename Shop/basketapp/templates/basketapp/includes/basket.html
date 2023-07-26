@@ -1,0 +1,58 @@
+<div class="container basket_list">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="u-full-width">
+                <thead>
+                <tr>
+                    <th>Книга</th>
+                    <th>Автор</th>
+                    <th>Количество</th>
+                    <th>Стоимость</th>
+                    <th></th>
+                </tr>
+                </thead>
+                {% if baskets %}
+                <tbody>
+                    {% for basket in baskets %}
+                    <tr>
+                        <td>{{ basket.book.name }}</td>
+                        <td>{{ basket.book.author }}</td>
+                        <td>
+                            <div class="form-group">
+                                <input name="{{ basket.id }}" type="number" class="form-control" id="count" value="{{ basket.quantity }}" min="0">
+                            </div>
+                        </td>
+                        <td>{{ basket.book.price }}</td>
+                        <td>
+                            <a href="{% url 'basket:basket_remove' basket.id %}" class="btn-black">Удалить<i class="icon"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                {% else %}
+                <tbody>
+                <tr>
+                    <td>----</td>
+                    <td>----</td>
+                    <td>----</td>
+                    <td>----</td>
+                    <td>----</td>
+                </tr>
+                </tbody>
+                {% endif %}
+            </table>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <h1 class="page-title">Итого</h1>
+                    </div>
+                    <div class="col-md-4">
+                        <h3 class="page-title">40.00 ₽</h3>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-accent btn-pill btn-xlarge btn-full">Оформить заказ</button>
+        </div>
+
+    </div>
+</div>

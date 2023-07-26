@@ -25,6 +25,13 @@ class Basket(models.Model):
     def __str__(self):
         return f'Карзина пользователя {self.user}'
 
+    def get_basket(self):
+        return Basket.objects.filter(user=self.user)
+
+    def total_sum(self):
+        baskets = self.get_basket()
+        return sum(basket.sum() for basket in baskets)
+
 
 class Request(models.Model):
 
