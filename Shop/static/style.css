@@ -119,6 +119,20 @@ dt {
 dd {
   margin-left: 0;
 }
+.btn-text {
+    border: none;
+    background-color: inherit;
+    padding: 0px;
+    margin-left: 10px;
+    font: bold 14px Georgia;
+    cursor: pointer;
+    display: inline-block;
+    color: #C5A992;
+    height: 30px;
+   }
+
+.btn-text:hover {color: #daa556;}
+
 button, input, select, textarea {
   font-family: inherit;
   font-size: inherit;

@@ -19,7 +19,12 @@ def index(request):
 
 
 def catalog(request):
-    object_list = Book.objects.all().order_by('id')
+    if "sort" not in request.session:
+        request.session["sort"] = "id"
+    order = request.GET.get('sort')
+    if order:
+        request.session["sort"] = order
+    object_list = Book.objects.all().order_by(request.session["sort"])
     items_per_page = 1
     paginator = Paginator(object_list, items_per_page)
     page_number = request.GET.get('page', 1)
@@ -34,11 +39,15 @@ def catalog(request):
 
 
 def search_result(request):
-    object_list = Book.objects.all().order_by('id')
+    if "sort" not in request.session:
+        request.session["sort"] = "id"
+    order = request.GET.get('sort')
+    if order:
+        request.session["sort"] = order
     query = request.GET.get('q')
     items_per_page = 1
     if query:
-        object_list = Book.objects.filter(Q(name__iregex=query) | Q(author__iregex=query) | Q(price__iregex=query))
+        object_list = Book.objects.filter(Q(name__iregex=query) | Q(author__iregex=query) | Q(price__iregex=query)).order_by(request.session["sort"])
     paginator = Paginator(object_list, items_per_page)
     page_number = request.GET.get('page', 1)
     try:

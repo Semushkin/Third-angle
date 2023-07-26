@@ -49,14 +49,27 @@
                 </div>
 
                 <div class="col-md-12">
-                    <div class="colored">
-                        <h2>Сортировка</h2>
+                    <div>
+                        <h2 style="margin: 15px 0;">Сортировка</h2>
+
+                        <form style="height: 30px;" method="get" action="{% url 'catalog' %}">
+                            <button class="btn-text" name="sort" value="name">
+                                <li>По названию</li>
+                            </button>
+                        </form>
+
+                        <form  style="height: 30px;" method="get" action="{% url 'catalog' %}">
+                            <button class="btn-text" name="sort" value="date_receipt">
+                                <li>По дате</li>
+                            </button>
+                        </form>
+
+                        <form  style="height: 30px;" method="get" action="{% url 'catalog' %}">
+                            <button class="btn-text" name="sort" value="price">
+                                <li>По цене</li>
+                            </button>
+                        </form>
                     </div>
-                    <ul>
-                        <li>По названию</li>
-                        <li>По дате</li>
-                        <li>По цене</li>
-                    </ul>
                 </div>
 
                 <div class="col-md-12">
