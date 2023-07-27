@@ -45,14 +45,7 @@ def basket_add(request, book_id):
         else:
             Basket.objects.create(user=user, book=book, quantity=1)
 
-        books = Book.objects.all()
-        paginator = Paginator(Book.objects.all(), 1)
-        page_number = request.GET.get('page', 1)
-        page_obj = paginator.get_page(page_number)
-        context = {'page_obj': page_obj}
-
-        result = render_to_string('mainapp/includes/goods_card.html', context)
-        return JsonResponse({'result': result})
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 @login_required
