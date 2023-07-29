@@ -16,15 +16,16 @@ namespace Thrid_angle.Database.RestAPI.DTO
         public Guid IdUser { get; set; }
         public string UserName { get; set; }
         public string SurnameUser { get; set; }
+        public string RoleUser { get; set; }
         public string FloorUser { get; set; }
-        public int AgeUser { get; set; }
+        public int? AgeUser { get; set; }
         public string AddressUser { get; set;}
         public string TelephoneUser { get; set; }
         public string EmailUser { get; set; }
         public string LoginUser { get; set; }
         public string PasswordUser { get; set; }
-        public DateTime DateCreationUser { get; set; }
-        public DateTime UpdateDateUser { get; set; }
+        public DateTime? DateCreationUser { get; set; }
+        public DateTime? UpdateDateUser { get; set; }
         
     }
    

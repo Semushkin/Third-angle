@@ -15,10 +15,10 @@ namespace Thrid_angle.Database.RestAPI.DTO
         [Key]
         public Guid IdRequestCard { get ; set; }
         public string CommentTextCard { get; set; }
-        public int NumberStars { get; set; } // количество звездочек
-        public Guid IdUser { get; set; }
-        public Guid IdBook { get; set; }
-        public DateTime DateRequestCreation { get; set; }
-        public DateTime DateRequestUpdation { get; set; }
+        public int? NumberStars { get; set; } // количество звездочек
+        public Guid? IdUser { get; set; }
+        public Guid? IdBook { get; set; }
+        public DateTime? DateRequestCreation { get; set; }
+        public DateTime? DateRequestUpdation { get; set; }
     }
 }
