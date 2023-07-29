@@ -41,10 +41,11 @@ urlpatterns = [
     path('quote_edit/', quote_edit, name='quote_edit'),
     path('products_list/', products_list, name='products_list'),
     path('product_create/', product_create, name='product_create'),
-    path('product_edit/', product_edit, name='product_edit'),
+    path('product_edit/<int:book_id>/', product_edit, name='product_edit'),
+    path('product_delete/<int:book_id>/', product_delete, name='product_delete'),
     path('m_quote_detail/', m_quote_detail, name='m_quote_detail'),
     path('m_new_detail/', m_new_detail, name='m_new_detail'),
-    path('m_product_detail/', m_product_detail, name='m_product_detail'),
+    path('m_product_detail/<int:book_id>/', m_product_detail, name='m_product_detail'),
 
     path('basket/', include('basketapp.urls', namespace='basket')),
 ]

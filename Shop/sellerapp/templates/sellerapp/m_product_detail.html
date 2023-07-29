@@ -32,7 +32,8 @@
                             <label class="text">Название</label>
                         </div>
                         <div class="col-md-12">
-                            <span class="text">Книга Джунглей</span>
+<!--                            <span class="text">Книга Джунглей</span>-->
+                            {{ book.name }}
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -40,7 +41,8 @@
                             <label class="text">Автор</label>
                         </div>
                         <div class="col-md-12">
-                            <span class="text">Редьярд Киплинг</span>
+<!--                            <span class="text">Редьярд Киплинг</span>-->
+                            {{ book.author }}
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -48,7 +50,8 @@
                             <label class="text">Артикул</label>
                         </div>
                         <div class="col-md-12">
-                            <span class="text">123456</span>
+<!--                            <span class="text">123456</span>-->
+                            {{ book.article }}
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -56,7 +59,8 @@
                             <label class="text">Дата поступления</label>
                         </div>
                         <div class="col-md-12">
-                            <span class="text">29.03.2023</span>
+<!--                            <span class="text">29.03.2023</span>-->
+                            {{ book.date_receipt }}
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -64,7 +68,8 @@
                             <label class="text">Жанр</label>
                         </div>
                         <div class="col-md-12">
-                            <span class="text">Сказки</span>
+<!--                            <span class="text">Сказки</span>-->
+                            {{ book.category }}
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -72,14 +77,15 @@
                             <label class="text">Описание</label>
                         </div>
                         <div class="col-md-12">
-                            <p>
-                        «Книга джунглей» – бессмертное произведение великого английского писателя Редьярда Киплинга. В
-                        настоящее издание включены три из семи рассказов «Книги джунглей» – о жизни и приключениях
-                        мальчика Маугли, выросшего в волчьей стае и сумевшего победить страшного тигра Шер Хана.
+                            {{ book.description }}
+<!--                            <p>-->
+<!--                        «Книга джунглей» – бессмертное произведение великого английского писателя Редьярда Киплинга. В-->
+<!--                        настоящее издание включены три из семи рассказов «Книги джунглей» – о жизни и приключениях-->
+<!--                        мальчика Маугли, выросшего в волчьей стае и сумевшего победить страшного тигра Шер Хана.-->
 
-                        Необычайно выразительные иллюстрации Квентина Гребана переносят читателя в фантастический мир
-                        этой удивительной книги.
-                    </p>
+<!--                        Необычайно выразительные иллюстрации Квентина Гребана переносят читателя в фантастический мир-->
+<!--                        этой удивительной книги.-->
+<!--                    </p>-->
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -87,7 +93,8 @@
                             <label class="text">Цена</label>
                         </div>
                         <div class="col-md-12">
-                            <span class="text">40.00 ₽</span>
+<!--                            <span class="text">40.00 ₽</span>-->
+                            {{ book.price }}
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -97,7 +104,7 @@
                         <div class="col-md-12">
                             <figure>
                                 <div class="col-md-12">
-                                    <a href="#" class="product-image"><img src="{% static 'images/main-banner2.jpg' %}"></a>
+                                    <a href="#" class="product-image"><img src="{{ book.foto.url }}"></a>
                                 </div>
                             </figure>
                         </div>
@@ -105,12 +112,12 @@
 
                     <div class="col-md-12">
                         <div class="col-md-6">
-                            <a href="{% url 'product_edit' %}">
+                            <a href="{% url 'product_edit' book.id%}">
                                 <button type="button" class="btn btn-accent btn-full">Редактировать</button>
                             </a>
                         </div>
                         <div class="col-md-6">
-                            <a>
+                            <a href="{% url 'product_delete' book.id %}">
                                 <button type="button" class="btn btn-accent btn-full">Удалить</button>
                             </a>
                         </div>

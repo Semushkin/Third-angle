@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from mainapp.forms import BoorCreateUpdateForm
 
 
 def s_order_detail(request):
@@ -68,11 +69,42 @@ def products_list(request):
 
 
 def product_create(request):
-    return render(request, 'sellerapp/product_create.html')
+    if request.method == 'POST':
+        form = BoorCreateUpdateForm(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            # print(f'id ========= {form.instance.id}')
+            return HttpResponseRedirect(reverse('m_product_detail', args=[form.instance.id]))
+    else:
+        form = BoorCreateUpdateForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'sellerapp/product_create.html', context)
 
 
-def product_edit(request):
-    return render(request, 'sellerapp/product_edit.html')
+def product_edit(request, book_id):
+    book = Book.objects.get(pk=book_id)
+    if request.method == 'POST':
+        form = BoorCreateUpdateForm(instance=book, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('m_product_detail', args=[form.instance.id]))
+        else:
+            pass
+    else:
+        form = BoorCreateUpdateForm(instance=book)
+    context = {
+        'form': form,
+        'book': book,
+    }
+    return render(request, 'sellerapp/product_edit.html', context)
+
+
+def product_delete(request, book_id):
+    book = Book.objects.get(pk=book_id)
+    book.delete()
+    return HttpResponseRedirect(reverse('products_list'))
 
 
 def m_quote_detail(request):
@@ -83,8 +115,11 @@ def m_new_detail(request):
     return render(request, 'sellerapp/m_new_detail.html')
 
 
-def m_product_detail(request):
-    return render(request, 'sellerapp/m_product_detail.html')
+def m_product_detail(request, book_id):
+    context = {
+        'book': Book.objects.get(pk=book_id)
+    }
+    return render(request, 'sellerapp/m_product_detail.html', context)
 
 
 def order_list(request):
