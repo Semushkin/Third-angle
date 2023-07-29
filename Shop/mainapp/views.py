@@ -21,10 +21,22 @@ def index(request):
 def catalog(request):
     if "sort" not in request.session:
         request.session["sort"] = "id"
+    if "sort" not in request.session:
+        request.session["filt"] = "all"
+    filt = request.GET.get('filt')
     order = request.GET.get('sort')
+    if filt:
+        request.session["filt"] = filt
     if order:
         request.session["sort"] = order
-    object_list = Book.objects.all().order_by(request.session["sort"])
+    f_filed = request.session["filt"]
+    o_field = request.session["sort"]
+    if f_filed == "all":
+        object_list = Book.objects.all().order_by(request.session["sort"])
+    else:
+        object_list = Book.objects.all().order_by(request.session["sort"]).filter(
+            Q(author__icontains=request.session["filt"]) | Q(name__icontains=request.session["filt"]))
+
     items_per_page = 1
     paginator = Paginator(object_list, items_per_page)
     page_number = request.GET.get('page', 1)
@@ -34,7 +46,7 @@ def catalog(request):
         page_obj = paginator.get_page(1)
     except EmptyPage:
         page_obj = paginator.get_page(paginator.num_pages)
-    context = {'page_obj': page_obj}
+    context = {'page_obj': page_obj, 'f_filed': f_filed, 'o_field': o_field}
     return render(request, 'mainapp/catalog.html', context)
 
 
