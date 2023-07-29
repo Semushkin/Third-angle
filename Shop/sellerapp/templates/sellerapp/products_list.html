@@ -112,7 +112,7 @@
             {% for book in books %}
             <tbody>
             <tr>
-                <td class="page-item active"><a href="{% url 'm_product_detail' %}" class="page-link nav-link"
+                <td class="page-item active"><a href="{% url 'm_product_detail' book.id %}" class="page-link nav-link"
                 >{{ book.id }}</a></td>
                 <td>{{ book.name }}</td>
                 <td>
@@ -120,10 +120,10 @@
                 </td>
                 <td>{{ book.price }} ₽</td>
                 <td>
-                    <a href="{% url 'product_edit' %}" class="btn-black">Редактировать<i class="icon"></i></a>
+                    <a href="{% url 'product_edit' book.id %}" class="btn-black">Редактировать<i class="icon"></i></a>
                 </td>
                 <td>
-                    <a href="#" class="btn-black">Удалить<i class="icon"></i></a>
+                    <a href="{% url 'product_delete' book.id %}" class="btn-black">Удалить<i class="icon"></i></a>
                 </td>
 
             </tr>
