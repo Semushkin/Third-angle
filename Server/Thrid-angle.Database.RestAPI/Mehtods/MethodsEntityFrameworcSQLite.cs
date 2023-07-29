@@ -40,12 +40,102 @@ namespace Thrid_angle.Database.RestAPI.Mehtods
         internal UserCard IDReadDatabaseUserCard(Guid Id) { UserCard t = db.DbUserCard.Find(Id); return t; }
 
 
-        internal void UpdateDatabaseBaskets(Baskets baskets) { db.DbBaskets.Add(baskets); db.SaveChanges(); }
-        internal void UpdateDatabaseBookCard(BookCard bookCard) { db.DbBookCard.Add(bookCard); db.SaveChanges(); }
-        internal void UpdateDatabaseOrderCard(OrderCard orderCard) { db.DbOrderCard.Add(orderCard); db.SaveChanges(); }
-        internal void UpdateDatabaseQuoteCard(QuoteCard quoteCard) { db.DbQuoteCard.Add(quoteCard); db.SaveChanges(); }
-        internal void UpdateDatabaseRequestCard(RequestCard requestCard) { db.DbRequestCard.Add(requestCard); db.SaveChanges(); }
-        internal void UpdateDatabaseUserCard(UserCard userCard) { db.DbUserCard.Add(userCard); }
+
+        internal void UpdateDatabaseBaskets(Baskets baskets) 
+        {
+            var _db = db.DbBaskets.Find(baskets.IdBasket);
+            //_db.IdUser = baskets.IdUser;
+           // _db.IdBook = baskets.IdBook;
+            _db.QuantityBooks = baskets.QuantityBooks;
+            _db.PricePerBook = baskets.PricePerBook;
+            //_db.DateCreationBasket = baskets.DateCreationBasket;
+            _db.DateUbdateBasket = baskets.DateUbdateBasket;
+            db.SaveChanges();
+        }
+
+
+       
+        internal void UpdateDatabaseBookCard(BookCard bookCard) 
+        {
+
+            var _db = db.DbBookCard.Find(bookCard.IdBook);
+            _db.NameBook = bookCard.NameBook;
+            _db.AuthorBook = bookCard.AuthorBook;
+            _db.PhotoBook = bookCard.PhotoBook;
+            _db.VendorCodeBook = bookCard.VendorCodeBook;
+            _db.RecieptDateBook = bookCard.RecieptDateBook;
+            _db.GenreBook = bookCard.GenreBook;
+            _db.DescriptionBook = bookCard.DescriptionBook;
+            _db.PriceBook = bookCard.PriceBook;
+           // _db.DateCreationBook = bookCard.DateCreationBook;
+           _db.DateUpdateBook = bookCard.DateUpdateBook;
+
+           db.SaveChanges();
+
+        }
+
+        internal void UpdateDatabaseOrderCard(OrderCard orderCard)
+        {
+            var _db = db.DbOrderCard.Find(orderCard.IdOrder);
+            _db.OrderCardBooksList = orderCard.OrderCardBooksList;
+           // _db.DateCreationOrderCard = orderCard.DateCreationOrderCard;
+            _db.DateUpdateOrderCard = orderCard.DateUpdateOrderCard;
+            _db.StatusOrderCard = orderCard.StatusOrderCard;
+           // _db.IdUsers = orderCard.IdUsers;
+           db.SaveChanges();
+        
+        }
+
+
+
+
+        internal void UpdateDatabaseQuoteCard(QuoteCard quoteCard) 
+        {
+            var _db = db.DbQuoteCard.Find(quoteCard.IdQuote);
+
+            _db.QuoteTitle = quoteCard.QuoteTitle;
+            _db.QuoteText = quoteCard.QuoteText;
+            _db.QuoteAutor = quoteCard.QuoteAutor;
+           // _db.DateCreationQuote = quoteCard.DateCreationQuote;
+            _db.DateUpdateQuote = quoteCard.DateUpdateQuote;
+           ; db.SaveChanges(); 
+        
+        }
+
+        internal void UpdateDatabaseRequestCard(RequestCard requestCard)
+        {
+
+            var _db = db.DbRequestCard.Find(requestCard.IdRequestCard);
+            _db.CommentTextCard = requestCard.CommentTextCard;
+            _db.NumberStars = requestCard.NumberStars;
+           // _db.IdUser = requestCard.IdUser;
+           // _db.IdBook = requestCard.IdBook;
+            //_db.DateRequestCreation = requestCard.DateRequestCreation;
+            _db.DateRequestUpdation = requestCard.DateRequestUpdation;
+            db.SaveChanges();
+        }
+
+        internal void UpdateDatabaseUserCard(UserCard userCard)
+        {
+            var _db = db.DbUserCard.Find(userCard.IdUser);
+
+
+            _db.UserName = userCard.UserName;
+            _db.SurnameUser = userCard.SurnameUser;
+            _db.RoleUser = userCard.RoleUser; 
+            _db.FloorUser = userCard.FloorUser;
+            _db.FloorUser = userCard.RoleUser;
+            _db.AgeUser = userCard.AgeUser;
+            _db.AddressUser = userCard.AddressUser;
+            _db.TelephoneUser = userCard.TelephoneUser;
+            _db.EmailUser = userCard.EmailUser;
+            _db.LoginUser = userCard.LoginUser;
+            _db.PasswordUser = userCard.PasswordUser;
+            //_db.DateCreationUser = userCard.DateCreationUser;
+            _db.UpdateDateUser = userCard.UpdateDateUser;
+             db.SaveChanges();
+
+        }
 
         internal void DeleteDatabaseBaskets(Guid Id) { db.DbBaskets.Where(d => d.IdBasket == Id).ExecuteDelete(); db.SaveChanges(); }
         internal void DeleteDatabaseBookCard(Guid Id) { db.DbBookCard.Where(d => d.IdBook == Id).ExecuteDelete(); db.SaveChanges(); }

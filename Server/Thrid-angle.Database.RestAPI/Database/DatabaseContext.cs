@@ -64,10 +64,11 @@ namespace Thrid_angle.Database.RestAPI.Database
             modelBuilder.Entity<UserCard>().HasKey(b => b.IdUser);
             modelBuilder.Entity<UserCard>().Property(b => b.UserName).IsRequired().HasMaxLength(50);
             modelBuilder.Entity<UserCard>().Property(b => b.SurnameUser).IsRequired().HasMaxLength(50);
+            modelBuilder.Entity<UserCard>().Property(b => b.RoleUser).IsRequired().HasMaxLength(20);
             modelBuilder.Entity<UserCard>().Property(b => b.FloorUser).IsRequired().HasMaxLength(50);
             modelBuilder.Entity<UserCard>().Property(b => b.AgeUser).IsRequired().HasMaxLength(100);
             modelBuilder.Entity<UserCard>().Property(b => b.AddressUser).IsRequired().HasMaxLength(100);
-            modelBuilder.Entity<UserCard>().Property(b => b.TelephoneUser).IsRequired().HasMaxLength(20);
+            modelBuilder.Entity<UserCard>().Property(b => b.TelephoneUser).IsRequired().HasMaxLength(30);
             modelBuilder.Entity<UserCard>().Property(b => b.EmailUser).IsRequired().HasMaxLength(50);
             modelBuilder.Entity<UserCard>().Property(b => b.LoginUser).IsRequired().HasMaxLength(50);
             modelBuilder.Entity<UserCard>().Property(b => b.PasswordUser).IsRequired().HasMaxLength(50);

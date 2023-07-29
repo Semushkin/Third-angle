@@ -15,9 +15,9 @@ namespace Thrid_angle.Database.RestAPI.DTO
         [Key]
         public Guid IdOrder { get ; set ; }
         public String OrderCardBooksList { get; set; } // список книг заказа
-        public DateTime DateCreationOrderCard { get; set; }
-        public DateTime DateUpdateOrderCard { get; set; }
+        public DateTime? DateCreationOrderCard { get; set; }
+        public DateTime? DateUpdateOrderCard { get; set; }
         public string StatusOrderCard { get; set; }
-        public Guid IdUsers { get; set; }
+        public Guid? IdUsers { get; set; }
     }
 }

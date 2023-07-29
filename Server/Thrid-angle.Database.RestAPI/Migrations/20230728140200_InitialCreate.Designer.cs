@@ -11,7 +11,7 @@ using Thrid_angle.Database.RestAPI.Database;
 namespace Thrid_angle.Database.RestAPI.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230722130624_InitialCreate")]
+    [Migration("20230728140200_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -26,27 +26,33 @@ namespace Thrid_angle.Database.RestAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("DateCreationBasket")
+                    b.Property<DateTime?>("DateCreationBasket")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("DateUbdateBasket")
+                    b.Property<DateTime?>("DateUbdateBasket")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("IdBook")
+                    b.Property<Guid?>("IdBook")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("IdUser")
+                    b.Property<Guid?>("IdUser")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("PricePerBook")
+                    b.Property<int?>("PricePerBook")
+                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("QuantityBooks")
+                    b.Property<int?>("QuantityBooks")
+                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("INTEGER");
 
@@ -66,11 +72,13 @@ namespace Thrid_angle.Database.RestAPI.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("DateCreationBook")
+                    b.Property<DateTime?>("DateCreationBook")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("DateUpdateBook")
+                    b.Property<DateTime?>("DateUpdateBook")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
@@ -89,15 +97,18 @@ namespace Thrid_angle.Database.RestAPI.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("PhotoBook")
+                    b.Property<int?>("PhotoBook")
+                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("INTEGER");
 
-                    b.Property<decimal>("PriceBook")
+                    b.Property<decimal?>("PriceBook")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("RecieptDateBook")
+                    b.Property<DateTime?>("RecieptDateBook")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
@@ -117,15 +128,18 @@ namespace Thrid_angle.Database.RestAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("DateCreationOrderCard")
+                    b.Property<DateTime?>("DateCreationOrderCard")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("DateUpdateOrderCard")
+                    b.Property<DateTime?>("DateUpdateOrderCard")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("IdUsers")
+                    b.Property<Guid?>("IdUsers")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
@@ -150,11 +164,13 @@ namespace Thrid_angle.Database.RestAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("DateCreationQuote")
+                    b.Property<DateTime?>("DateCreationQuote")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("DateUpdateQuote")
+                    b.Property<DateTime?>("DateUpdateQuote")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
@@ -189,23 +205,28 @@ namespace Thrid_angle.Database.RestAPI.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("DateRequestCreation")
+                    b.Property<DateTime?>("DateRequestCreation")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("DateRequestUpdation")
+                    b.Property<DateTime?>("DateRequestUpdation")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("IdBook")
+                    b.Property<Guid?>("IdBook")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("IdUser")
+                    b.Property<Guid?>("IdUser")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("NumberStars")
+                    b.Property<int?>("NumberStars")
+                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("INTEGER");
 
@@ -225,11 +246,13 @@ namespace Thrid_angle.Database.RestAPI.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("AgeUser")
+                    b.Property<int?>("AgeUser")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("DateCreationUser")
+                    b.Property<DateTime?>("DateCreationUser")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
@@ -253,6 +276,11 @@ namespace Thrid_angle.Database.RestAPI.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("RoleUser")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("SurnameUser")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -260,10 +288,11 @@ namespace Thrid_angle.Database.RestAPI.Migrations
 
                     b.Property<string>("TelephoneUser")
                         .IsRequired()
-                        .HasMaxLength(20)
+                        .HasMaxLength(30)
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("UpdateDateUser")
+                    b.Property<DateTime?>("UpdateDateUser")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 

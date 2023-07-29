@@ -14,12 +14,12 @@ namespace Thrid_angle.Database.RestAPI.DTO
     {
         [Key]
         public Guid IdBasket { get; set; }
-        public Guid IdUser { get; set; }
-        public Guid IdBook { get; set; }
-        public int QuantityBooks { get; set; }
-        public int PricePerBook { get; set; }  // цена за книгу
-        public DateTime DateCreationBasket { get; set; }
-        public DateTime DateUbdateBasket { get; set; }
+        public Guid? IdUser { get; set; }
+        public Guid? IdBook { get; set; }
+        public int? QuantityBooks { get; set; }
+        public int? PricePerBook { get; set; }  // цена за книгу
+        public DateTime? DateCreationBasket { get; set; }
+        public DateTime? DateUbdateBasket { get; set; }
 
     }
 }
