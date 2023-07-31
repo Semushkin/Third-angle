@@ -32,7 +32,8 @@
                             <label class="text">Название</label>
                         </div>
                         <div class="col-md-12">
-                            <span class="text">Больше всего</span>
+<!--                            <span class="text">Больше всего</span>-->
+                            {{ quote.name }}
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -40,7 +41,8 @@
                             <label class="text">Содержание</label>
                         </div>
                         <div class="col-md-12">
-                            <span class="text">"Больше всего мне хочется стать таким человеком, который сумел бы сделать мир немного лучше.”</span>
+<!--                            <span class="text">"Больше всего мне хочется стать таким человеком, который сумел бы сделать мир немного лучше.”</span>-->
+                            {{ quote.text }}
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -48,7 +50,8 @@
                             <label class="text">Автор</label>
                         </div>
                         <div class="col-md-12">
-                            <span class="text">Эрленд Лу, "Наивно. Супер"</span>
+<!--                            <span class="text">Эрленд Лу, "Наивно. Супер"</span>-->
+                            {{ quote.author }}
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -56,32 +59,30 @@
                             <label class="text">Активный</label>
                         </div>
                         <div class="col-md-12">
-                            Нет
+                            {{ quote.is_active }}
                         </div>
                     </div>
-<div class="col-md-12">
-                        <div class="col-md-6">
-                            <a>
-                                <button type="button" class="btn btn-accent btn-full">Активировать</button>
-                            </a>
-                        </div>
-</div>
+<!--                    <div class="col-md-12">-->
+<!--                        <div class="col-md-6">-->
+<!--                            <a>-->
+<!--                                <button type="button" class="btn btn-accent btn-full">Активировать</button>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
                     <div class="col-md-12">
                         <div class="col-md-6">
-                            <a href="{% url 'quote_edit' %}">
+                            <a href="{% url 'quote_edit' quote.id %}">
                                 <button type="button" class="btn btn-accent btn-full">Редактировать</button>
                             </a>
                         </div>
                         <div class="col-md-6">
-                            <a>
+                            <a href="{% url 'quote_delete' quote.id %}">
                                 <button type="button" class="btn btn-accent btn-full">Удалить</button>
                             </a>
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>

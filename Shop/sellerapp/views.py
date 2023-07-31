@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from mainapp.models import Book
+from mainapp.models import Book, News, Quote
 from authapp.forms import UserRegisterForm, UserLoginForm, UserEditForm, SetNewPassword
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from mainapp.forms import BoorCreateUpdateForm
+from mainapp.forms import BoorCreateUpdateForm, NewsCreateUpdateForm, QuoteCreateUpdateForm
 
 
 def s_order_detail(request):
@@ -38,27 +38,95 @@ def s_profile(request):
 
 
 def news_list(request):
-    return render(request, 'sellerapp/news_list.html')
+    news = News.objects.all()
+    context = {
+        'news': news
+    }
+    return render(request, 'sellerapp/news_list.html', context)
 
 
 def new_create(request):
-    return render(request, 'sellerapp/new_create.html')
+    if request.method == 'POST':
+        form = NewsCreateUpdateForm(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('m_new_detail', args=[form.instance.id]))
+    else:
+        form = NewsCreateUpdateForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'sellerapp/new_create.html', context)
 
 
-def new_edit(request):
-    return render(request, 'sellerapp/new_edit.html')
+def new_edit(request, news_id):
+    news = News.objects.get(pk=news_id)
+    if request.method == 'POST':
+        form = NewsCreateUpdateForm(instance=news, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('m_new_detail', args=[form.instance.id]))
+        else:
+            pass
+    else:
+        form = NewsCreateUpdateForm(instance=news)
+    context = {
+        'form': form,
+        'news': news,
+    }
+    return render(request, 'sellerapp/new_edit.html', context)
+
+
+def new_delete(request, news_id):
+    news = News.objects.get(pk=news_id)
+    news.delete()
+    return HttpResponseRedirect(reverse('news_list'))
 
 
 def quotes_list(request):
-    return render(request, 'sellerapp/quotes_list.html')
+    quotes = Quote.objects.all()
+    context = {
+        'quotes': quotes
+    }
+    return render(request, 'sellerapp/quotes_list.html', context)
 
 
 def quote_create(request):
-    return render(request, 'sellerapp/quote_create.html')
+    if request.method == 'POST':
+        form = QuoteCreateUpdateForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('m_quote_detail', args=[form.instance.id]))
+    else:
+        form = QuoteCreateUpdateForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'sellerapp/quote_create.html', context)
 
 
-def quote_edit(request):
-    return render(request, 'sellerapp/quote_edit.html')
+def quote_edit(request, quote_id):
+    quote = Quote.objects.get(pk=quote_id)
+    if request.method == 'POST':
+        form = QuoteCreateUpdateForm(instance=quote, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('m_quote_detail', args=[form.instance.id]))
+        else:
+            pass
+    else:
+        form = QuoteCreateUpdateForm(instance=quote)
+    context = {
+        'form': form,
+        'quote': quote,
+    }
+    return render(request, 'sellerapp/quote_edit.html', context)
+
+
+def quote_delete(request, quote_id):
+    quote = Quote.objects.get(pk=quote_id)
+    quote.delete()
+    return HttpResponseRedirect(reverse('quotes_list'))
 
 
 def products_list(request):
@@ -73,7 +141,6 @@ def product_create(request):
         form = BoorCreateUpdateForm(data=request.POST, files=request.FILES)
         if form.is_valid():
             form.save()
-            # print(f'id ========= {form.instance.id}')
             return HttpResponseRedirect(reverse('m_product_detail', args=[form.instance.id]))
     else:
         form = BoorCreateUpdateForm()
@@ -107,12 +174,18 @@ def product_delete(request, book_id):
     return HttpResponseRedirect(reverse('products_list'))
 
 
-def m_quote_detail(request):
-    return render(request, 'sellerapp/m_quote_detail.html')
+def m_quote_detail(request, quote_id):
+    context = {
+        'quote': Quote.objects.get(pk=quote_id)
+    }
+    return render(request, 'sellerapp/m_quote_detail.html', context)
 
 
-def m_new_detail(request):
-    return render(request, 'sellerapp/m_new_detail.html')
+def m_new_detail(request, news_id):
+    context = {
+        'news': News.objects.get(pk=news_id)
+    }
+    return render(request, 'sellerapp/m_new_detail.html', context)
 
 
 def m_product_detail(request, book_id):

@@ -109,28 +109,38 @@
                 <th></th>
             </tr>
             </thead>
-            {% for book in books %}
-            <tbody>
-            <tr>
-                <td class="page-item active"><a href="{% url 'm_product_detail' book.id %}" class="page-link nav-link"
-                >{{ book.id }}</a></td>
-                <td>{{ book.name }}</td>
-                <td>
-                    {{ book.author }}
-                </td>
-                <td>{{ book.price }} ₽</td>
-                <td>
-                    <a href="{% url 'product_edit' book.id %}" class="btn-black">Редактировать<i class="icon"></i></a>
-                </td>
-                <td>
-                    <a href="{% url 'product_delete' book.id %}" class="btn-black">Удалить<i class="icon"></i></a>
-                </td>
+            {% if books %}
+                {% for book in books %}
+                <tbody>
+                <tr>
+                    <td class="page-item active"><a href="{% url 'm_product_detail' book.id %}" class="page-link nav-link"
+                    >{{ book.id }}</a></td>
+                    <td>{{ book.name }}</td>
+                    <td>
+                        {{ book.author }}
+                    </td>
+                    <td>{{ book.price }} ₽</td>
+                    <td>
+                        <a href="{% url 'product_edit' book.id %}" class="btn-black">Редактировать<i class="icon"></i></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'product_delete' book.id %}" class="btn-black">Удалить<i class="icon"></i></a>
+                    </td>
 
-            </tr>
+                </tr>
 
-            </tbody>
-            {% endfor %}
-
+                </tbody>
+                {% endfor %}
+            {% else %}
+                <tbody>
+                    <tr>
+                        <td>----</td>
+                        <td>----</td>
+                        <td>----</td>
+                        <td>----</td>
+                    </tr>
+                </tbody>
+            {% endif %}
         </table>
     </div>
 </section>

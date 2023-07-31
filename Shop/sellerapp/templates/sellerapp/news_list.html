@@ -107,24 +107,36 @@
                 <th></th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td class="page-item active"><a href="{% url 'm_new_detail' %}" class="page-link nav-link"
-                >1</a></td>
-                <td>29.05.2021</td>
-                <td>
-                    Распродажа
-                </td>
-                <td>Вас ждет распродажа с понедельника</td>
-                <td>
-                    <a href="#" class="btn-black">Редактировать<i class="icon"></i></a>
-                </td>
-                <td>
-                    <a href="#" class="btn-black">Удалить<i class="icon"></i></a>
-                </td>
-            </tr>
-
-            </tbody>
+            {% if news %}
+                {% for item in news %}
+                    <tbody>
+                    <tr>
+                        <td class="page-item active"><a href="{% url 'm_new_detail' item.id %}" class="page-link nav-link"
+                        >{{ item.id }}</a></td>
+                        <td>{{ item.date_create }}</td>
+                        <td>
+                            {{ item.name }}
+                        </td>
+                        <td>{{ item.description }}</td>
+                        <td>
+                            <a href="{% url 'new_edit' item.id %}" class="btn-black">Редактировать<i class="icon"></i></a>
+                        </td>
+                        <td>
+                            <a href="{% url 'new_delete' item.id %}" class="btn-black">Удалить<i class="icon"></i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                {% endfor %}
+            {% else %}
+                <tbody>
+                    <tr>
+                        <td>----</td>
+                        <td>----</td>
+                        <td>----</td>
+                        <td>----</td>
+                    </tr>
+                </tbody>
+            {% endif %}
         </table>
     </div>
 </section>
