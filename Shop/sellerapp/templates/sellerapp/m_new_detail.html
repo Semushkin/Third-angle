@@ -32,7 +32,8 @@
                             <label class="text">Название</label>
                         </div>
                         <div class="col-md-12">
-                            <span class="text">Новые поступления в жанре детских сказок!</span>
+<!--                            <span class="text">Новые поступления в жанре детских сказок!</span>-->
+                            {{ news.name }}
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -40,7 +41,8 @@
                             <label class="text">Краткое содержание</label>
                         </div>
                         <div class="col-md-12">
-                            <span class="text">Приглашаем в гости</span>
+<!--                            <span class="text">Приглашаем в гости</span>-->
+                            {{ news.description }}
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -48,30 +50,37 @@
                             <label class="text">Текст новости</label>
                         </div>
                         <div class="col-md-12">
-                            <span class="text">Приглашаем в гости в честь поступления новой партии книг!</span>
+<!--                            <span class="text">Приглашаем в гости в честь поступления новой партии книг!</span>-->
+                            {{ news.text }}
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="col-md-12">
-                            <label class="text">Изображение</label>
+<!--                            <label class="text">Изображение</label>-->
+
                         </div>
                         <div class="col-md-12">
                             <figure>
-                        <a href="#" class="image-hvr-effect">
-                            <img src="{% static 'images/post-img1.jpg' %}" alt="post" class="post-image">
-                        </a>
-                    </figure>
+                                <a href="#" class="image-hvr-effect">
+                                    <img src="{{ news.foto.url }}" alt="post" class="post-image">
+                                </a>
+                            </figure>
+<!--                            <figure>-->
+<!--                                <a href="#" class="image-hvr-effect">-->
+<!--                                    <img src="{% static 'images/post-img1.jpg' %}" alt="post" class="post-image">-->
+<!--                                </a>-->
+<!--                            </figure>-->
                         </div>
                     </div>
 
                     <div class="col-md-12">
                         <div class="col-md-6">
-                            <a href="{% url 'new_edit' %}">
+                            <a href="{% url 'new_edit' news.id %}">
                                 <button type="button" class="btn btn-accent btn-full">Редактировать</button>
                             </a>
                         </div>
                         <div class="col-md-6">
-                            <a>
+                            <a href="{% url 'new_delete' news.id %}">
                                 <button type="button" class="btn btn-accent btn-full">Удалить</button>
                             </a>
                         </div>

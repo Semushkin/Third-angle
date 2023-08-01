@@ -24,54 +24,67 @@
 
 <section class="padding-large">
     <div class="container">
+        {% if form.errors %}
+            <div class="row">
+                <div class="col-md-12 offset-md-12 col-sm-12 offset-sm-12">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <p>Ошибка заполнения формы</p>
+                        {{ form.errors }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
         <div class="row">
             <div class="col-md-6">
                 <div class="row">
-                    <div class="col-md-12">
+                    <form action="{% url 'new_create' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
                         <div class="col-md-12">
-                            <label class="text">Название</label>
+                            <div class="col-md-12">
+                                <label class="text">Название</label>
+                            </div>
+                            <div class="col-md-12">
+<!--                                <input class="u-full-width" placeholder="Название">-->
+                                {{ form.name }}
+                            </div>
                         </div>
                         <div class="col-md-12">
-                            <input class="u-full-width" placeholder="Название">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="col-md-12">
-                            <label class="text">Краткое содержание</label>
-                        </div>
-                        <div class="col-md-12">
-                            <textarea class="u-full-width" name="message" placeholder="Текст" style="height: 150px;"
-                                      required></textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="col-md-12">
-                            <label class="text">Содержание</label>
+                            <div class="col-md-12">
+                                <label class="text">Краткое содержание</label>
+                            </div>
+                            <div class="col-md-12">
+<!--                            <textarea class="u-full-width" name="message" placeholder="Текст" style="height: 150px;"-->
+<!--                                      required></textarea>-->
+                                {{ form.description }}
+                            </div>
                         </div>
                         <div class="col-md-12">
-                            <textarea class="u-full-width" name="message" placeholder="Текст" style="height: 150px;"
-                                      required></textarea>
+                            <div class="col-md-12">
+                                <label class="text">Содержание</label>
+                            </div>
+                            <div class="col-md-12">
+<!--                            <textarea class="u-full-width" name="message" placeholder="Текст" style="height: 150px;"-->
+<!--                                      required></textarea>-->
+                                {{form.text}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-12">
                         <div class="col-md-12">
-                            <label class="text">Изображение</label>
+                            <div class="col-md-12">
+                                <label class="text">Изображение</label>
+                            </div>
+                            <div class="col-md-12">
+<!--                                <input class="u-full-width" placeholder="Название файла">-->
+                                {{ form.foto }}
+                            </div>
                         </div>
-                        <div class="col-md-12">
-                            <input class="u-full-width" placeholder="Название файла">
-                        </div>
-                    </div>
 
-                    <div class="col-md-12">
                         <div class="col-md-12">
-                            <a href="{% url 'new_edit' %}">
-                                <button type="button" class="btn btn-accent btn-full">Сохранить</button>
-                            </a>
+                            <div class="col-md-12">
+                                    <button type="submit" class="btn btn-accent btn-full">Сохранить</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
-
-
             </div>
         </div>
     </div>

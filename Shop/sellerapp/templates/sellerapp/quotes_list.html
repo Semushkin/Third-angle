@@ -110,40 +110,40 @@
             </tr>
             </thead>
             <tbody>
+            {% if quotes %}
+                {% for quote in quotes %}
+                    <tr>
+                        <td class="page-item active"><a href="{% url 'm_quote_detail' quote.id%}" class="page-link nav-link"
+                        >{{ quote.id }}</a></td>
+<!--                        <td>Больше всего</td>-->
+                        <td> {{ quote.name }} </td>
+<!--                        <td>-->
+<!--                            "Больше всего мне хочется стать таким человеком, который сумел бы сделать мир немного лучше.”-->
+<!--                        </td>-->
+                        <td> {{ quote.text }} </td>
+<!--                        <td>Эрленд Лу, "Наивно. Супер"</td>-->
+                        <td> {{ quote.author }} </td>
+                        <td>
+<!--                            <a href="#" class="btn-black">Активировать<i class="icon"></i></a>-->
+                            {{ quote.is_active }}
+                        </td>
+                        <td>
+                            <a href="{% url 'quote_edit' quote.id %}" class="btn-black">Редактировать<i class="icon"></i></a>
+                        </td>
+                        <td>
+                            <a href="{% url 'quote_delete' quote.id %}" class="btn-black">Удалить<i class="icon"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
             <tr>
-                <td class="page-item active"><a href="{% url 'm_quote_detail' %}" class="page-link nav-link"
-                >1</a></td>
-                <td>Больше всего</td>
-                <td>
-                    "Больше всего мне хочется стать таким человеком, который сумел бы сделать мир немного лучше.”
-                </td>
-                <td>Эрленд Лу, "Наивно. Супер"</td>
-                <td><a href="#" class="btn-black">Активировать<i class="icon"></i></a></td>
-                <td>
-                    <a href="#" class="btn-black">Редактировать<i class="icon"></i></a>
-                </td>
-                <td>
-                    <a href="#" class="btn-black">Удалить<i class="icon"></i></a>
-                </td>
-
+                <td>----</td>
+                <td>----</td>
+                <td>----</td>
+                <td>----</td>
+                <td>----</td>
             </tr>
-            <tr>
-                <td class="page-item active"><a href="{% url 'm_quote_detail' %}" class="page-link nav-link"
-                >2</a></td>
-                <td>Больше всего</td>
-                <td>
-                    "Больше всего мне хочется стать таким человеком, который сумел бы сделать мир немного лучше.”
-                </td>
-                <td>Эрленд Лу, "Наивно. Супер"</td>
-                <td>Да</a></td>
-                <td>
-                    <a href="#" class="btn-black">Редактировать<i class="icon"></i></a>
-                </td>
-                <td>
-                    <a href="#" class="btn-black">Удалить<i class="icon"></i></a>
-                </td>
-
-            </tr>
+            {% endif %}
 
             </tbody>
         </table>

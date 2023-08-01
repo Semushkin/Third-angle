@@ -24,58 +24,71 @@
 
 <section class="padding-large">
     <div class="container">
+        {% if form.errors %}
+        <div class="row">
+            <div class="col-md-12 offset-md-12 col-sm-12 offset-sm-12">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <p>Ошибка заполнения формы</p>
+                    {{ form.errors }}
+                </div>
+            </div>
+        </div>
+        {% endif %}
         <div class="row">
             <div class="col-md-6">
                 <div class="row">
-                    <div class="col-md-12">
+                    <form action="{% url 'quote_edit' quote.id %}" method="post">
+                        {% csrf_token %}
                         <div class="col-md-12">
-                            <label class="text">Название</label>
-                        </div>
-                        <div class="col-md-12">
-                            <input class="u-full-width" placeholder="Название" value="Больше всего">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="col-md-12">
-                            <label class="text">Автор</label>
-                        </div>
-                        <div class="col-md-12">
-                            <input class="u-full-width" placeholder="Автор" value="Эрленд Лу, 'Наивно. Супер'">
-                        </div>
-                    </div>
-
-                    <div class="col-md-12">
-                        <div class="col-md-12">
-                            <label class="text">Содержание</label>
-                        </div>
-                        <div class="col-md-12">
-                            <textarea class="u-full-width" name="message" placeholder="Описание" style="height: 150px;"
-                                      required>"Больше всего мне хочется стать таким человеком, который сумел бы сделать мир немного лучше.”</textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="col-md-12">
-                            <label class="text">Активный</label>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox"
-                                       id="inlineCheckbox1" value="option1" checked/>
-                                <label class="form-check-label"
-                                       for="inlineCheckbox1">Активировать</label>
+                            <div class="col-md-12">
+                                <label class="text">Название</label>
+                            </div>
+                            <div class="col-md-12">
+                                <!--                            <input class="u-full-width" placeholder="Название" value="Больше всего">-->
+                                {{ form.name }}
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-12">
                         <div class="col-md-12">
-                            <a href="{% url 'new_edit' %}">
-                                <button type="button" class="btn btn-accent btn-full">Сохранить</button>
-                            </a>
+                            <div class="col-md-12">
+                                <label class="text">Автор</label>
+                            </div>
+                            <div class="col-md-12">
+                                <!--                            <input class="u-full-width" placeholder="Автор" value="Эрленд Лу, 'Наивно. Супер'">-->
+                                {{ form.author }}
+                            </div>
                         </div>
-                    </div>
+
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <label class="text">Содержание</label>
+                            </div>
+                            <div class="col-md-12">
+                                <!--                            <textarea class="u-full-width" name="message" placeholder="Описание" style="height: 150px;"-->
+                                <!--                                      required>"Больше всего мне хочется стать таким человеком, который сумел бы сделать мир немного лучше.”</textarea>-->
+                                {{ form.text }}
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <label class="text">Активный</label>
+                            </div>
+                            <div class="col-md-12">
+                                <!--                            <div class="form-check form-check-inline">-->
+                                <!--                                <input class="form-check-input" type="checkbox"-->
+                                <!--                                       id="inlineCheckbox1" value="option1" checked/>-->
+                                <!--                                <label class="form-check-label"-->
+                                <!--                                       for="inlineCheckbox1">Активировать</label>-->
+                                <!--                            </div>-->
+                                {{ form.is_active }}
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-accent btn-full">Сохранить</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-
-
             </div>
         </div>
     </div>
