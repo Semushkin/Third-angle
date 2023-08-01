@@ -217,7 +217,7 @@ def product_create(request):
 def product_edit(request, book_id):
     book = Book.objects.get(pk=book_id)
     if request.method == 'POST':
-        form = BoorCreateUpdateForm(instance=book, data=request.POST)
+        form = BoorCreateUpdateForm(instance=book, data=request.POST, files=request.FILES)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('m_product_detail', args=[form.instance.id]))

@@ -124,8 +124,13 @@
 <!--                        <td>Эрленд Лу, "Наивно. Супер"</td>-->
                         <td> {{ quote.author }} </td>
                         <td>
+                            {% if quote.is_active %}
+                                Активный
+                            {% else %}
+                                Неактивный
+                            {% endif %}
 <!--                            <a href="#" class="btn-black">Активировать<i class="icon"></i></a>-->
-                            {{ quote.is_active }}
+<!--                            {{ quote.is_active }}-->
                         </td>
                         <td>
                             <a href="{% url 'quote_edit' quote.id %}" class="btn-black">Редактировать<i class="icon"></i></a>
