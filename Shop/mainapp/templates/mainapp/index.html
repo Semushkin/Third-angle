@@ -31,7 +31,7 @@
                                         class="icon icon-ns-arrow-right"></i></a>
                             </div>
                         </div>
-                        <img src="{{ book.foto.url }}" alt="banner" class="banner-image" width="400" height="500" style="margin: auto;">
+                        <img src="{{ book.foto.url }}" href="{% url 'product_detail' book.id %}" alt="banner" class="banner-image" width="400" height="500" style="margin: auto;">
                     </div>
                     {% endif %}
                     {% endfor %}
@@ -65,11 +65,11 @@
                         {% if book.id < 5 %}
                         <div class="col-md-3">
                             <figure class="product-style">
-                                <img src="{{ book.foto.url }}" alt="Books" class="product-item">
+                                <a href="{% url 'product_detail' book.id %}"><img src="{{ book.foto.url }}" alt="Books" class="product-item"></a>
                                 <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart
                                 </button>
                                 <figcaption>
-                                    <h3>{{ book.name }}</h3>
+                                    <a href="{% url 'product_detail' book.id %}"><h3>{{ book.name }}</h3></a>
                                     <p>{{ book.author }}</p>
                                     <div class="item-price">{{ book.price }} ₽</div>
                                 </figcaption>
