@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from mainapp.models import Book
+from mainapp.models import Book, News
 from authapp.forms import UserRegisterForm, UserLoginForm, UserEditForm, SetNewPassword
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -42,7 +42,41 @@ def s_profile(request):
 
 
 def news_list(request):
-    return render(request, 'sellerapp/news_list.html')
+    if "n_sort" not in request.session:
+        request.session["n_sort"] = "id"
+    if "n_search" not in request.session:
+        request.session["n_search"] = ""
+    n_order = request.GET.get('n_sort')
+    if n_order:
+        request.session["n_sort"] = n_order
+    n_o_field = request.session["n_sort"]
+    n_query = request.GET.get('n_q')
+    stop = request.GET.get('stop_search')
+    if stop:
+        request.session["n_search"] = ""
+    if n_query:
+        request.session["n_search"] = n_query
+        object_list = News.objects.filter(
+            Q(text__iregex=n_query)).order_by(
+            request.session["n_sort"])
+    else:
+        if request.session["n_search"] == "":
+            object_list = News.objects.order_by(request.session["n_sort"])
+        else:
+            object_list = News.objects.filter(
+                Q(text__iregex=request.session["n_search"])).order_by(request.session["n_sort"])
+    m_n_field = request.session["n_search"]
+    items_per_page = 1
+    paginator = Paginator(object_list, items_per_page)
+    page_number = request.GET.get('page', 1)
+    try:
+        page_obj = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        page_obj = paginator.get_page(1)
+    except EmptyPage:
+        page_obj = paginator.get_page(paginator.num_pages)
+    context = {'object_list': object_list, 'page_obj': page_obj, 'n_o_field': n_o_field, 'm_n_field': m_n_field}
+    return render(request, 'sellerapp/news_list.html', context)
 
 
 def new_create(request):
@@ -66,28 +100,28 @@ def quote_edit(request):
 
 
 def products_list(request):
-    if "m_sort" not in request.session:
-        request.session["m_sort"] = "id"
+    if "b_sort" not in request.session:
+        request.session["b_sort"] = "id"
     if "b_search" not in request.session:
         request.session["b_search"] = ""
-    m_order = request.GET.get('m_sort')
-    if m_order:
-        request.session["m_sort"] = m_order
-    m_o_field = request.session["m_sort"]
-    b_query = request.GET.get('m_q')
+    b_order = request.GET.get('b_sort')
+    if b_order:
+        request.session["b_sort"] = b_order
+    b_o_field = request.session["b_sort"]
+    b_query = request.GET.get('b_q')
     stop = request.GET.get('stop_search')
     if stop:
         request.session["b_search"] = ""
     if b_query:
         request.session["b_search"] = b_query
-        object_list = Book.objects.filter(Q(name__iregex=b_query) | Q(author__iregex=b_query) | Q(price__iregex=b_query)).order_by(request.session["m_sort"])
+        object_list = Book.objects.filter(Q(name__iregex=b_query) | Q(author__iregex=b_query) | Q(price__iregex=b_query)).order_by(request.session["b_sort"])
     else:
         if request.session["b_search"] == "":
-            object_list = Book.objects.order_by(request.session["m_sort"])
+            object_list = Book.objects.order_by(request.session["b_sort"])
         else:
             object_list = Book.objects.filter(
                 Q(name__iregex=request.session["b_search"]) | Q(author__iregex=request.session["b_search"]) | Q(
-                    price__iregex=request.session["b_search"])).order_by(request.session["m_sort"])
+                    price__iregex=request.session["b_search"])).order_by(request.session["b_sort"])
     m_b_field = request.session["b_search"]
     items_per_page = 1
     paginator = Paginator(object_list, items_per_page)
@@ -98,7 +132,7 @@ def products_list(request):
         page_obj = paginator.get_page(1)
     except EmptyPage:
         page_obj = paginator.get_page(paginator.num_pages)
-    context = {'object_list' : object_list, 'page_obj': page_obj, 'm_o_field': m_o_field, 'm_b_field': m_b_field}
+    context = {'object_list' : object_list, 'page_obj': page_obj, 'b_o_field': b_o_field, 'm_b_field': m_b_field}
     return render(request, 'sellerapp/products_list.html', context)
 
 

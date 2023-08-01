@@ -77,7 +77,7 @@
                         <h2>Поиск</h2>
                     </div>
                     <form method="get" class="search-box" action="{% url 'products_list' %}">
-                        <input name="m_q" value="{{ request.GET.m_q }}"
+                        <input name="b_q" value="{{ request.GET.b_q }}"
                                class="search-field text search-input col-md-12 col-sm-12 col-xs-12" placeholder="Search"
                                type="search">
                     </form>
@@ -95,22 +95,22 @@
                     <div class="colored">
                         <h2>Сортировка</h2>
                         <form style="height: 30px;" method="get" action="{% url 'products_list' %}">
-                            <button class="{% if m_o_field == 'id' %} btn-text  {% else %} btn-text-f {% endif %}" name="m_sort" value="id">
+                            <button class="{% if b_o_field == 'id' %} btn-text  {% else %} btn-text-f {% endif %}" name="b_sort" value="id">
                                 <li>По номеру</li>
                             </button>
                         </form>
                         <form style="height: 30px;" method="get" action="{% url 'products_list' %}">
-                            <button class="{% if m_o_field == 'name' %} btn-text  {% else %} btn-text-f {% endif %}" name="m_sort" value="name">
+                            <button class="{% if b_o_field == 'name' %} btn-text  {% else %} btn-text-f {% endif %}" name="b_sort" value="name">
                                 <li>По названию</li>
                             </button>
                         </form>
                         <form style="height: 30px;" method="get" action="{% url 'products_list' %}">
-                            <button class="{% if m_o_field == 'author' %} btn-text  {% else %} btn-text-f {% endif %}" name="m_sort" value="author">
+                            <button class="{% if b_o_field == 'author' %} btn-text  {% else %} btn-text-f {% endif %}" name="b_sort" value="author">
                                 <li>По автору</li>
                             </button>
                         </form>
                         <form style="height: 30px;" method="get" action="{% url 'products_list' %}">
-                            <button class="{% if m_o_field == 'price' %} btn-text  {% else %} btn-text-f {% endif %}" name="m_sort" value="price">
+                            <button class="{% if b_o_field == 'price' %} btn-text  {% else %} btn-text-f {% endif %}" name="b_sort" value="price">
                                 <li>По цене</li>
                             </button>
                         </form>

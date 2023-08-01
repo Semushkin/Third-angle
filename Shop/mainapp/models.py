@@ -31,7 +31,7 @@ class News(models.Model):
     date_update = models.DateField(auto_now=True)
 
     def __str__(self):
-        return f'Новость: {self.text[0:20]}...'
+        return f'{self.text[0:20]}'
 
 
 class Comment(models.Model):
