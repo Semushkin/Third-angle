@@ -27,25 +27,21 @@
         <div class="row">
 
             <div class="col-md-6">
-                <a href="#" class="product-image"><img src="{% static 'images/main-banner2.jpg' %}"></a>
+                <a href="#" class="product-image"><img src="{{ book.foto.url }}"></a>
             </div>
 
             <div class="col-md-6 pl-5">
-                <div class="product-detail">
-                    <h1>Книга Джунглей</h1>
-                    <p>Редьярд Киплинг</p>
-                    <span class="price colored">40.00 ₽</span>
+                <div class="product-detail card_add_basket">
+                    <h1>{{ book.name }}</h1>
+                    <p>Автор: {{ book.author }}</p>
+                    <p>Жанр: {{ book.category }}</p>
+                    <span class="price colored">Цена: {{ book.price }}</span>
 
                     <p>
-                        «Книга джунглей» – бессмертное произведение великого английского писателя Редьярда Киплинга. В
-                        настоящее издание включены три из семи рассказов «Книги джунглей» – о жизни и приключениях
-                        мальчика Маугли, выросшего в волчьей стае и сумевшего победить страшного тигра Шер Хана.
-
-                        Необычайно выразительные иллюстрации Квентина Гребана переносят читателя в фантастический мир
-                        этой удивительной книги.
+                        Описание: {{ book.description }}
                     </p>
 
-                    <button type="submit" name="add-to-cart" value="27545" class="button">Добавить в корзину</button>
+                    <button id='add-to-cart-button' type="button" class="add-to-cart" data-product-tile="add-to-cart" value="{{ book.id }}">Добавить в корзину</button>
 
                 </div>
             </div>

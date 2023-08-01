@@ -92,23 +92,13 @@
                                         <div id="collapseOne" class="accordion-collapse collapse"
                                              aria-labelledby="headingOne">
                                             <div class="accordion-body">
+                                                {% for genre in genre %}
                                                 <form style="height: 30px;" method="get" action="{% url 'catalog' %}">
-                                                    <button class="{% if f_filed == 'all' %} btn-text  {% else %} btn-text-f {% endif %}" name="filt" value="all">
-                                                        <li>Все</li>
+                                                    <button class="{% if f_filed in genre.name %} btn-text  {% else %} btn-text-f {% endif %}" name="filt" value="{{ genre.name }}">
+                                                        <li>{{ genre.name }}</li>
                                                     </button>
                                                 </form>
-
-                                                <form style="height: 30px;" method="get" action="{% url 'catalog' %}">
-                                                    <button class="{% if f_filed == 'Сказки' %} btn-text  {% else %} btn-text-f {% endif %}" name="filt" value="Сказки">
-                                                        <li>Сказки</li>
-                                                    </button>
-                                                </form>
-
-                                                <form style="height: 30px;" method="get" action="{% url 'catalog' %}">
-                                                    <button class="{% if f_filed == 'Научное' %} btn-text  {% else %} btn-text-f {% endif %}" name="filt" value="Научное">
-                                                        <li>Научное</li>
-                                                    </button>
-                                                </form>
+                                                {% endfor %}
 
                                             </div>
                                         </div>
@@ -131,8 +121,9 @@
                                         <div id="collapseOne1" class="accordion-collapse collapse"
                                              aria-labelledby="headingOne1">
                                             <div class="accordion-body">
+
                                                 <form style="height: 30px;" method="get" action="{% url 'catalog' %}">
-                                                    <button class="{% if f_filed == 'all' %} btn-text  {% else %} btn-text-f {% endif %}" name="filt" value="all">
+                                                    <button class="{% if f_filed == 'все' %} btn-text  {% else %} btn-text-f {% endif %}" name="filt" value="все">
                                                         <li>Все</li>
                                                     </button>
                                                 </form>

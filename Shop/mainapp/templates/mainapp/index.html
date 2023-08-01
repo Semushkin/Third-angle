@@ -27,7 +27,7 @@
                             <h2 class="banner-title">{{ book.name }}</h2>
                             <p>{{ book.description }}</p>
                             <div class="btn-wrap">
-                                <a href="{% url 'product_detail' %}" class="btn btn-outline-accent btn-accent-arrow">Подробности<i
+                                <a href="{% url 'product_detail' book.id %}" class="btn btn-outline-accent btn-accent-arrow">Подробности<i
                                         class="icon icon-ns-arrow-right"></i></a>
                             </div>
                         </div>
@@ -35,28 +35,6 @@
                     </div>
                     {% endif %}
                     {% endfor %}
-                    <!--					<div class="slider-item">-->
-                    <!--						<div class="banner-content">-->
-                    <!--							<h2 class="banner-title">Алиса в стране чудес</h2>-->
-                    <!--							<p>Книга, на которой выросло несколько поколений.</p>-->
-                    <!--							<div class="btn-wrap">-->
-                    <!--								<a href="{% url 'product_detail' %}" class="btn btn-outline-accent btn-accent-arrow">Подробности<i class="icon icon-ns-arrow-right"></i></a>-->
-                    <!--							</div>-->
-                    <!--						</div>&lt;!&ndash;banner-content&ndash;&gt;-->
-                    <!--						<img src="{% static 'images/main-banner1.jpg' %}" alt="banner" class="banner-image">-->
-                    <!--					</div>&lt;!&ndash;slider-item&ndash;&gt;-->
-
-                    <!--					<div class="slider-item">-->
-                    <!--						<div class="banner-content">-->
-                    <!--							<h2 class="banner-title">Книга джунглей</h2>-->
-                    <!--							<p>По этой книге до сих пор снимают фильмы.</p>-->
-                    <!--							<div class="btn-wrap">-->
-                    <!--								<a href="{% url 'product_detail' %}" class="btn btn-outline-accent btn-accent-arrow">Подробности<i class="icon icon-ns-arrow-right"></i></a>-->
-                    <!--							</div>-->
-                    <!--						</div>&lt;!&ndash;banner-content&ndash;&gt;-->
-                    <!--						<img src="{% static 'images/main-banner2.jpg' %}" alt="banner" class="banner-image">-->
-                    <!--					</div>&lt;!&ndash;slider-item&ndash;&gt;-->
-
                 </div><!--slider-->
 
                 <button class="next slick-arrow">

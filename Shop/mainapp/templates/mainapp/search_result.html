@@ -52,130 +52,29 @@
                     <div>
                         <h2 style="margin: 15px 0;">Сортировка</h2>
 
-                        <form style="height: 30px;" method="get" action="{% url 'catalog' %}">
-                            <button class="btn-text" name="sort" value="name">
+                        <form style="height: 30px;" method="get" action="{% url 'search_result' %}">
+                            <button class="{% if o_field == 'name' %} btn-text  {% else %} btn-text-f {% endif %}" name="sort" value="name">
                                 <li>По названию</li>
                             </button>
                         </form>
 
-                        <form  style="height: 30px;" method="get" action="{% url 'catalog' %}">
-                            <button class="btn-text" name="sort" value="date_receipt">
+                        <form  style="height: 30px;" method="get" action="{% url 'search_result' %}">
+                            <button class="{% if o_field == 'date_receipt' %} btn-text  {% else %} btn-text-f {% endif %}" name="sort" value="date_receipt">
                                 <li>По дате</li>
                             </button>
                         </form>
 
-                        <form  style="height: 30px;" method="get" action="{% url 'catalog' %}">
-                            <button class="btn-text" name="sort" value="price">
+                        <form  style="height: 30px;" method="get" action="{% url 'search_result' %}">
+                            <button class="{% if o_field == 'price' %} btn-text  {% else %} btn-text-f {% endif %}" name="sort" value="price">
                                 <li>По цене</li>
                             </button>
                         </form>
                     </div>
                 </div>
-
-                <div class="col-md-12">
-                    <div class="colored">
-                        <h2>Фильтр</h2>
-                    </div>
-                </div>
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="row">
-                        <div class="col">
-                            <div class="accordion" id="accordionExample">
-                                <div class="accordion-item">
-                                    <label class="accordion-header" id="headingOne">
-                                        <button class="accordion-button collapsed btn-wrap" type="button"
-                                                data-bs-toggle="collapse"
-                                                data-bs-target="#collapseOne" aria-expanded="false"
-                                                aria-controls="collapseOne">
-                                            Жанр
-                                        </button>
-                                    </label>
-                                    <div id="collapseOne" class="accordion-collapse collapse"
-                                         aria-labelledby="headingOne">
-                                        <div class="accordion-body">
-
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox"
-                                                       id="inlineCheckbox1" value="option1"/>
-                                                <label class="form-check-label"
-                                                       for="inlineCheckbox1">Сказки</label>
-                                            </div>
-
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox"
-                                                       id="inlineCheckbox2" value="option2"/>
-                                                <label class="form-check-label"
-                                                       for="inlineCheckbox2">Научное</label>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="accordion" id="accordionExample1">
-                                <div class="accordion-item">
-                                    <label class="accordion-header" id="headingOne1">
-                                        <button class="accordion-button collapsed btn-wrap" type="button"
-                                                data-bs-toggle="collapse"
-                                                data-bs-target="#collapseOne1" aria-expanded="false"
-                                                aria-controls="collapseOne1">
-                                            Автор
-                                        </button>
-                                    </label>
-                                    <div id="collapseOne1" class="accordion-collapse collapse"
-                                         aria-labelledby="headingOne1">
-                                        <div class="accordion-body">
-
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox"
-                                                       id="inlineCheckbox11" value="option1"/>
-                                                <label class="form-check-label"
-                                                       for="inlineCheckbox11">Стругацкие</label>
-                                            </div>
-
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox"
-                                                       id="inlineCheckbox12" value="option2"/>
-                                                <label class="form-check-label"
-                                                       for="inlineCheckbox12">Киплинг</label>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <button type="button" class="btn btn-xlarge btn-accent btn-full">Показать
-                    </button>
-                </div>
             </div>
             <div class="col-md-9">
                 Найдено совпадений : {{ object_list.count }}
-                <div class="products-grid grid">
-
-                    {% for book in page_obj %}
-
-                    <figure class="product-style">
-                        <img src="{{ book.foto.url }}" alt="Books" class="product-item">
-                        <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart
-                        </button>
-                        <figcaption>
-                            <h3>{{ book.name }}</h3>
-                            <p>{{ book.author }}</p>
-                            <div class="item-price">{{ book.price }} ₽</div>
-                        </figcaption>
-                    </figure>
-
-                    {% endfor %}
-
-                </div>
+                {% include 'mainapp/includes/goods_card.html'%}
                 {% include 'mainapp/includes/pagination.html'%}
             </div>
 
