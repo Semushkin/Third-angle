@@ -75,22 +75,51 @@
                     <div class="colored">
                         <h2>Поиск</h2>
                     </div>
-                    <form role="search" method="get" class="search-box">
-                        <input class="search-field text search-input" placeholder="Search" type="search">
+                    <form method="get" class="search-box" action="{% url 'quotes_list' %}">
+                        <input name="q_q" value="{{ request.GET.q_q }}"
+                               class="search-field text search-input col-md-12 col-sm-12 col-xs-12" placeholder="Search"
+                               type="search">
                     </form>
+                    {% if m_q_field == '' %}{% else %}
+                    <span>Найдено совпадений : {{ object_list.count }}</span>
+                    <span>Запрос: "{{ m_q_field }}"</span>
+                    <form style="height: 30px;" method="get" action="{% url 'quotes_list' %}">
+                        <button class= "btn-text" name="stop_search" value="stop">
+                                Отменить поиск
+                        </button>
+                    </form>
+                    {% endif %}
                 </div>
 
                 <div class="col-md-3">
                     <div class="colored">
                         <h2>Сортировка</h2>
+                        <form style="height: 30px;" method="get" action="{% url 'quotes_list' %}">
+                            <button class="{% if q_o_field == 'id' %} btn-text  {% else %} btn-text-f {% endif %}" name="q_sort" value="id">
+                                <li>По номеру</li>
+                            </button>
+                        </form>
+                        <form style="height: 30px;" method="get" action="{% url 'quotes_list' %}">
+                            <button class="{% if q_o_field == 'name' %} btn-text  {% else %} btn-text-f {% endif %}" name="q_sort" value="name">
+                                <li>По названию</li>
+                            </button>
+                        </form>
+                        <form style="height: 30px;" method="get" action="{% url 'quotes_list' %}">
+                            <button class="{% if q_o_field == 'date_create' %} btn-text  {% else %} btn-text-f {% endif %}" name="q_sort" value="date_create">
+                                <li>По дате</li>
+                            </button>
+                        </form>
+                        <form style="height: 30px;" method="get" action="{% url 'quotes_list' %}">
+                            <button class="{% if q_o_field == 'author' %} btn-text  {% else %} btn-text-f {% endif %}" name="q_sort" value="author">
+                                <li>По автору</li>
+                            </button>
+                        </form>
+                        <form style="height: 30px;" method="get" action="{% url 'quotes_list' %}">
+                            <button class="{% if q_o_field == '-is_active' %} btn-text  {% else %} btn-text-f {% endif %}" name="q_sort" value="-is_active">
+                                <li>По состоянию</li>
+                            </button>
+                        </form>
                     </div>
-                    <ul>
-                        <li>По порядку</li>
-                        <li>По названию</li>
-                        <li>По дате</li>
-                        <li>По статусу</li>
-                        <li>По автру</li>
-                    </ul>
                 </div>
 
 
@@ -110,8 +139,8 @@
             </tr>
             </thead>
             <tbody>
-            {% if quotes %}
-                {% for quote in quotes %}
+            {% if page_obj.object_list %}
+                {% for quote in page_obj.object_list %}
                     <tr>
                         <td class="page-item active"><a href="{% url 'm_quote_detail' quote.id%}" class="page-link nav-link"
                         >{{ quote.id }}</a></td>
@@ -154,27 +183,9 @@
         </table>
     </div>
 </section>
-<section>
-<div class="row justify-content-center align-items-center mt-3 mb-n3">
-  <nav aria-label="...">
-  <ul class="pagination">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1">Previous</a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item active">
-      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
-    </li>
-  </ul>
-</nav>
-</div>
-</section>
 
 
+{% include 'mainapp/includes/pagination.html'%}
 {% include 'mainapp/includes/footer.html'%}
 
 {% endblock %}

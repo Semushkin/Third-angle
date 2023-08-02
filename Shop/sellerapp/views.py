@@ -57,14 +57,14 @@ def news_list(request):
     if n_query:
         request.session["n_search"] = n_query
         object_list = News.objects.filter(
-            Q(text__iregex=n_query)).order_by(
+            Q(name__iregex=n_query) | Q(text__iregex=n_query) | Q(description__iregex=n_query)).order_by(
             request.session["n_sort"])
     else:
         if request.session["n_search"] == "":
             object_list = News.objects.order_by(request.session["n_sort"])
         else:
             object_list = News.objects.filter(
-                Q(text__iregex=request.session["n_search"])).order_by(request.session["n_sort"])
+                Q(name__iregex=request.session["n_search"]) | Q(text__iregex=request.session["n_search"]) | Q(description__iregex=request.session["n_search"])).order_by(request.session["n_sort"])
     m_n_field = request.session["n_search"]
     items_per_page = 1
     paginator = Paginator(object_list, items_per_page)
@@ -118,10 +118,40 @@ def new_delete(request, news_id):
 
 
 def quotes_list(request):
-    quotes = Quote.objects.all()
-    context = {
-        'quotes': quotes
-    }
+    if "q_sort" not in request.session:
+        request.session["q_sort"] = "id"
+    if "q_search" not in request.session:
+        request.session["q_search"] = ""
+    q_order = request.GET.get('q_sort')
+    if q_order:
+        request.session["q_sort"] = q_order
+    q_o_field = request.session["q_sort"]
+    q_query = request.GET.get('q_q')
+    stop = request.GET.get('stop_search')
+    if stop:
+        request.session["q_search"] = ""
+    if q_query:
+        request.session["q_search"] = q_query
+        object_list = Quote.objects.filter(
+            Q(name__iregex=q_query) | Q(text__iregex=q_query) | Q(author__iregex=q_query)).order_by(
+            request.session["q_sort"])
+    else:
+        if request.session["q_search"] == "":
+            object_list = Quote.objects.order_by(request.session["q_sort"])
+        else:
+            object_list = Quote.objects.filter(
+                Q(name__iregex=request.session["q_search"]) | Q(text__iregex=request.session["q_search"]) | Q(author__iregex=request.session["q_search"])).order_by(request.session["q_sort"])
+    m_q_field = request.session["q_search"]
+    items_per_page = 1
+    paginator = Paginator(object_list, items_per_page)
+    page_number = request.GET.get('page', 1)
+    try:
+        page_obj = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        page_obj = paginator.get_page(1)
+    except EmptyPage:
+        page_obj = paginator.get_page(paginator.num_pages)
+    context = {'object_list': object_list, 'page_obj': page_obj, 'q_o_field': q_o_field, 'm_q_field': m_q_field}
     return render(request, 'sellerapp/quotes_list.html', context)
 
 

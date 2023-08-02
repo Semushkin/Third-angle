@@ -22,7 +22,7 @@ def catalog(request):
     if "sort" not in request.session:
         request.session["sort"] = "id"
     if "filt" not in request.session:
-        request.session["filt"] = "all"
+        request.session["filt"] = "все"
     filt = request.GET.get('filt')
     order = request.GET.get('sort')
     if filt:

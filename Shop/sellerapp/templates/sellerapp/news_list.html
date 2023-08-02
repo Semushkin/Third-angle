@@ -81,13 +81,15 @@
                                class="search-field text search-input col-md-12 col-sm-12 col-xs-12" placeholder="Search"
                                type="search">
                     </form>
-                    <span>{% if m_n_field == '' %}{% else %}Найдено совпадений : {{ object_list.count }}{% endif %}</span>
-                    <span>{% if m_n_field == '' %}{% else %}Запрос: "{{ m_n_field }}"{% endif %}</span>
+                    {% if m_n_field == '' %}{% else %}
+                    <span>Найдено совпадений : {{ object_list.count }}</span>
+                    <span>Запрос: "{{ m_n_field }}"</span>
                     <form style="height: 30px;" method="get" action="{% url 'news_list' %}">
                         <button class= "btn-text" name="stop_search" value="stop">
                                 Отменить поиск
                         </button>
                     </form>
+                    {% endif %}
                 </div>
 
                 <div class="col-md-3">
