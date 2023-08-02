@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from mainapp.models import Book, BookCategory
+from mainapp.models import Book, BookCategory, News, Quote
 from authapp.forms import UserRegisterForm, UserLoginForm, UserEditForm, SetNewPassword
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -7,13 +7,15 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
+import random
 
 # Create your views here.
 
 
 def index(request):
+
     context = {
-        'books': Book.objects.all(),
+        'books': Book.objects.order_by('-id'), 'main_books': Book.objects.order_by('?'), 'news': News.objects.order_by('-id'), 'quotes': Quote.objects.all()
     }
     return render(request, 'mainapp/index.html', context)
 
