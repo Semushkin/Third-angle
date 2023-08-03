@@ -83,7 +83,18 @@ def search_result(request):
 
 
 def news(request):
-    return render(request, 'mainapp/news.html')
+    object_list = News.objects.order_by('-date_create')
+    items_per_page = 2
+    paginator = Paginator(object_list, items_per_page)
+    page_number = request.GET.get('page', 1)
+    try:
+        page_obj = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        page_obj = paginator.get_page(1)
+    except EmptyPage:
+        page_obj = paginator.get_page(paginator.num_pages)
+    context = {'page_obj': page_obj}
+    return render(request, 'mainapp/news.html', context)
 
 
 def contacts(request):

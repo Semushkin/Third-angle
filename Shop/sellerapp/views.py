@@ -22,8 +22,11 @@ def search_list(request):
     return render(request, 'sellerapp/search_list.html')
 
 
-def new_detail(request):
-    return render(request, 'sellerapp/new_detail.html')
+def new_detail(request, new_id):
+    context = {
+        'new': News.objects.get(pk=new_id)
+    }
+    return render(request, 'sellerapp/new_detail.html', context)
 
 
 def product_detail(request, book_id):

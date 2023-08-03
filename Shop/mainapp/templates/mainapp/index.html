@@ -182,14 +182,14 @@
                         <article class="column" data-aos="fade-up">
 
                             <figure>
-                                <a href="{% url 'new_detail' %}" class="image-hvr-effect">
+                                <a href="{% url 'new_detail' new.id %}" class="image-hvr-effect">
                                     <img src="{{ new.foto.url }}" alt="post" class="post-image">
                                 </a>
                             </figure>
 
                             <div class="post-item">
                                 <div class="meta-date">{{ new.date_create }}</div>
-                                <h3><a href="{% url 'new_detail' %}">{{ new.name }}</a></h3>
+                                <h3><a href="{% url 'new_detail' new.id %}">{{ new.name }}</a></h3>
 
                                 <div class="links-element">
                                     <div class="categories"></div>
@@ -210,100 +210,6 @@
 
                     </div>
                     {% endfor %}
-<!--                    <div class="col-md-4">-->
-
-<!--                        <article class="column" data-aos="fade-up">-->
-
-<!--                            <figure>-->
-<!--                                <a href="{% url 'new_detail' %}" class="image-hvr-effect">-->
-<!--                                    <img src="{% static 'images/post-img1.jpg' %}" alt="post" class="post-image">-->
-<!--                                </a>-->
-<!--                            </figure>-->
-
-<!--                            <div class="post-item">-->
-<!--                                <div class="meta-date">Март 30, 2020</div>-->
-<!--                                <h3><a href="{% url 'new_detail' %}">Новые поступления в жанре детских сказок!</a></h3>-->
-
-<!--                                <div class="links-element">-->
-<!--                                    <div class="categories"></div>-->
-<!--                                    <div class="social-links">-->
-<!--                                        <ul>-->
-<!--                                            <li>-->
-<!--                                                <a href="#"><i class="icon icon-facebook"></i></a>-->
-<!--                                            </li>-->
-<!--                                            <li>-->
-<!--                                                <a href="#"><i class="icon icon-twitter"></i></a>-->
-<!--                                            </li>-->
-<!--                                        </ul>-->
-<!--                                    </div>-->
-<!--                                </div>&lt;!&ndash;links-element&ndash;&gt;-->
-
-<!--                            </div>-->
-<!--                        </article>-->
-
-<!--                    </div>-->
-
-<!--                    <div class="col-md-4">-->
-
-<!--                        <article class="column" data-aos="fade-down">-->
-<!--                            <figure>-->
-<!--                                <a href="{% url 'new_detail' %}" class="image-hvr-effect">-->
-<!--                                    <img src="{% static 'images/post-img2.jpg' %}" alt="post" class="post-image">-->
-<!--                                </a>-->
-<!--                            </figure>-->
-<!--                            <div class="post-item">-->
-<!--                                <div class="meta-date">Март 29, 2021</div>-->
-<!--                                <h3><a href="{% url 'new_detail' %}">Состоялась творческая встреча с писателем!</a></h3>-->
-
-<!--                                <div class="links-element">-->
-<!--                                    <div class="categories"></div>-->
-<!--                                    <div class="social-links">-->
-<!--                                        <ul>-->
-<!--                                            <li>-->
-<!--                                                <a href="#"><i class="icon icon-facebook"></i></a>-->
-<!--                                            </li>-->
-<!--                                            <li>-->
-<!--                                                <a href="#"><i class="icon icon-twitter"></i></a>-->
-<!--                                            </li>-->
-<!--                                        </ul>-->
-<!--                                    </div>-->
-<!--                                </div>&lt;!&ndash;links-element&ndash;&gt;-->
-
-<!--                            </div>-->
-<!--                        </article>-->
-
-<!--                    </div>-->
-<!--                    <div class="col-md-4">-->
-
-<!--                        <article class="column" data-aos="fade-up">-->
-<!--                            <figure>-->
-<!--                                <a href="{% url 'new_detail' %}" class="image-hvr-effect">-->
-<!--                                    <img src="{% static 'images/post-img3.png' %}" alt="post" class="post-image">-->
-<!--                                </a>-->
-<!--                            </figure>-->
-<!--                            <div class="post-item">-->
-<!--                                <div class="meta-date">Март 27, 2022</div>-->
-<!--                                <h3><a href="{% url 'new_detail' %}">Мартовская распродажа!</a></h3>-->
-
-<!--                                <div class="links-element">-->
-<!--                                    <div class="categories"></div>-->
-<!--                                    <div class="social-links">-->
-<!--                                        <ul>-->
-<!--                                            <li>-->
-<!--                                                <a href="#"><i class="icon icon-facebook"></i></a>-->
-<!--                                            </li>-->
-<!--                                            <li>-->
-<!--                                                <a href="#"><i class="icon icon-twitter"></i></a>-->
-<!--                                            </li>-->
-<!--                                        </ul>-->
-<!--                                    </div>-->
-<!--                                </div>&lt;!&ndash;links-element&ndash;&gt;-->
-
-<!--                            </div>-->
-<!--                        </article>-->
-
-<!--                    </div>-->
-
                 </div>
 
                 <div class="row">

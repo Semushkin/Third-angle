@@ -28,7 +28,7 @@
         <div class="row">
 
             <div class="col-md-12">
-                <h1 class="page-title">Новые поступления в жанре детских сказок!</h1>
+                <h1 class="page-title">{{ new.name}}</h1>
 
             </div>
             <div class="col-md-4">
@@ -36,8 +36,8 @@
                 <article class="column" data-aos="fade-up">
 
                     <figure>
-                        <a href="single_new.html" class="image-hvr-effect">
-                            <img src="{% static 'images/post-img1.jpg' %}" alt="post" class="post-image">
+                        <a class="image-hvr-effect">
+                            <img src="{{ new.foto.url }}" alt="post" class="post-image">
                         </a>
                     </figure>
 
@@ -46,7 +46,8 @@
             </div>
         </div>
         <div class="post-content">
-            <p>Приглашаем в гости в честь поступления новой партии книг!</p>
+            <p>{{ new.date_create}}</p>
+            <p>{{ new.text}}</p>
         </div><!--post-content-->
 
     </div>

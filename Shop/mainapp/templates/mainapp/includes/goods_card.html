@@ -1,7 +1,7 @@
 <div class="products-grid grid card_add_basket">
     {% for book in page_obj.object_list %}
     <figure class="product-style ">
-        <a href="{% url 'product_detail' book.id %}"></a><img src="{{ book.foto.url }}" alt="Books" class="product-item"></a>
+        <a href="{% url 'product_detail' book.id %}"><img src="{{ book.foto.url }}" alt="Books" class="product-item"></a>
         <button id='add-to-cart-button' type="button" class="add-to-cart" data-product-tile="add-to-cart" value="{{ book.id }}">
             Добавить в корзину
         </button>
