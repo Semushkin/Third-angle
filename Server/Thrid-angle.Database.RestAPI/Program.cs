@@ -7,6 +7,7 @@ using System;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.HttpLogging;
 
 using Thrid_angle.Database.RestAPI.ControllersREST;
 using Thrid_angle.Database.RestAPI.Database;
@@ -14,192 +15,256 @@ using Thrid_angle.Database.RestAPI.Mehtods;
 using Thrid_angle.Database.RestAPI.DTO;
 using Microsoft.AspNetCore.Builder;
 using Thrid_angle.Database.RestAPI;
-
-MethodsEntityFrameworcSQLite SQLite = new MethodsEntityFrameworcSQLite();
-
-BookCard book = new BookCard();
-
-book.IdBook =  new Guid();                     
-book.NameBook = "тест56";
-book.DateCreationBook = DateTime.Now;
-book.AuthorBook = "Автор256";
-book.DescriptionBook = "Description";
-book.DateUpdateBook = DateTime.Now;
-book.PhotoBook = 1243;
-book.PriceBook = 1;
-book.VendorCodeBook = "VendorCodeBook";
-book.RecieptDateBook = DateTime.Now;
-book.GenreBook = "Тест36";
-
-
-Baskets baskets = new Baskets();
-baskets.IdBasket = new Guid("CD6450A8-A613-487A-9113-19A1BEC3A85C");
-//baskets.IdUser = new Guid();
-//baskets.IdBook = new Guid();
-baskets.QuantityBooks = 27772;
-baskets.PricePerBook = 10;
-//baskets.DateCreationBasket = DateTime.Now;
-baskets.DateUbdateBasket = DateTime.Now;
-
-
-
-//WriteIndented = true,
-//var options = new JsonSerializerOptions { AllowTrailingCommas = false, PropertyNameCaseInsensitive = true,   NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString, WriteIndented = true, IncludeFields =true, };
-//
-//string json1 = JsonSerializer.Serialize<BookCard>(book, options);
-
-//BookCard book1 = JsonSerializer.Deserialize<BookCard>(json1);
+using Thrid_angle.Database.RestAPI.HttpServices;
+using System.Net.Http.Headers;
 
 
 
 
 
-//SQLite.UpdateDatabaseBaskets(baskets);
-
-//SQLite.CreateDatabaseBaskets(baskets);
-// SQLite.DeleteDatabaseBookCard(book.IdBook);
-
-
-
-//List<BookCard> r = SQLite.ReadDatabaseBookCard();
-//
-//foreach (BookCard card in r)
-//{
-//    Console.WriteLine($" IdBook - {card.IdBook} NameBook -  {card.NameBook}  DateUpdateBook - {card.DateUpdateBook} AuthorBook - {card.AuthorBook}"  );
-//      
-
-
-
-
-
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddSingleton<IControllers, Controllers>();
-
-//builder.Services.Configure<Baskets>();
-
-builder.Services.AddControllersWithViews();
-
-builder.Services.AddDbContext<DatabaseContext>();
-builder.Services.AddControllersWithViews();
-builder.Services.AddSwaggerGen();
-builder.Services.AddControllers();
-builder.Services.AddAuthorization();
-builder.Services.AddEndpointsApiExplorer();
-
-var app = builder.Build();
-app.UseHttpsRedirection();
-app.UseSwagger();
-app.UseSwaggerUI();
-
-
-app.MapControllers();
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.UseEndpoints(endpoints =>
+internal class Program
 {
-    endpoints.MapControllerRoute(
+    private static void Main(string[] args)
+    {
+
+
+        var folder1 = Environment.SpecialFolder.LocalApplicationData;
+        string path1 = Environment.GetFolderPath(folder1);
+
+        Console.WriteLine("вот сюда нужно положить базу данных -  " + path1);
+        Console.WriteLine("Затем введите  в браузере этот URL https://localhost:5001/ServicesRest/IDReadDatabaseBaskets/48DED6ED-41E6-49B1-A1EE-81E883F2E795 ");
+
+        Console.WriteLine(" если что то вернулось значит база подключена");
+
+        Console.WriteLine("просмотреть содержимое базы данных можно с помощюю SQLiteStudio - https://sqlitestudio.pl/");
+        Console.WriteLine("Скопируйте из БД ID - это вот такое значене в формате UID - 48DED6ED-41E6-49B1-A1EE-81E883F2E795");
+        Console.WriteLine("далее можно протестировать методы чтения и записи в БД из приложения - Только данные нужно подставлять согласно типу данх написан над полем - описание методов см. в вайле REST URL");
+
+
+
+        var builder = WebApplication.CreateBuilder(args);
+
+
+
+        builder.Services.AddSingleton<IControllers, ServicesRest>();
+        builder.Services.AddControllers();
+
+
+        builder.Services.AddControllersWithViews();
+
+        //настройка http clienta
+        builder.Services.AddHttpClient(name: "Northwind.WebApi",
+         configureClient: options =>
+         {
+             options.BaseAddress = new Uri("https://localhost:5002/");
+
+             options.DefaultRequestHeaders.Accept.Add(
+             new MediaTypeWithQualityHeaderValue(
+             "application/json", 1.0));
+         });
+
+        //настройка версии http
+        builder.Services.AddHttpLogging(options =>
+        {
+            options.LoggingFields = HttpLoggingFields.All;
+            options.RequestBodyLogLimit = 4096; // по умолчанию 32 Кбайт
+            options.ResponseBodyLogLimit = 4096; // по умолчанию 32 Кбайт
+        });
+
+
+
+        builder.Services.AddDbContext<DatabaseContext>();
+        builder.Services.AddWebEncoders();
+        builder.Services.AddSwaggerGen();
+        builder.Services.AddControllers();
+        builder.Services.AddAuthorization();
+        builder.Services.AddEndpointsApiExplorer();
+
+
+        // настройка http client
+
+
+
+        //var http = builder.Services.AddHttpClient("Thrid-angle", httpClient =>  httpClient.BaseAddress = new Uri("https://localhost:5000/ServicesRest/") );
+
+        //<HttpServicesCreateDatabaseUserCard>
+
+        var app = builder.Build();
+        app.UseHttpsRedirection();
+        app.UseAuthorization();
+        app.MapControllers();
+        app.UseSwagger();
+        app.UseSwaggerUI();
+        app.UseHttpsRedirection();
+        app.UseHsts();
+
+
+
+        app.UseStaticFiles();
+
+        app.UseRouting();
+
+
+        app.UseEndpoints(endpoints =>
+        {
+
+            endpoints.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=ServicesRest}/{action=CreateDatabaseBaskets}/{IdUser}/{IdBook}/{QuantityBooks}/{PricePerBook}");
+
+
+            endpoints.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=ServicesRest}/{action=CreateDatabaseBookCard}/{NameBook}/{AuthorBook}/{PhotoBook}/{VendorCodeBook}/{GenreBook}/{DescriptionBook}/{PriceBook}");
+
+
+            endpoints.MapControllerRoute(
+               name: "default",
+               pattern: "{controller=ServicesRest}/{action=CreateDatabaseOrderCard}/{OrderCardBooksList}/{StatusOrderCard}/{IdUsers}");
+
+
+            endpoints.MapControllerRoute(
+               name: "default",
+               pattern: "{controller=ServicesRest}/{action=CreateDatabaseQuoteCard}/{QuoteTitle}/{QuoteText}/{QuoteAutor}");
+
+
+            endpoints.MapControllerRoute(
+               name: "default",
+               pattern: "{controller=ServicesRest}/{action=CreateDatabaseRequestCard}/{CommentTextCard}/{NumberStars}/{IdUser}/{IdBook}");
+
+
+            endpoints.MapControllerRoute(
+               name: "default",
+               pattern: "{controller=ServicesRest}/{action=CreateDatabaseUserCard}/{UserName}/{SurnameUser}/{RoleUser}/{FloorUser}/{AgeUser}/{AddressUser}/{TelephoneUser}/{EmailUser}/{LoginUser}/{PasswordUser}");
+
+
+            endpoints.MapControllerRoute(
+               name: "default",
+               pattern: "{controller=ServicesRest}/{action=IDReadDatabaseBaskets}/{IdBasket}");
+
+
+            endpoints.MapControllerRoute(
+               name: "default",
+               pattern: "{controller=ServicesRest}/{action=IDReadDatabaseBookCard}/{IdBook}");
+
+
+            endpoints.MapControllerRoute(
+               name: "default",
+               pattern: "{controller=ServicesRest}/{action=IDReadDatabaseOrderCard}/{IdOrder}");
+
+
+            endpoints.MapControllerRoute(
+               name: "default",
+               pattern: "{controller=ServicesRest}/{action=IDReadDatabaseQuoteCard}/{IdQuote}");
+
+
+            endpoints.MapControllerRoute(
+               name: "default",
+               pattern: "{controller=ServicesRest}/{action=IDReadDatabaseRequestCard}/{IdRequestCard}");
+
+
+            endpoints.MapControllerRoute(
+               name: "default",
+               pattern: "{controller=ServicesRest}/{action=IDReadDatabaseUserCard}/{IdUser}");
+
+
+            endpoints.MapControllerRoute(
+               name: "default",
+               pattern: "{controller=ServicesRest}/{action=UpdateDatabaseBaskets}/{IdBasket}/{QuantityBooks}/{PricePerBook}");
+
+
+            endpoints.MapControllerRoute(
+               name: "default",
+               pattern: "{controller=ServicesRest}/{action=UpdateDatabaseBookCard}/{IdBook}/{NameBook}/{AuthorBook}/{PhotoBook}/{VendorCodeBook}/{GenreBook}/{DescriptionBook}/{PriceBook}");
+
+
+            endpoints.MapControllerRoute(
+               name: "default",
+               pattern: "{controller=ServicesRest}/{action=UpdateDatabaseOrderCard}/{IdOrder}/{OrderCardBooksList}/{StatusOrderCard}");
+
+
+            endpoints.MapControllerRoute(
+               name: "default",
+               pattern: "{controller=ServicesRest}/{action=UpdateDatabaseQuoteCard}/{IdQuote}/{QuoteTitle}/{QuoteText}/{QuoteAutor}");
+
+
+            endpoints.MapControllerRoute(
+               name: "default",
+               pattern: "{controller=ServicesRest}/{action=UpdateDatabaseRequestCard}/{IdRequestCard}/{CommentTextCard}/{NumberStars}");
+
+
+            endpoints.MapControllerRoute(
+               name: "default",
+               pattern: "{controller=ServicesRest}/{action=UpdateDatabaseUserCard}/{IdUser}/{UserName}/{SurnameUser}/{RoleUser}/{FloorUser}/{AgeUser}/{AddressUser}/{TelephoneUser}/{EmailUser}/{LoginUser}/{PasswordUser}");
+
+
+            endpoints.MapControllerRoute(
+               name: "default",
+               pattern: "{controller=ServicesRest}/{action=DeleteDatabaseBaskets}/{IdBasket}");
+
+
+            endpoints.MapControllerRoute(
+               name: "default",
+               pattern: "{controller=ServicesRest}/{action=DeleteDatabaseBookCard}/{IdBook}");
+
+
+            endpoints.MapControllerRoute(
+               name: "default",
+               pattern: "{controller=ServicesRest}/{action=DeleteDatabaseOrderCard}/{IdOrder}");
+
+
+            endpoints.MapControllerRoute(
+               name: "default",
+               pattern: "{controller=ServicesRest}/{action=DeleteDatabaseQuoteCard}/{IdQuote}");
+
+
+            endpoints.MapControllerRoute(
+               name: "default",
+               pattern: "{controller=ServicesRest}/{action=DeleteDatabaseRequestCard}/{IdRequestCard}");
+
+
+            endpoints.MapControllerRoute(
+               name: "default",
+               pattern: "{controller=ServicesRest}/{action=DeleteDatabaseUserCard}/{IdUser}");
+
+            endpoints.MapControllerRoute(
+              name: "default",
+              pattern: "{controller=ServicesRest}/{action=LoginUserReadDatabaseUserCard}/{LoginUser}/{PasswordUser}");
+
+
+            endpoints.MapControllerRoute(
+              name: "default",
+              pattern: "{controller=ServicesRest}/{action=UserReadDatabaseBaskets}/{IdUser}");
+
+        endpoints.MapControllerRoute(
         name: "default",
-        pattern: "{controller=Controllers}/{action=CreateDatabaseBaskets}/{IdUser}/{IdBook}/{QuantityBooks}/{PricePerBook}/{DateCreationBasket}/{DateUbdateBasket}");
+        pattern: "{controller=ServicesRest}/{action=ReadDatabaseBookCard}");
 
-    endpoints.MapControllerRoute(
+            endpoints.MapControllerRoute(
         name: "default",
-        pattern: "{controller=Controllers}/{action=CreateDatabaseBookCard}/{NameBook}/{AuthorBook}/{PhotoBook}/{VendorCodeBook}/{RecieptDateBook}/{GenreBook}/{DescriptionBook}/{PriceBook}/{DateCreationBook}/{DateUpdateBook}");
-
-    endpoints.MapControllerRoute(
-       name: "default",
-       pattern: "{controller=Controllers}/{action=CreateDatabaseOrderCard}/{OrderCardBooksList}/{DateCreationOrderCard}/{DateUpdateOrderCard}/{StatusOrderCard}/{IdUsers}");
-
-    endpoints.MapControllerRoute(
-       name: "default",
-       pattern: "{controller=Controllers}/{action=CreateDatabaseQuoteCard}/{QuoteTitle}/{QuoteText}/{QuoteAutor}/{DateCreationQuote}/{DateUpdateQuote}");
-
-    endpoints.MapControllerRoute(
-       name: "default",
-       pattern: "{controller=Controllers}/{action=CreateDatabaseRequestCard}/{CommentTextCard}/{NumberStars}/{IdUser}/{IdBook}/{DateRequestCreation}/{DateRequestUpdation}");
-
-    endpoints.MapControllerRoute(
-       name: "default",
-       pattern: "{controller=Controllers}/{action=CreateDatabaseUserCar}/{UserName}/{SurnameUser}/{RoleUser}/{FloorUser}/{AgeUser}/{AddressUser}/{TelephoneUser}/{EmailUser}/{LoginUser}/{PasswordUser}/{DateCreationUser}/{UpdateDateUser}");
-
-    endpoints.MapControllerRoute(
-       name: "default",
-       pattern: "{controller=Controllers}/{action=IDReadDatabaseBaskets}/{IdBasket}");
-
-    endpoints.MapControllerRoute(
-       name: "default",
-       pattern: "{controller=Controllers}/{action=IDReadDatabaseBookCard}/{IdBook}");
-
-    endpoints.MapControllerRoute(
-       name: "default",
-       pattern: "{controller=Controllers}/{action=IDReadDatabaseOrderCard}/{IdOrder}");
-
-    endpoints.MapControllerRoute(
-       name: "default",
-       pattern: "{controller=Controllers}/{action=IDReadDatabaseQuoteCard}/{IdQuote}");
-
-    endpoints.MapControllerRoute(
-       name: "default",
-       pattern: "{controller=Controllers}/{action=IDReadDatabaseRequestCard}/{IdRequestCard}");
-
-    endpoints.MapControllerRoute(
-       name: "default",
-       pattern: "{controller=Controllers}/{action=IDReadDatabaseUserCard}/{IdUser}");
-
-    endpoints.MapControllerRoute(
-       name: "default",
-       pattern: "{controller=Controllers}/{action=UpdateDatabaseBaskets}/{IdBasket}/{QuantityBooks}/{PricePerBook}/{DateUbdateBasket}");
-
-    endpoints.MapControllerRoute(
-       name: "default",
-       pattern: "{controller=Controllers}/{action=UpdateDatabaseBookCard}/{NameBook}/{AuthorBook}/{PhotoBook}/{VendorCodeBook}/{RecieptDateBook}/{GenreBook}/{DescriptionBook}/{PriceBook}/{DateUpdateBook}");
-
-    endpoints.MapControllerRoute(
-       name: "default",
-       pattern: "{controller=Controllers}/{action=UpdateDatabaseOrderCard}/{IdOrder}/{OrderCardBooksList}/{DateUpdateOrderCard}/{StatusOrderCard}");
-
-    endpoints.MapControllerRoute(
-       name: "default",
-       pattern: "{controller=Controllers}/{action=UpdateDatabaseQuoteCard}/{IdQuote}/{QuoteTitle}/{QuoteText}/{QuoteAutor}/{DateUpdateQuote}");
-
-    endpoints.MapControllerRoute(
-       name: "default",
-       pattern: "{controller=Controllers}/{action=UpdateDatabaseRequestCard}/{IdRequestCard}/{CommentTextCard}/{NumberStars}/{DateRequestUpdation}");
-
-    endpoints.MapControllerRoute(
-       name: "default",
-       pattern: "{controller=Controllers}/{action=UpdateDatabaseUserCard}/{IdUser}/{UserName}/{SurnameUser}/{RoleUser}/{FloorUser}/{AgeUser}/{AddressUser}/{TelephoneUser}/{EmailUser}/{LoginUser}/{PasswordUser}/{UpdateDateUser}");
-
-    endpoints.MapControllerRoute(
-       name: "default",
-       pattern: "{controller=Controllers}/{action=DeleteDatabaseBaskets}/{IdBasket}");
-
-    endpoints.MapControllerRoute(
-       name: "default",
-       pattern: "{controller=Controllers}/{action=DeleteDatabaseBookCard}/{IdBook}");
-
-    endpoints.MapControllerRoute(
-       name: "default",
-       pattern: "{controller=Controllers}/{action=DeleteDatabaseOrderCard}/{IdOrder}");
-
-    endpoints.MapControllerRoute(
-       name: "default",
-       pattern: "{controller=Controllers}/{action=DeleteDatabaseQuoteCard}/{IdQuote}");
-
-    endpoints.MapControllerRoute(
-       name: "default",
-       pattern: "{controller=Controllers}/{action=DeleteDatabaseRequestCard}/{IdRequestCard}");
-
-    endpoints.MapControllerRoute(
-       name: "default",
-       pattern: "{controller=Controllers}/{action=DeleteDatabaseUserCard}/{IdUser}");
+        pattern: "{controller=ServicesRest}/{action=UserReadDatabaseOrderCard}/{IdUser}");
 
 
+            endpoints.MapControllerRoute(
+      name: "default",
+      pattern: "{controller=ServicesRest}/{action=IdUserReadDatabaseRequestCard}/{IdUser}");
 
-});
+            endpoints.MapControllerRoute(
+      name: "default",
+      pattern: "{controller=ServicesRest}/{action=IdBookReadDatabaseRequestCard}/{IdBook}");
 
 
+        });
+
+        app.Run();
+
+
+        var folder = Environment.SpecialFolder.LocalApplicationData;
+        string path = Environment.GetFolderPath(folder);
+
+       
+       
+
+
+    }
+}
