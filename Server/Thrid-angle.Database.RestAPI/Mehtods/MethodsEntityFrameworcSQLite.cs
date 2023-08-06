@@ -145,5 +145,24 @@ namespace Thrid_angle.Database.RestAPI.Mehtods
         internal void DeleteDatabaseUserCard(Guid Id) { db.DbUserCard.Where(d => d.IdUser == Id).ExecuteDelete(); db.SaveChanges(); }
 
 
+
+
+        internal List<Baskets> UserReadDatabaseBaskets(Guid IdUser) { List<Baskets> t = db.DbBaskets.Where(d => d.IdUser == IdUser).ToList<Baskets>(); return t; }
+
+
+        internal List<OrderCard> UserReadDatabaseOrderCard(Guid IdUser) { List<OrderCard> t = db.DbOrderCard.Where(d => d.IdUsers == IdUser).ToList<OrderCard>(); return t; }
+
+
+        internal List<RequestCard> IdUserReadDatabaseRequestCard(Guid IdUser) { List<RequestCard> t = db.DbRequestCard.Where(d => d.IdUser == IdUser).ToList<RequestCard>(); return t; }
+
+
+        internal List<RequestCard> IdBookReadDatabaseRequestCard(Guid IdBook) { List<RequestCard> t = db.DbRequestCard.Where(d => d.IdBook == IdBook).ToList<RequestCard>(); return t; }
+
+
+        internal List<UserCard> LoginUserReadDatabaseUserCard(string LoginUser, string PasswordUser) { List<UserCard> t = db.DbUserCard.Where(d => d.LoginUser == LoginUser&&d.PasswordUser== PasswordUser).ToList<UserCard>(); return t; }
+
+
+
+
     }
 }
