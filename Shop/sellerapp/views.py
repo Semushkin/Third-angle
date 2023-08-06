@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from mainapp.models import Book, News, Quote
+from mainapp.models import Book, News, Quote, Comment
 from authapp.forms import UserRegisterForm, UserLoginForm, UserEditForm, SetNewPassword
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -7,7 +7,7 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
-from mainapp.forms import BoorCreateUpdateForm, NewsCreateUpdateForm, QuoteCreateUpdateForm
+from mainapp.forms import BoorCreateUpdateForm, NewsCreateUpdateForm, QuoteCreateUpdateForm, CommentCreateUpdateForm
 
 
 def s_order_detail(request):
@@ -30,9 +30,32 @@ def new_detail(request, new_id):
 
 
 def product_detail(request, book_id):
-    context = {
-        'book': Book.objects.get(pk=book_id)
-    }
+    book = Book.objects.get(pk=book_id)
+    comment = Comment.objects.filter(book=book_id)
+
+    if request.user.is_anonymous:
+        context = {
+            'book': book, 'comment': comment
+        }
+    else:
+        comment_valid = Comment.objects.filter(book=book_id, user=request.user)
+        if comment_valid:
+            context = {
+                'book': book, 'comment': comment
+            }
+        else:
+            if request.method == 'POST':
+                starts = request.POST.get('starts')
+                text = request.POST.get('text')
+                form = Comment.objects.create(book=Book.objects.get(pk=book_id), user=request.user, text=text,
+                                              starts=starts)
+                form.save()
+                return HttpResponseRedirect(reverse('product_detail', args=[book_id]))
+            else:
+                form = CommentCreateUpdateForm()
+            context = {
+                'form': form, 'book': book, 'comment': comment
+            }
     return render(request, 'sellerapp/product_detail.html', context)
 
 
@@ -67,7 +90,8 @@ def news_list(request):
             object_list = News.objects.order_by(request.session["n_sort"])
         else:
             object_list = News.objects.filter(
-                Q(name__iregex=request.session["n_search"]) | Q(text__iregex=request.session["n_search"]) | Q(description__iregex=request.session["n_search"])).order_by(request.session["n_sort"])
+                Q(name__iregex=request.session["n_search"]) | Q(text__iregex=request.session["n_search"]) | Q(
+                    description__iregex=request.session["n_search"])).order_by(request.session["n_sort"])
     m_n_field = request.session["n_search"]
     items_per_page = 1
     paginator = Paginator(object_list, items_per_page)
@@ -143,7 +167,8 @@ def quotes_list(request):
             object_list = Quote.objects.order_by(request.session["q_sort"])
         else:
             object_list = Quote.objects.filter(
-                Q(name__iregex=request.session["q_search"]) | Q(text__iregex=request.session["q_search"]) | Q(author__iregex=request.session["q_search"])).order_by(request.session["q_sort"])
+                Q(name__iregex=request.session["q_search"]) | Q(text__iregex=request.session["q_search"]) | Q(
+                    author__iregex=request.session["q_search"])).order_by(request.session["q_sort"])
     m_q_field = request.session["q_search"]
     items_per_page = 1
     paginator = Paginator(object_list, items_per_page)
@@ -211,7 +236,9 @@ def products_list(request):
         request.session["b_search"] = ""
     if b_query:
         request.session["b_search"] = b_query
-        object_list = Book.objects.filter(Q(name__iregex=b_query) | Q(author__iregex=b_query) | Q(price__iregex=b_query)).order_by(request.session["b_sort"])
+        object_list = Book.objects.filter(
+            Q(name__iregex=b_query) | Q(author__iregex=b_query) | Q(price__iregex=b_query)).order_by(
+            request.session["b_sort"])
     else:
         if request.session["b_search"] == "":
             object_list = Book.objects.order_by(request.session["b_sort"])
@@ -229,7 +256,7 @@ def products_list(request):
         page_obj = paginator.get_page(1)
     except EmptyPage:
         page_obj = paginator.get_page(paginator.num_pages)
-    context = {'object_list' : object_list, 'page_obj': page_obj, 'b_o_field': b_o_field, 'm_b_field': m_b_field}
+    context = {'object_list': object_list, 'page_obj': page_obj, 'b_o_field': b_o_field, 'm_b_field': m_b_field}
     return render(request, 'sellerapp/products_list.html', context)
 
 

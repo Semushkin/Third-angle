@@ -1,5 +1,5 @@
 from django import forms
-from mainapp.models import Book, News, Quote
+from mainapp.models import Book, News, Quote, Comment
 
 
 class BoorCreateUpdateForm(forms.ModelForm):
@@ -73,3 +73,26 @@ class QuoteCreateUpdateForm(forms.ModelForm):
 
         for filed_name, field in self.fields.items():
             field.widget.attrs['class'] = 'u-full-width'
+
+
+class CommentCreateUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = Comment
+        fields = (
+            'text',
+            'starts',
+            'user',
+            'book'
+        )
+
+        widgets = {
+            "book": forms.HiddenInput(),
+            "user": forms.HiddenInput(),
+            "starts": forms.RadioSelect(),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(CommentCreateUpdateForm, self).__init__(*args, **kwargs)
+        self.fields['text'].widget.attrs['placeholder'] = 'Введите текст'
+        self.fields['text'].widget.attrs['class'] = 'u-full-width'

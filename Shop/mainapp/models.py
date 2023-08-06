@@ -50,17 +50,14 @@ class Quote(models.Model):
 
 
 class Comment(models.Model):
-    STARS = {
-        ('1', '1'),
-        ('2', '2'),
-        ('3', '3'),
-        ('4', '4'),
-        ('5', '5'),
-    }
+    STARS = ((5, "⭐⭐⭐⭐⭐"), (4, "⭐⭐⭐⭐"), (3, "⭐⭐⭐"), (2, "⭐⭐"), (1, "⭐"))
 
     text = models.TextField()
-    starts = models.CharField(max_length=20, choices=STARS, default='1')
+    starts = models.SmallIntegerField(choices=STARS, default='1')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     date_create = models.DateField(auto_now_add=True)
     date_update = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return f'Отзыв по книге: "{self.book}", пользователь: {self.user}'

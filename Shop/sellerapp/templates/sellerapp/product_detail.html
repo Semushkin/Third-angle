@@ -6,21 +6,21 @@
 <div id="header-wrap">
 
     {% include 'mainapp/includes/header.html'%}
-	{% include 'mainapp/includes/menu.html'%}
+    {% include 'mainapp/includes/menu.html'%}
 
 </div><!--header-wrap-->
 
 <section>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="breadcrumbs">
-					<span class="item"><a href="{% url 'index' %}">Главная страница /</a></span>
-					<span class="item">Каталог</span>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumbs">
+                    <span class="item"><a href="{% url 'catalog' %}">Каталог /</a></span>
+                    <span class="item">Книга</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <section class="bg-sand padding-large">
     <div class="container">
@@ -41,45 +41,45 @@
                         Описание: {{ book.description }}
                     </p>
 
-                    <button id='add-to-cart-button' type="button" class="add-to-cart" data-product-tile="add-to-cart" value="{{ book.id }}">Добавить в корзину</button>
+                    <button id='add-to-cart-button' type="button" class="add-to-cart" data-product-tile="add-to-cart"
+                            value="{{ book.id }}">Добавить в корзину
+                    </button>
 
                 </div>
             </div>
 
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
 
-                <section class="comments-wrap mb-4">
+
+                <section class="comment-respond  col-md-12">
                     <h3>Отзывы</h3>
-                    <div class="comment-list mt-4">
-
-                        <article class="flex-container d-flex mb-3">
-                            <div class="author-post">
-                                <div class="comment-meta d-flex">
-                                    <h4>Дядя Степа</h4>
-                                    <span class="meta-date">Декабрь 2,2022</span>
-                                </div><!--meta-tags-->
-
-                                <p>Хорошая книга</p>
-                            </div>
-
-                        </article><!--flex-container-->
-
-                    </div><!--comment-list-->
-
-                </section>
-
-                <section class="comment-respond  mb-5">
-                    <h3>Оставьте отзыв</h3>
-                    <form method="post" class="form-group mt-3">
-
-
-
+                    <hr style="margin: 20px">
+                    <div id="feedback_list">
+                        {% if comment %}
+                        {% for item in comment %}
+                        <div class="container">
+                            <h4>{{ item.date_create }}</h4>
+                            <h4>{{ item.user.username }}</h4>
+                            <h4 class="card-title">{{ item.get_starts_display }}</h4>
+                            <h4>{{ item.text }}</h4>
+                        </div>
+                        <hr style="margin: 20px">
+                        {% endfor %}
+                        {% else %}
+                        <p>
+                            Еще никто не оставил своего комментария.
+                        </p>
+                        {% endif %}
+                    </div>
+                    {% if form %}
+                    <form action="{% url 'product_detail' book.id %}" method="post" class="form-group mt-3">
+                        {% csrf_token %}
                         <div class="row">
                             <div class="col-md-12">
-                                <textarea class="u-full-width" id="comment" class="form-control mb-4" name="comment"
-                                          placeholder="Текст" rows="20"></textarea>
+                                {{ form.starts }}
+                                {{ form.text }}
                             </div>
                             <div class="col-md-12">
                                 <input class="btn btn-rounded btn-large btn-full" type="submit" value="Отправить">
@@ -87,6 +87,7 @@
                         </div>
 
                     </form>
+                    {% endif %}
                 </section>
 
             </div>

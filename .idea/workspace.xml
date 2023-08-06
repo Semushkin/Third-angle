@@ -5,11 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25b6bceb-7d50-49d5-9c48-40af1c5286fb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/authapp/templates/authapp/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/authapp/templates/authapp/profile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shop/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/m_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/m_profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/s_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/s_profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/new_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/new_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/product_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/product_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/s_order_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/s_order_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/s_search_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/s_search_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/sellerapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/static/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +57,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/anton/GeekBrains/Python_Team_Dev/Third-angle/Shop/manage.py&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Матвей/Documents/Education/django framework&quot;
   }
 }</component>
   <component name="RunManager">
@@ -63,7 +69,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
-      <option name="SDK_NAME" value="Python 3.10 (Third-angle)" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Shop" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
