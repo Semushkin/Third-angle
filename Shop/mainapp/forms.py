@@ -96,3 +96,5 @@ class CommentCreateUpdateForm(forms.ModelForm):
         super(CommentCreateUpdateForm, self).__init__(*args, **kwargs)
         self.fields['text'].widget.attrs['placeholder'] = 'Введите текст'
         self.fields['text'].widget.attrs['class'] = 'u-full-width'
+
+

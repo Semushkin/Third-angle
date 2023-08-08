@@ -65,6 +65,7 @@
                     <h2>Свяжитесь с нами</h2>
                     <form name="contactform" method="post"
                           class="contact-form d-flex flex-wrap mt-4">
+                        {% csrf_token %}
                         <div class="row">
                             <div class="col-md-6">
                                 <input type="text" minlength="2" name="name" placeholder="ФИО" class="u-full-width"
@@ -90,7 +91,7 @@
                                         <span class="label-body">Я согласен с <a
                                                 href="rules.html">правилами сайта</a></span>
                                     </label>
-                                    <button type="submit" name="submit" class="btn btn-accent btn-full">Отправить</button>
+                                    <button type="submit" onclick="clickAlert()" name="submit" class="btn btn-accent btn-full">Отправить</button>
 
                             </div>
                         </div>

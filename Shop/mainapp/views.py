@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from mainapp.models import Book, BookCategory, News, Quote
 from authapp.forms import UserRegisterForm, UserLoginForm, UserEditForm, SetNewPassword
 from django.http import HttpResponseRedirect
@@ -7,6 +7,8 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse
 import random
 
 # Create your views here.
@@ -98,6 +100,15 @@ def news(request):
 
 
 def contacts(request):
+    if request.method == 'POST':
+        subject = "Feedback"
+        message = f"Сообщение от {request.POST.get('name')}: {request.POST.get('message')}"
+        from_email = request.POST.get("email")
+        try:
+            send_mail(subject, message, from_email, ['example@mail.ru'])
+        except BadHeaderError:
+            return HttpResponse('Найден некорректный заголовок')
+        return HttpResponseRedirect(reverse('contacts'))
     return render(request, 'mainapp/contact.html')
 
 
