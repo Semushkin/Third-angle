@@ -1,0 +1,54 @@
+{% extends 'mainapp/extends/base.html'%}
+{% block  content %}
+
+
+<div id="header-wrap">
+
+    {% include 'mainapp/includes/header.html'%}
+    {% include 'mainapp/includes/menu.html'%}
+
+</div><!--header-wrap-->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumbs">
+                    <span class="item"><a href="{% url 'profile' %}">Личный кабинет /</a></span>
+                    <span class="item">Карточка запроса</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-title">Карточка запроса</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="container">
+    <div class="row">
+
+        <form action="{% url 'search_create' %}" name="contactform" method="post" class="col-md-12">
+            {% csrf_token %}
+            <div class="col-md-2">
+                <label class="text">Текст запроса</label>
+            </div>
+            <div class="col-md-10">
+                {{ form.text }}
+            </div>
+            <button type="submit" name="submit" class="btn btn-accent btn-full">Отправить</button>
+        </form>
+
+    </div>
+</div>
+
+
+{% include 'mainapp/includes/footer.html'%}
+
+{% endblock %}

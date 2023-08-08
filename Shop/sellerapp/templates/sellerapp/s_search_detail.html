@@ -40,7 +40,7 @@
                         <label class="text">Номер заказа</label>
                     </div>
                     <div class="col-md-4">
-                        <span class="text">1</span>
+                        <span class="text">{{ request.id }}</span>
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -48,32 +48,29 @@
                         <label class="text">Дата заказа</label>
                     </div>
                     <div class="col-md-4">
-                        <span class="text">29.05.2021</span>
+                        <span class="text">{{ request.create_date }}</span>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="col-md-4">
                         <label class="text">Статус</label>
                     </div>
+                    <form method="POST" id="status_form" class="col-md-4">
+                        {% csrf_token %}
+                        {{ form.status }}
+                    </form>
+                </div>
+                <div class="col-md-12">
                     <div class="col-md-4">
-                        <select class="u-full-width" id="exampleRecipientInput">
-                            <option value="Option 1">ожидает обработки</option>
-                            <option value="Option 2">в обработке</option>
-                            <option value="Option 3">ожидает отгрузки</option>
-                            <option value="Option 4">закрыт</option>
-                        </select>
+                        <label class="text">Текст запроса</label>
+                    </div>
+                    <div class="col-md-8">
+                        <p>{{ request.text }}</p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
-            <div class="col-md-2">
-                <label class="text">Текст запроса</label>
-            </div>
-            <div class="col-md-10">
-                <p>Мне нужна книга про маугли из коллекционного издания.</p>
-            </div>
-        </div>
+
 
     </div>
 </div>

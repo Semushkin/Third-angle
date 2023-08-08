@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from basketapp.models import Request
 
 
 @login_required
@@ -67,7 +68,11 @@ def logout(request):
 
 @login_required
 def profile(request):
-    return render(request, 'authapp/profile.html')
+    requests = Request.objects.filter(user=request.user)
+    context = {
+            'requests': requests
+        }
+    return render(request, 'authapp/profile.html', context)
 
 
 def registration(request):

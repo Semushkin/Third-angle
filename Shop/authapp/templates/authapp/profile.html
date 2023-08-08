@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="breadcrumbs">
-                    <span class="item"><a href="index.html">Главная страница /</a></span>
+                    <span class="item"><a href="{% url 'index' %}">Главная страница /</a></span>
                     <span class="item">Личный кабинет</span>
                 </div>
             </div>
@@ -96,6 +96,7 @@
                             <button type="button" class="btn btn-accent btn-full">Редактировать профиль</button>
                         </a>
                     </div>
+
                 </div>
 
 
@@ -144,24 +145,6 @@
                                     </tbody>
                                 </table>
 
-                                <div class="row justify-content-center align-items-center mt-3 mb-n3">
-                                    <nav aria-label="...">
-                                        <ul class="pagination">
-                                            <li class="page-item disabled">
-                                                <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                            </li>
-                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item active">
-                                                <a class="page-link" href="#">2 <span
-                                                        class="sr-only">(current)</span></a>
-                                            </li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">Next</a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
 
                             </div>
                         </div>
@@ -187,45 +170,37 @@
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
                             <div class="accordion-body">
+
+                        <a href="{% url 'search_create' %}">
+                            <button type="button" class="btn btn-accent btn-full">Создать запрос</button>
+                        </a>
+
                                 <table class="u-full-width">
                                     <thead>
                                     <tr>
                                         <th>Номер</th>
                                         <th>Дата</th>
                                         <th>Статус</th>
-                                        <th></th>
+                                        <th>Текст</th>
+
                                     </tr>
                                     </thead>
+                                    {% for request in requests %}
                                     <tbody>
                                     <tr>
-                                        <td><a href="{% url 'search_detail' %}" class="nav-link"
-                                        >1</a></td>
-                                        <td>29.05.2021</td>
-                                        <td>В обработке</td>
+                                        <td><a href="{% url 'search_detail' request.id %}" class="nav-link"
+                                        >{{ request.id }}</a></td>
+                                        <td>{{ request.create_date }}</td>
+                                        <td>{{ request.status }}</td>
+                                        <td>{{ request }}</td>
 
                                     </tr>
 
                                     </tbody>
+                                    {% endfor %}
                                 </table>
 
-                                <div class="row justify-content-center align-items-center mt-3 mb-n3">
-                                    <nav aria-label="...">
-                                        <ul class="pagination">
-                                            <li class="page-item disabled">
-                                                <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                            </li>
-                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item active">
-                                                <a class="page-link" href="#">2 <span
-                                                        class="sr-only">(current)</span></a>
-                                            </li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">Next</a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
+
 
                             </div>
                         </div>

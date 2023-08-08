@@ -1,18 +1,33 @@
 from django.shortcuts import render
 from mainapp.models import Book
-from authapp.forms import UserRegisterForm, UserLoginForm, UserEditForm, SetNewPassword
-from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.contrib import auth
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
-from basketapp.models import Basket
+from basketapp.models import Basket, Request
 from django.template.loader import render_to_string
 from django.http import HttpResponseRedirect, JsonResponse
+from basketapp.forms import RequestCreateForm
 
 
-def search_detail(request):
-    return render(request, 'basketapp/search_detail.html')
+def search_detail(request, request_id):
+    item = Request.objects.get(pk=request_id)
+    context = {
+        'request': item,
+    }
+    return render(request, 'basketapp/search_detail.html', context)
+
+
+def search_create(request):
+    if request.method == 'POST':
+        text = request.POST.get('text')
+        form = Request.objects.create(user=request.user, text=text)
+        form.save()
+        return HttpResponseRedirect(reverse('search_detail', args=[form.id]))
+    else:
+        form = RequestCreateForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'basketapp/search_create.html', context)
 
 
 def order_detail(request):

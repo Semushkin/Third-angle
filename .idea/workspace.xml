@@ -5,17 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25b6bceb-7d50-49d5-9c48-40af1c5286fb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shop/authapp/migrations/0010_alter_user_gender_alter_user_in_group.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shop/authapp/migrations/0011_alter_user_gender.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shop/basketapp/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shop/basketapp/migrations/0009_alter_basket_status_alter_request_status.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shop/basketapp/migrations/0010_alter_basket_status_alter_request_status.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shop/basketapp/templates/basketapp/search_create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shop/static/js/status.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/Shop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/Shop/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/authapp/templates/authapp/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/authapp/templates/authapp/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/authapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/authapp/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/basketapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/basketapp/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/basketapp/templates/basketapp/search_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/basketapp/templates/basketapp/search_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/basketapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/basketapp/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shop/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/mainapp/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/mainapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/new_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/new_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/product_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/product_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/s_order_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/s_order_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/contact.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/extends/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/extends/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/sellerapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/s_search_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/s_search_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/search_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/search_list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shop/sellerapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/static/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +37,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -53,13 +65,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Матвей/Documents/Education/django framework&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/Матвей/Documents/Education/django framework"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Матвей\Documents\Education\Third-angle\Shop\basketapp" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Third-angle" type="PythonConfigurationType" factoryName="Python">
       <module name="Third-angle" />

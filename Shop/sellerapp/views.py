@@ -8,18 +8,102 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from mainapp.forms import BoorCreateUpdateForm, NewsCreateUpdateForm, QuoteCreateUpdateForm, CommentCreateUpdateForm
+from basketapp.models import Request
+from basketapp.forms import RequestCreateForm, RequestUpdateForm
 
 
 def s_order_detail(request):
     return render(request, 'sellerapp/s_order_detail.html')
 
 
-def s_search_detail(request):
-    return render(request, 'sellerapp/s_search_detail.html')
+def s_search_detail(request, request_id):
+    item = Request.objects.get(pk=request_id)
+    if request.method == 'POST':
+        form = RequestUpdateForm(instance=item, data=request.POST)
+        form.save()
+        return HttpResponseRedirect(reverse('s_search_detail', args=[form.instance.id]))
+    else:
+        form = RequestUpdateForm(instance=item)
+    context = {
+        'request': item, 'form': form,
+    }
+    return render(request, 'sellerapp/s_search_detail.html', context)
 
 
 def search_list(request):
-    return render(request, 'sellerapp/search_list.html')
+    if "s_sort" not in request.session:
+        request.session["s_sort"] = "id"
+    if "s_search" not in request.session:
+        request.session["s_search"] = ""
+    if "s_filter" not in request.session:
+        request.session["s_filter"] = ""
+    s_order = request.GET.get('s_sort')
+    s_filter = request.GET.get('s_filter')
+    if s_order:
+        request.session["s_sort"] = s_order
+    if s_filter:
+        request.session["s_filter"] = s_filter
+    s_query = request.GET.get('s_q')
+    stop = request.GET.get('stop_search')
+    stop_f = request.GET.get('stop_filter')
+    if stop:
+        request.session["s_search"] = ""
+    if stop_f:
+        request.session["s_filter"] = ""
+    s_o_field = request.session["s_sort"]
+    s_f_field = request.session["s_filter"]
+    if s_filter:
+        request.session["s_filter"] = s_filter
+        if request.session["s_search"] == "":
+            object_list = Request.objects.filter(
+                Q(status__iregex=request.session["s_filter"])).order_by(request.session["s_sort"])
+        else:
+            object_list = Request.objects.filter(Q(status__iregex=request.session["s_filter"])).filter(
+                Q(text__iregex=request.session["s_search"]) | Q(
+                    create_date__iregex=request.session["s_search"])).order_by(request.session["s_sort"])
+    elif s_query:
+        request.session["s_search"] = s_query
+        if request.session["s_filter"] == "":
+            object_list = Request.objects.filter(
+                Q(text__iregex=request.session["s_search"]) | Q(
+                    create_date__iregex=request.session["s_search"])).order_by(request.session["s_sort"])
+        else:
+            object_list = Request.objects.filter(Q(status__iregex=request.session["s_filter"])).filter(
+                Q(text__iregex=request.session["s_search"]) | Q(
+                    create_date__iregex=request.session["s_search"])).order_by(request.session["s_sort"])
+    else:
+        if request.session["s_search"] == "":
+            if request.session["s_filter"] == "":
+                object_list = Request.objects.order_by(request.session["s_sort"])
+            else:
+                object_list = Request.objects.filter(
+                    Q(status__iregex=request.session["s_filter"])).order_by(request.session["s_sort"])
+        else:
+            if request.session["s_filter"] == "":
+                object_list = Request.objects.filter(
+                    Q(text__iregex=request.session["s_search"]) | Q(
+                        create_date__iregex=request.session["s_search"])).order_by(request.session["s_sort"])
+            else:
+                object_list = Request.objects.filter(Q(status__iregex=request.session["s_filter"])).filter(
+                    Q(text__iregex=request.session["s_search"]) | Q(
+                        create_date__iregex=request.session["s_search"])).order_by(request.session["s_sort"])
+
+    m_s_field = request.session["s_search"]
+    items_per_page = 1
+    paginator = Paginator(object_list, items_per_page)
+    page_number = request.GET.get('page', 1)
+    try:
+        page_obj = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        page_obj = paginator.get_page(1)
+    except EmptyPage:
+        page_obj = paginator.get_page(paginator.num_pages)
+    context = {'object_list': object_list, 'page_obj': page_obj, 's_f_field': s_f_field, 's_o_field': s_o_field, 'm_s_field': m_s_field}
+    return render(request, 'sellerapp/search_list.html', context)
+
+
+def order_list(request):
+    return render(request, 'sellerapp/order_list.html')
 
 
 def new_detail(request, new_id):
@@ -317,7 +401,3 @@ def m_product_detail(request, book_id):
         'book': Book.objects.get(pk=book_id)
     }
     return render(request, 'sellerapp/m_product_detail.html', context)
-
-
-def order_list(request):
-    return render(request, 'sellerapp/order_list.html')
