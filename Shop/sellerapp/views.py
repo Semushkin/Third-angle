@@ -9,15 +9,22 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from mainapp.forms import BoorCreateUpdateForm, NewsCreateUpdateForm, QuoteCreateUpdateForm, CommentCreateUpdateForm
 from basketapp.models import Request, Order, Basket
-from basketapp.forms import RequestCreateForm, RequestUpdateForm
+from basketapp.forms import RequestCreateForm, RequestUpdateForm, OrderStatusChangeForm
 
 
 def s_order_detail(request, order_id):
     order = Order.objects.get(pk=order_id)
     baskets = Basket.objects.filter(order=order)
+    if request.method == 'POST':
+        form = OrderStatusChangeForm(instance=order, data=request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = OrderStatusChangeForm()
     context = {
         'baskets': baskets,
-        'order': order
+        'order': order,
+        'form': form
     }
     return render(request, 'sellerapp/s_order_detail.html', context)
 
@@ -106,10 +113,6 @@ def search_list(request):
         page_obj = paginator.get_page(paginator.num_pages)
     context = {'object_list': object_list, 'page_obj': page_obj, 's_f_field': s_f_field, 's_o_field': s_o_field, 'm_s_field': m_s_field}
     return render(request, 'sellerapp/search_list.html', context)
-
-
-def order_list(request):
-    return render(request, 'sellerapp/order_list.html')
 
 
 def new_detail(request, new_id):

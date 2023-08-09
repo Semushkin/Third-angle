@@ -1,5 +1,5 @@
 from django import forms
-from basketapp.models import Request
+from basketapp.models import Request, Order
 
 
 class RequestCreateForm(forms.ModelForm):
@@ -28,3 +28,15 @@ class RequestUpdateForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(RequestUpdateForm, self).__init__(*args, **kwargs)
+
+
+class OrderStatusChangeForm(forms.ModelForm):
+
+    class Meta:
+        model = Order
+        fields = (
+            'status',
+        )
+
+    def __init__(self, *args, **kwargs):
+        super(OrderStatusChangeForm, self).__init__(*args, **kwargs)
