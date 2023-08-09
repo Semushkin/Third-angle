@@ -122,26 +122,32 @@
                             <div class="accordion-body">
                                 <table class="u-full-width">
                                     <thead>
-                                    <tr>
-                                        <th>Номер</th>
-                                        <th>Дата</th>
-                                        <th>Стоимость</th>
-                                        <th>Статус</th>
-                                        <th></th>
-                                    </tr>
+                                        <tr>
+                                            <th>Номер</th>
+                                            <th>Дата</th>
+                                            <th>Стоимость</th>
+                                            <th>Статус</th>
+                                            <th></th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td><a href="{% url 'order_detail' %}" class="nav-link"
-                                        >1</a></td>
-                                        <td>29.05.2021</td>
-                                        <td>
-                                            40.00 ₽
-                                        </td>
-                                        <td>В обработке</td>
-
-                                    </tr>
-
+                                        {% if orders %}
+                                            {% for order in orders %}
+                                            <tr>
+                                                <td><a href="{% url 'order_detail' order.pk %}" class="nav-link">{{ order.pk }}</a></td>
+                                                <td>{{ order.create_date }}</td>
+                                                <td>{{ order.sum }}</td>
+                                                <td>{{ order.status }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        {% else %}
+                                        <tr>
+                                            <td>----</td>
+                                            <td>----</td>
+                                            <td>----</td>
+                                            <td>----</td>
+                                        </tr>
+                                        {% endif %}
                                     </tbody>
                                 </table>
 

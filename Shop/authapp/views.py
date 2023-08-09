@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from mainapp.models import Book
+from basketapp.models import Order
 from authapp.forms import UserRegisterForm, UserLoginForm, UserEditForm, SetNewPassword
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -69,8 +70,10 @@ def logout(request):
 @login_required
 def profile(request):
     requests = Request.objects.filter(user=request.user)
+    orders = Order.objects.filter(user=request.user)
     context = {
-            'requests': requests
+            'requests': requests,
+            'orders': orders
         }
     return render(request, 'authapp/profile.html', context)
 

@@ -51,7 +51,9 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-accent btn-pill btn-xlarge btn-full">Оформить заказ</button>
+            <a href="{% url 'basket:ordered' %}">
+                <button class="btn btn-accent btn-pill btn-xlarge btn-full">Оформить заказ</button>
+            </a>
         </div>
 
     </div>

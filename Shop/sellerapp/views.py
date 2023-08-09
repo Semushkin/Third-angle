@@ -8,12 +8,18 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from mainapp.forms import BoorCreateUpdateForm, NewsCreateUpdateForm, QuoteCreateUpdateForm, CommentCreateUpdateForm
-from basketapp.models import Request
+from basketapp.models import Request, Order, Basket
 from basketapp.forms import RequestCreateForm, RequestUpdateForm
 
 
-def s_order_detail(request):
-    return render(request, 'sellerapp/s_order_detail.html')
+def s_order_detail(request, order_id):
+    order = Order.objects.get(pk=order_id)
+    baskets = Basket.objects.filter(order=order)
+    context = {
+        'baskets': baskets,
+        'order': order
+    }
+    return render(request, 'sellerapp/s_order_detail.html', context)
 
 
 def s_search_detail(request, request_id):
@@ -401,3 +407,11 @@ def m_product_detail(request, book_id):
         'book': Book.objects.get(pk=book_id)
     }
     return render(request, 'sellerapp/m_product_detail.html', context)
+
+
+def order_list(request):
+    orders = Order.objects.all()
+    context = {
+        'orders': orders
+    }
+    return render(request, 'sellerapp/order_list.html', context)

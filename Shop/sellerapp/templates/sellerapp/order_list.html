@@ -102,17 +102,23 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td class="page-item active"><a href="{% url 's_order_detail' %}" class="page-link nav-link"
-                    >1</a></td>
-                    <td>29.05.2021</td>
-                    <td>
-                        40.00 ₽
-                    </td>
-                    <td>В обработке</td>
-
-                </tr>
-
+                {% if orders %}
+                    {% for order in orders %}
+                        <tr>
+                            <td class="page-item active"><a href="{% url 's_order_detail' order.pk %}" class="page-link nav-link">{{ order.pk }}</a></td>
+                            <td>{{ order.create_date }}</td>
+                            <td>{{ order.sum }} ₽ </td>
+                            <td>{{ order.status }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td>----</td>
+                        <td>----</td>
+                        <td>----</td>
+                        <td>----</td>
+                    </tr>
+                {% endif %}
                 </tbody>
             </table>
         </div>

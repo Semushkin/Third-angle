@@ -2,7 +2,7 @@ from django.shortcuts import render
 from mainapp.models import Book
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from basketapp.models import Basket, Request
+from basketapp.models import Basket, Request, Order
 from django.template.loader import render_to_string
 from django.http import HttpResponseRedirect, JsonResponse
 from basketapp.forms import RequestCreateForm
@@ -30,12 +30,17 @@ def search_create(request):
     return render(request, 'basketapp/search_create.html', context)
 
 
-def order_detail(request):
-    return render(request, 'basketapp/order_detail.html')
+def order_detail(request, order_id):
+    order = Order.objects.get(pk=order_id)
+    baskets = Basket.objects.filter(order=order)
+    context = {
+        'baskets': baskets
+    }
+    return render(request, 'basketapp/order_detail.html', context)
 
 
 def cart(request):
-    baskets = Basket.objects.filter(user=request.user)
+    baskets = Basket.objects.filter(user=request.user, order=None)
     context = {
         'baskets': baskets,
     }
@@ -51,7 +56,7 @@ def basket_add(request, book_id):
     if is_ajax(request=request):
         user = request.user
         book = Book.objects.get(id=book_id)
-        baskets = Basket.objects.filter(user=user, book=book)
+        baskets = Basket.objects.filter(user=user, book=book, order=None)
 
         if baskets:
             basket = baskets.first()
@@ -73,7 +78,7 @@ def basket_edit(request, basket_id, quantity):
         else:
             basket.delete()
 
-        baskets = Basket.objects.filter(user=request.user)
+        baskets = Basket.objects.filter(user=request.user, order=None)
         context = {'baskets': baskets}
 
         result = render_to_string('basketapp/includes/basket.html', context)
@@ -84,3 +89,15 @@ def basket_edit(request, basket_id, quantity):
 def basket_remove(request, basket_id):
     Basket.objects.get(id=basket_id).delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+def ordered(request):
+    baskets = Basket.objects.filter(user=request.user, order=None)
+    order = Order.objects.create(user=request.user)
+    for basket in baskets:
+        basket.order = order
+        basket.save()
+    # return HttpResponseRedirect(reverse('cart'))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
