@@ -40,7 +40,7 @@
                             <label class="text">Номер заказа</label>
                         </div>
                         <div class="col-md-4">
-                            <span class="text">1</span>
+                            <span class="text">{{ order.pk }}</span>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -48,7 +48,7 @@
                             <label class="text">Дата заказа</label>
                         </div>
                         <div class="col-md-4">
-                            <span class="text">29.05.2021</span>
+                            <span class="text">{{ order.create_date }}</span>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -78,15 +78,23 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Книга джунглей</td>
-                    <td>Редьярд Киплинг</td>
-                    <td>
-                        1
-                    </td>
-                    <td>40.00 ₽</td>
-                </tr>
-
+                {% if baskets %}
+                    {% for basket in baskets %}
+                        <tr>
+                            <td>{{ basket.book.name }}</td>
+                            <td>{{ basket.book.author }}</td>
+                            <td>{{ basket.quantity }}</td>
+                            <td>{{ basket.book.price }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td>----</td>
+                        <td>----</td>
+                        <td>----</td>
+                        <td>----</td>
+                    </tr>
+                {% endif %}
                 </tbody>
             </table>
             <div class="row">
@@ -95,7 +103,7 @@
                         <h1>Итого</h1>
                     </div>
                     <div class="col-md-4">
-                        <h1>40.00 ₽</h1>
+                        <h1>{{ order.sum }} ₽</h1>
                     </div>
                 </div>
             </div>
