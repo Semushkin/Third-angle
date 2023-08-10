@@ -55,18 +55,11 @@
                         <div class="col-md-4">
                             <label class="text">Статус</label>
                         </div>
-                        <form action="{% url 's_order_detail' order.pk %}" method="post">
+                        <form action="{% url 's_order_detail' order.pk %}" id="status_form" method="post">
                             {% csrf_token %}
-                            <div class="col-md-4">
+
                                 {{ form.status }}
-    <!--                        <select class="u-full-width" id="exampleRecipientInput">-->
-    <!--                            <option value="Option 1">ожидает обработки</option>-->
-    <!--                            <option value="Option 2">в обработке</option>-->
-    <!--                            <option value="Option 3">ожидает отгрузки</option>-->
-    <!--                            <option value="Option 4">закрыт</option>-->
-    <!--                        </select>-->
-                            </div>
-                            <button type="submit" class="btn btn-accent btn-full">Сохранить статус заказа</button>
+
                         </form>
                     </div>
                 </div>

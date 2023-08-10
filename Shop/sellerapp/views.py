@@ -20,7 +20,7 @@ def s_order_detail(request, order_id):
         if form.is_valid():
             form.save()
     else:
-        form = OrderStatusChangeForm()
+        form = OrderStatusChangeForm(instance=order)
     context = {
         'baskets': baskets,
         'order': order,
@@ -34,7 +34,7 @@ def s_search_detail(request, request_id):
     if request.method == 'POST':
         form = RequestUpdateForm(instance=item, data=request.POST)
         form.save()
-        return HttpResponseRedirect(reverse('s_search_detail', args=[form.instance.id]))
+
     else:
         form = RequestUpdateForm(instance=item)
     context = {
