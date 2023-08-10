@@ -7,7 +7,9 @@
     <list default="true" id="25b6bceb-7d50-49d5-9c48-40af1c5286fb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shop/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/s_order_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/s_order_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/catalog.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/catalog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/order_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/order_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/search_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/search_list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shop/sellerapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

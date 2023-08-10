@@ -3,46 +3,52 @@
 
 
 <div id="header-wrap">
-	
-	{% include 'mainapp/includes/header.html'%}
-	{% include 'mainapp/includes/menu.html'%}
-		
+
+    {% include 'mainapp/includes/header.html'%}
+    {% include 'mainapp/includes/menu.html'%}
+
 </div><!--header-wrap-->
 <section>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="breadcrumbs">
-					<span class="item"><a href="{% url 's_profile' %}">Рабочий кабинет /</a></span>
-					<span class="item">Список запросов</span>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumbs">
+                    <span class="item"><a href="{% url 's_profile' %}">Рабочий кабинет /</a></span>
+                    <span class="item">Список запросов</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <section>
-	<div class="container">
-		<div class="row">
-                                <div class="col-md-6"><div class="col-md-6">
-                        <a href="{% url 'search_list' %}"><button type="button" class="btn btn-accent btn-full">Список запросов</button></a>
-                    </div>
-                                    <div class="col-md-6">
-                        <a href="{% url 'order_list' %}"><button type="button" class="btn btn-accent btn-full">Список заказов</button></a>
-                    </div>
-            		</div></div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col-md-6">
+                    <a href="{% url 'search_list' %}">
+                        <button type="button" class="btn btn-accent btn-full">Список запросов</button>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a href="{% url 'order_list' %}">
+                        <button type="button" class="btn btn-accent btn-full">Список заказов</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <section>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<h2>Список запросов</h2>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Список запросов</h2>
+            </div>
+        </div>
+    </div>
 </section>
 <section>
-	<div class="container">
+    <div class="container">
         <div class="row accordion-item">
             <div class="col-md-12">
                 <div class="col-md-3">
@@ -54,12 +60,12 @@
                                class="search-field text search-input col-md-12 col-sm-12 col-xs-12" placeholder="Search"
                                type="search">
                     </form>
-                    {% if m_s_field == '' %}{% else %}
+                    {% if s_s_field == '' %}{% else %}
                     <span>Найдено совпадений : {{ object_list.count }}</span>
-                    <span>Запрос: "{{ m_s_field }}"</span>
+                    <span>Запрос: "{{ s_s_field }}"</span>
                     <form style="height: 30px;" method="get" action="{% url 'search_list' %}">
-                        <button class= "btn-text" name="stop_search" value="stop">
-                                Отменить поиск
+                        <button class="btn-text" name="stop_search" value="stop">
+                            Отменить поиск
                         </button>
                     </form>
                     {% endif %}
@@ -69,27 +75,32 @@
                     <div class="colored">
                         <h2>Сортировка</h2>
                         <form style="height: 30px;" method="get" action="{% url 'search_list' %}">
-                            <button class="{% if s_o_field == 'id' %} btn-text  {% else %} btn-text-f {% endif %}" name="s_sort" value="id">
+                            <button class="{% if s_o_field == 'id' %} btn-text  {% else %} btn-text-f {% endif %}"
+                                    name="s_sort" value="id">
                                 <li>По номеру</li>
                             </button>
                         </form>
                         <form style="height: 30px;" method="get" action="{% url 'search_list' %}">
-                            <button class="{% if s_o_field == 'text' %} btn-text  {% else %} btn-text-f {% endif %}" name="s_sort" value="text">
+                            <button class="{% if s_o_field == 'text' %} btn-text  {% else %} btn-text-f {% endif %}"
+                                    name="s_sort" value="text">
                                 <li>По содержанию</li>
                             </button>
                         </form>
                         <form style="height: 30px;" method="get" action="{% url 'search_list' %}">
-                            <button class="{% if s_o_field == 'create_date' %} btn-text  {% else %} btn-text-f {% endif %}" name="s_sort" value="create_date">
+                            <button class="{% if s_o_field == 'create_date' %} btn-text  {% else %} btn-text-f {% endif %}"
+                                    name="s_sort" value="create_date">
                                 <li>По дате</li>
                             </button>
                         </form>
                         <form style="height: 30px;" method="get" action="{% url 'search_list' %}">
-                            <button class="{% if s_o_field == 'user' %} btn-text  {% else %} btn-text-f {% endif %}" name="s_sort" value="user">
+                            <button class="{% if s_o_field == 'user' %} btn-text  {% else %} btn-text-f {% endif %}"
+                                    name="s_sort" value="user">
                                 <li>По пользователю</li>
                             </button>
                         </form>
                         <form style="height: 30px;" method="get" action="{% url 'search_list' %}">
-                            <button class="{% if s_o_field == 'status' %} btn-text  {% else %} btn-text-f {% endif %}" name="s_sort" value="status">
+                            <button class="{% if s_o_field == 'status' %} btn-text  {% else %} btn-text-f {% endif %}"
+                                    name="s_sort" value="status">
                                 <li>По статусу</li>
                             </button>
                         </form>
@@ -101,27 +112,32 @@
                     </div>
                     <ul>
                         <form style="height: 30px;" method="get" action="{% url 'search_list' %}">
-                            <button class="{% if s_f_field == '' %} btn-text  {% else %} btn-text-f {% endif %}" name="stop_filter" value="stop">
+                            <button class="{% if s_f_field == '' %} btn-text  {% else %} btn-text-f {% endif %}"
+                                    name="stop_filter" value="stop">
                                 <li>Все</li>
                             </button>
                         </form>
                         <form style="height: 30px;" method="get" action="{% url 'search_list' %}">
-                            <button class="{% if s_f_field == 'Ожидает' %} btn-text  {% else %} btn-text-f {% endif %}" name="s_filter" value="Ожидает">
+                            <button class="{% if s_f_field == 'Ожидает' %} btn-text  {% else %} btn-text-f {% endif %}"
+                                    name="s_filter" value="Ожидает">
                                 <li>Ожидает</li>
                             </button>
                         </form>
                         <form style="height: 30px;" method="get" action="{% url 'search_list' %}">
-                            <button class="{% if s_f_field == 'В обработке' %} btn-text  {% else %} btn-text-f {% endif %}" name="s_filter" value="В обработке">
+                            <button class="{% if s_f_field == 'В обработке' %} btn-text  {% else %} btn-text-f {% endif %}"
+                                    name="s_filter" value="В обработке">
                                 <li>В обработке</li>
                             </button>
                         </form>
                         <form style="height: 30px;" method="get" action="{% url 'search_list' %}">
-                            <button class="{% if s_f_field == 'Готов  к отгрузке' %} btn-text  {% else %} btn-text-f {% endif %}" name="s_filter" value="Готов  к отгрузке">
-                                <li>Готов  к отгрузке</li>
+                            <button class="{% if s_f_field == 'Готов  к отгрузке' %} btn-text  {% else %} btn-text-f {% endif %}"
+                                    name="s_filter" value="Готов  к отгрузке">
+                                <li>Готов к отгрузке</li>
                             </button>
                         </form>
                         <form style="height: 30px;" method="get" action="{% url 'search_list' %}">
-                            <button class="{% if s_f_field == 'Закрыт' %} btn-text  {% else %} btn-text-f {% endif %}" name="s_filter" value="Закрыт">
+                            <button class="{% if s_f_field == 'Закрыт' %} btn-text  {% else %} btn-text-f {% endif %}"
+                                    name="s_filter" value="Закрыт">
                                 <li>Закрыт</li>
                             </button>
                         </form>
@@ -131,40 +147,51 @@
 
             </div>
         </div>
-<table class="u-full-width">
-                                <thead>
-                                <tr>
-                                    <th>Номер</th>
-                                    <th>Дата</th>
-                                    <th>Пользователь</th>
-                                    <th>Статус</th>
-                                    <th>Текст</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-    {% for request in page_obj.object_list %}
-                                <tbody>
-                                <tr>
-                                    <td class="page-item active"><a href="{% url 's_search_detail' request.id %}" class="page-link nav-link"
-                                    >{{ request.id }}</a></td>
-                                    <td>{{ request.create_date }}</td>
-                                    <td>{{ request.user.username }}</td>
-                                    <td>{{ request.status }}</td>
-                                    <td>{{ request }}</td>
-                                    <td>
+        <table class="u-full-width">
+            <thead>
+            <tr>
+                <th>Номер</th>
+                <th>Дата</th>
+                <th>Пользователь</th>
+                <th>Статус</th>
+                <th>Текст</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if page_obj.object_list %}
+            {% for request in page_obj.object_list %}
+
+            <tr>
+                <td class="page-item active"><a href="{% url 's_search_detail' request.id %}" class="page-link nav-link"
+                >{{ request.id }}</a></td>
+                <td>{{ request.create_date }}</td>
+                <td>{{ request.user.username }}</td>
+                <td>{{ request.status }}</td>
+                <td>{{ request }}</td>
+                <td>
                     <a href="{% url 's_search_detail' request.id %}" class="btn-black">Редактировать<i class="icon"></i></a>
                 </td>
 
-                                </tr>
+            </tr>
 
-                                </tbody>
-    {% endfor %}
-                            </table>
-	</div>
+
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td>----</td>
+                <td>----</td>
+                <td>----</td>
+                <td>----</td>
+                <td>----</td>
+                <td>----</td>
+            </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
 </section>
 {% include 'mainapp/includes/pagination.html'%}
-
-
 
 
 {% include 'mainapp/includes/footer.html'%}

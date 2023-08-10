@@ -72,17 +72,17 @@ def search_list(request):
                 Q(status__iregex=request.session["s_filter"])).order_by(request.session["s_sort"])
         else:
             object_list = Request.objects.filter(Q(status__iregex=request.session["s_filter"])).filter(
-                Q(text__iregex=request.session["s_search"]) | Q(
+                Q(text__iregex=request.session["s_search"]) | Q(id__iregex=request.session["o_search"]) | Q(
                     create_date__iregex=request.session["s_search"])).order_by(request.session["s_sort"])
     elif s_query:
         request.session["s_search"] = s_query
         if request.session["s_filter"] == "":
             object_list = Request.objects.filter(
-                Q(text__iregex=request.session["s_search"]) | Q(
+                Q(text__iregex=request.session["s_search"]) | Q(id__iregex=request.session["o_search"]) | Q(
                     create_date__iregex=request.session["s_search"])).order_by(request.session["s_sort"])
         else:
             object_list = Request.objects.filter(Q(status__iregex=request.session["s_filter"])).filter(
-                Q(text__iregex=request.session["s_search"]) | Q(
+                Q(text__iregex=request.session["s_search"]) | Q(id__iregex=request.session["o_search"]) | Q(
                     create_date__iregex=request.session["s_search"])).order_by(request.session["s_sort"])
     else:
         if request.session["s_search"] == "":
@@ -94,14 +94,14 @@ def search_list(request):
         else:
             if request.session["s_filter"] == "":
                 object_list = Request.objects.filter(
-                    Q(text__iregex=request.session["s_search"]) | Q(
+                    Q(text__iregex=request.session["s_search"]) | Q(id__iregex=request.session["o_search"]) | Q(
                         create_date__iregex=request.session["s_search"])).order_by(request.session["s_sort"])
             else:
                 object_list = Request.objects.filter(Q(status__iregex=request.session["s_filter"])).filter(
-                    Q(text__iregex=request.session["s_search"]) | Q(
+                    Q(text__iregex=request.session["s_search"]) | Q(id__iregex=request.session["o_search"]) | Q(
                         create_date__iregex=request.session["s_search"])).order_by(request.session["s_sort"])
 
-    m_s_field = request.session["s_search"]
+    s_s_field = request.session["s_search"]
     items_per_page = 1
     paginator = Paginator(object_list, items_per_page)
     page_number = request.GET.get('page', 1)
@@ -111,7 +111,7 @@ def search_list(request):
         page_obj = paginator.get_page(1)
     except EmptyPage:
         page_obj = paginator.get_page(paginator.num_pages)
-    context = {'object_list': object_list, 'page_obj': page_obj, 's_f_field': s_f_field, 's_o_field': s_o_field, 'm_s_field': m_s_field}
+    context = {'object_list': object_list, 'page_obj': page_obj, 's_f_field': s_f_field, 's_o_field': s_o_field, 's_s_field': s_s_field}
     return render(request, 'sellerapp/search_list.html', context)
 
 
@@ -413,8 +413,73 @@ def m_product_detail(request, book_id):
 
 
 def order_list(request):
-    orders = Order.objects.all()
-    context = {
-        'orders': orders
-    }
+    if "o_sort" not in request.session:
+        request.session["o_sort"] = "id"
+    if "o_search" not in request.session:
+        request.session["o_search"] = ""
+    if "o_filter" not in request.session:
+        request.session["o_filter"] = ""
+    o_order = request.GET.get('o_sort')
+    o_filter = request.GET.get('o_filter')
+    if o_order:
+        request.session["o_sort"] = o_order
+    if o_filter:
+        request.session["o_filter"] = o_filter
+    o_query = request.GET.get('o_q')
+    stop = request.GET.get('stop_search')
+    stop_f = request.GET.get('stop_filter')
+    if stop:
+        request.session["o_search"] = ""
+    if stop_f:
+        request.session["o_filter"] = ""
+    o_o_field = request.session["o_sort"]
+    o_f_field = request.session["o_filter"]
+    if o_filter:
+        request.session["o_filter"] = o_filter
+        if request.session["o_search"] == "":
+            object_list = Order.objects.filter(
+                Q(status__iregex=request.session["o_filter"])).order_by(request.session["o_sort"])
+        else:
+            object_list = Order.objects.filter(Q(status__iregex=request.session["o_filter"])).filter(
+                Q(user__username__contains=request.session["o_search"]) | Q(id__iregex=request.session["o_search"]) | Q(
+                    create_date__iregex=request.session["o_search"])).order_by(request.session["o_sort"])
+    elif o_query:
+        request.session["o_search"] = o_query
+        if request.session["o_filter"] == "":
+            object_list = Order.objects.filter(
+                Q(user__username__contains=request.session["o_search"]) | Q(id__iregex=request.session["o_search"]) | Q(
+                    create_date__iregex=request.session["o_search"])).order_by(request.session["o_sort"])
+        else:
+            object_list = Order.objects.filter(Q(status__iregex=request.session["o_filter"])).filter(
+                Q(user__username__contains=request.session["o_search"]) | Q(id__iregex=request.session["o_search"]) | Q(
+                    create_date__iregex=request.session["o_search"])).order_by(request.session["o_sort"])
+    else:
+        if request.session["o_search"] == "":
+            if request.session["o_filter"] == "":
+                object_list = Order.objects.order_by(request.session["o_sort"])
+            else:
+                object_list = Order.objects.filter(
+                    Q(status__iregex=request.session["o_filter"])).order_by(request.session["o_sort"])
+        else:
+            if request.session["o_filter"] == "":
+                object_list = Order.objects.filter(
+                    Q(user__username__contains=request.session["o_search"]) | Q(id__iregex=request.session["o_search"]) | Q(
+                        create_date__iregex=request.session["o_search"])).order_by(request.session["o_sort"])
+            else:
+                object_list = Order.objects.filter(Q(status__iregex=request.session["o_filter"])).filter(
+                    Q(user__username__contains=request.session["o_search"]) | Q(id__iregex=request.session["o_search"]) | Q(
+                        create_date__iregex=request.session["o_search"])).order_by(request.session["o_sort"])
+
+    s_o_field = request.session["o_search"]
+    items_per_page = 1
+    paginator = Paginator(object_list, items_per_page)
+    page_number = request.GET.get('page', 1)
+    try:
+        page_obj = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        page_obj = paginator.get_page(1)
+    except EmptyPage:
+        page_obj = paginator.get_page(paginator.num_pages)
+    context = {'object_list': object_list, 'page_obj': page_obj, 'o_f_field': o_f_field, 'o_o_field': o_o_field,
+               's_o_field': s_o_field}
     return render(request, 'sellerapp/order_list.html', context)
