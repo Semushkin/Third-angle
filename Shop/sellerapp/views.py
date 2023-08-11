@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.db.models import Q
+from django.db.models import Q, Sum
 from mainapp.forms import BoorCreateUpdateForm, NewsCreateUpdateForm, QuoteCreateUpdateForm, CommentCreateUpdateForm
 from basketapp.models import Request, Order, Basket
 from basketapp.forms import RequestCreateForm, RequestUpdateForm, OrderStatusChangeForm
@@ -441,17 +441,17 @@ def order_list(request):
                 Q(status__iregex=request.session["o_filter"])).order_by(request.session["o_sort"])
         else:
             object_list = Order.objects.filter(Q(status__iregex=request.session["o_filter"])).filter(
-                Q(user__username__contains=request.session["o_search"]) | Q(id__iregex=request.session["o_search"]) | Q(
+                Q(basket__book__name__iregex=request.session["o_search"]) | Q(user__username__contains=request.session["o_search"]) | Q(id__iregex=request.session["o_search"]) | Q(
                     create_date__iregex=request.session["o_search"])).order_by(request.session["o_sort"])
     elif o_query:
         request.session["o_search"] = o_query
         if request.session["o_filter"] == "":
             object_list = Order.objects.filter(
-                Q(user__username__contains=request.session["o_search"]) | Q(id__iregex=request.session["o_search"]) | Q(
+                Q(basket__book__name__iregex=request.session["o_search"]) | Q(user__username__contains=request.session["o_search"]) | Q(id__iregex=request.session["o_search"]) | Q(
                     create_date__iregex=request.session["o_search"])).order_by(request.session["o_sort"])
         else:
             object_list = Order.objects.filter(Q(status__iregex=request.session["o_filter"])).filter(
-                Q(user__username__contains=request.session["o_search"]) | Q(id__iregex=request.session["o_search"]) | Q(
+                Q(basket__book__name__iregex=request.session["o_search"]) | Q(user__username__contains=request.session["o_search"]) | Q(id__iregex=request.session["o_search"]) | Q(
                     create_date__iregex=request.session["o_search"])).order_by(request.session["o_sort"])
     else:
         if request.session["o_search"] == "":
@@ -463,11 +463,11 @@ def order_list(request):
         else:
             if request.session["o_filter"] == "":
                 object_list = Order.objects.filter(
-                    Q(user__username__contains=request.session["o_search"]) | Q(id__iregex=request.session["o_search"]) | Q(
+                    Q(basket__book__name__iregex=request.session["o_search"]) | Q(user__username__contains=request.session["o_search"]) | Q(id__iregex=request.session["o_search"]) | Q(
                         create_date__iregex=request.session["o_search"])).order_by(request.session["o_sort"])
             else:
                 object_list = Order.objects.filter(Q(status__iregex=request.session["o_filter"])).filter(
-                    Q(user__username__contains=request.session["o_search"]) | Q(id__iregex=request.session["o_search"]) | Q(
+                    Q(basket__book__name__iregex=request.session["o_search"]) | Q(user__username__contains=request.session["o_search"]) | Q(id__iregex=request.session["o_search"]) | Q(
                         create_date__iregex=request.session["o_search"])).order_by(request.session["o_sort"])
 
     s_o_field = request.session["o_search"]
