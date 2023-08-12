@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from mainapp.models import Book, News, Quote, Comment
+from mainapp.models import Book, News, Quote, Comment, Authors
 from authapp.forms import UserRegisterForm, UserLoginForm, UserEditForm, SetNewPassword
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -356,6 +356,19 @@ def products_list(request):
 def product_create(request):
     if request.method == 'POST':
         form = BoorCreateUpdateForm(data=request.POST, files=request.FILES)
+        new_authors = request.POST['author'].split(',')
+        authors_base = Authors.objects.all()
+
+        for author_base in authors_base:
+            if author_base in new_authors:
+                print(f'{author_base}: founded')
+
+        # for author_base in authors_base:
+        #     for new_author in new_authors:
+        #         if author_base.pe == new_author:
+        #             print(f'Совпадение: {author_base} === {new_author}')
+        #             break
+
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('m_product_detail', args=[form.instance.id]))

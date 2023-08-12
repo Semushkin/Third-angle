@@ -61,3 +61,10 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'Отзыв по книге: "{self.book}", пользователь: {self.user}'
+
+
+class Authors(models.Model):
+    person = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.person
