@@ -356,19 +356,18 @@ def products_list(request):
 def product_create(request):
     if request.method == 'POST':
         form = BoorCreateUpdateForm(data=request.POST, files=request.FILES)
-        new_authors = request.POST['author'].split(',')
-        authors_base = Authors.objects.all()
+        all_new_authors = request.POST['author'].split(',')
+        all_authors_base = Authors.objects.all()
 
-        for author_base in authors_base:
-            if author_base in new_authors:
-                print(f'{author_base}: founded')
-
-        # for author_base in authors_base:
-        #     for new_author in new_authors:
-        #         if author_base.pe == new_author:
-        #             print(f'Совпадение: {author_base} === {new_author}')
-        #             break
-
+        for new_author in all_new_authors:
+            write = True
+            for author_base in all_authors_base:
+                if new_author == author_base.person:
+                    write = False
+                    break
+            if write:
+                author = Authors.objects.create(person=new_author)
+                author.save()
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('m_product_detail', args=[form.instance.id]))

@@ -64,7 +64,7 @@ class Comment(models.Model):
 
 
 class Authors(models.Model):
-    person = models.CharField(max_length=128)
+    person = models.CharField(max_length=128, unique=True)
 
     def __str__(self):
         return self.person

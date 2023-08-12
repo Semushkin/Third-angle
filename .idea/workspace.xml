@@ -4,47 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25b6bceb-7d50-49d5-9c48-40af1c5286fb" name="Changes" comment="Step">
+    <list default="true" id="25b6bceb-7d50-49d5-9c48-40af1c5286fb" name="Changes" comment="Step 1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/authapp/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/authapp/migrations/0002_alter_user_gender.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/authapp/migrations/0003_user_moderator_alter_user_gender_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/authapp/migrations/0004_remove_user_moderator_user_in_group_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/authapp/migrations/0005_alter_user_gender.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/authapp/migrations/0006_alter_user_gender_alter_user_in_group.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/authapp/migrations/0007_alter_user_gender_alter_user_in_group.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/authapp/migrations/0008_alter_user_gender_alter_user_in_group.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/authapp/migrations/0009_alter_user_gender.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/authapp/migrations/0009_alter_user_gender_alter_user_in_group.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/authapp/migrations/0010_alter_user_gender_alter_user_in_group.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/authapp/migrations/0011_alter_user_gender.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/authapp/migrations/0012_alter_user_in_group.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/basketapp/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/basketapp/migrations/0002_alter_basket_status_alter_request_status.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/basketapp/migrations/0003_alter_basket_status_alter_request_status.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/basketapp/migrations/0004_alter_basket_status_alter_request_status.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/basketapp/migrations/0005_alter_basket_status_alter_request_status.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/basketapp/migrations/0006_alter_basket_status_alter_request_status.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/basketapp/migrations/0007_alter_basket_status_alter_request_status.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/basketapp/migrations/0008_alter_basket_status_alter_request_status.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/basketapp/migrations/0008_remove_basket_status_alter_request_status_order_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/basketapp/migrations/0009_alter_basket_status_alter_request_status.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/basketapp/migrations/0009_alter_order_status_alter_request_status.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/basketapp/migrations/0010_alter_basket_status_alter_request_status.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/basketapp/migrations/0011_alter_basket_status_alter_request_status.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/mainapp/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/mainapp/migrations/0002_book_author_alter_comment_starts.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/mainapp/migrations/0003_alter_comment_starts.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/mainapp/migrations/0004_alter_comment_starts.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/mainapp/migrations/0005_alter_comment_starts.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/mainapp/migrations/0005_news_description_news_foto_news_name_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/mainapp/migrations/0006_alter_comment_starts_alter_news_description.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/mainapp/migrations/0007_quote_alter_comment_starts.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/mainapp/migrations/0008_merge_20230801_2140.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/mainapp/migrations/0009_alter_comment_starts.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/mainapp/migrations/0010_alter_comment_starts.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/mainapp/migrations/0011_alter_comment_starts.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shop/mainapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shop/sellerapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/views.py" afterDir="false" />
     </list>
@@ -135,6 +98,15 @@
       <option name="presentableId" value="Default" />
       <updated>1688753282533</updated>
     </task>
+    <task id="LOCAL-00001" summary="Step 1">
+      <option name="closed" value="true" />
+      <created>1691838859337</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1691838859337</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -147,5 +119,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Step 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Step 1" />
   </component>
 </project>
