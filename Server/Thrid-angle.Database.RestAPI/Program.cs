@@ -15,7 +15,6 @@ using Thrid_angle.Database.RestAPI.Mehtods;
 using Thrid_angle.Database.RestAPI.DTO;
 using Microsoft.AspNetCore.Builder;
 using Thrid_angle.Database.RestAPI;
-using Thrid_angle.Database.RestAPI.HttpServices;
 using System.Net.Http.Headers;
 
 
@@ -32,21 +31,14 @@ internal class Program
         string path1 = Environment.GetFolderPath(folder1);
 
         Console.WriteLine("вот сюда нужно положить базу данных -  " + path1);
-        Console.WriteLine("Затем введите  в браузере этот URL https://localhost:5001/ServicesRest/IDReadDatabaseBaskets/48DED6ED-41E6-49B1-A1EE-81E883F2E795 ");
-
-        Console.WriteLine(" если что то вернулось значит база подключена");
-
-        Console.WriteLine("просмотреть содержимое базы данных можно с помощюю SQLiteStudio - https://sqlitestudio.pl/");
-        Console.WriteLine("Скопируйте из БД ID - это вот такое значене в формате UID - 48DED6ED-41E6-49B1-A1EE-81E883F2E795");
-        Console.WriteLine("далее можно протестировать методы чтения и записи в БД из приложения - Только данные нужно подставлять согласно типу данх написан над полем - описание методов см. в вайле REST URL");
-
-
+        
 
         var builder = WebApplication.CreateBuilder(args);
 
 
-
+       
         builder.Services.AddSingleton<IControllers, ServicesRest>();
+       
         builder.Services.AddControllers();
 
 
@@ -118,10 +110,6 @@ internal class Program
                 pattern: "{controller=ServicesRest}/{action=CreateDatabaseBookCard}/{NameBook}/{AuthorBook}/{PhotoBook}/{VendorCodeBook}/{GenreBook}/{DescriptionBook}/{PriceBook}");
 
 
-            endpoints.MapControllerRoute(
-               name: "default",
-               pattern: "{controller=ServicesRest}/{action=CreateDatabaseOrderCard}/{OrderCardBooksList}/{StatusOrderCard}/{IdUsers}");
-
 
             endpoints.MapControllerRoute(
                name: "default",
@@ -138,9 +126,7 @@ internal class Program
                pattern: "{controller=ServicesRest}/{action=CreateDatabaseUserCard}/{UserName}/{SurnameUser}/{RoleUser}/{FloorUser}/{AgeUser}/{AddressUser}/{TelephoneUser}/{EmailUser}/{LoginUser}/{PasswordUser}");
 
 
-            endpoints.MapControllerRoute(
-               name: "default",
-               pattern: "{controller=ServicesRest}/{action=IDReadDatabaseBaskets}/{IdBasket}");
+           
 
 
             endpoints.MapControllerRoute(
@@ -252,6 +238,12 @@ internal class Program
             endpoints.MapControllerRoute(
       name: "default",
       pattern: "{controller=ServicesRest}/{action=IdBookReadDatabaseRequestCard}/{IdBook}");
+
+            endpoints.MapControllerRoute(
+           name: "default",
+           pattern: "{controller=ServicesRest}/{action=CreateDatabaseBasketsStatusOrderCard}/{IdUser}");
+
+           
 
 
         });

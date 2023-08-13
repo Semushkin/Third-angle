@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Thrid_angle.Database.RestAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class NewMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,6 +18,9 @@ namespace Thrid_angle.Database.RestAPI.Migrations
                     IdBasket = table.Column<Guid>(type: "TEXT", nullable: false),
                     IdUser = table.Column<Guid>(type: "TEXT", maxLength: 50, nullable: false),
                     IdBook = table.Column<Guid>(type: "TEXT", maxLength: 50, nullable: false),
+                    NumberOrderCard = table.Column<Guid>(type: "TEXT", maxLength: 50, nullable: false),
+                    StatusOrderCard = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
+                    NumberCard = table.Column<int>(type: "INTEGER", maxLength: 4, nullable: false),
                     QuantityBooks = table.Column<int>(type: "INTEGER", maxLength: 10, nullable: false),
                     PricePerBook = table.Column<int>(type: "INTEGER", maxLength: 10, nullable: false),
                     DateCreationBasket = table.Column<DateTime>(type: "TEXT", maxLength: 100, nullable: false),

@@ -38,12 +38,14 @@ namespace Thrid_angle.Database.RestAPI.Database
             modelBuilder.Entity<Baskets>().HasKey(b => b.IdBasket);
             modelBuilder.Entity<Baskets>().Property(b=>b.IdUser).IsRequired().HasMaxLength(50);
             modelBuilder.Entity<Baskets>().Property(b => b.IdBook).IsRequired().HasMaxLength(50);
-            modelBuilder.Entity<Baskets>().Property(b => b.QuantityBooks).IsRequired().HasMaxLength(10);
+            modelBuilder.Entity<Baskets>().Property(b => b.NumberOrderCard).IsRequired().HasMaxLength(50);
+            modelBuilder.Entity<Baskets>().Property(b => b.StatusOrderCard).IsRequired().HasMaxLength(50);
+            modelBuilder.Entity<Baskets>().Property(b => b.NumberCard).IsRequired().HasMaxLength(4); 
+             modelBuilder.Entity<Baskets>().Property(b => b.QuantityBooks).IsRequired().HasMaxLength(10);
             modelBuilder.Entity<Baskets>().Property(b => b.PricePerBook).IsRequired().HasMaxLength(10);
             modelBuilder.Entity<Baskets>().Property(b => b.DateCreationBasket).IsRequired().HasMaxLength(100);
             modelBuilder.Entity<Baskets>().Property(b => b.DateUbdateBasket).IsRequired().HasMaxLength(100);
 
-        
             modelBuilder.Entity<OrderCard>().HasKey(b => b.IdOrder);
             modelBuilder.Entity<OrderCard>().Property(b=>b.OrderCardBooksList).IsRequired().HasMaxLength(300);
             modelBuilder.Entity<OrderCard>().Property(b => b.DateCreationOrderCard).IsRequired().HasMaxLength(100);
