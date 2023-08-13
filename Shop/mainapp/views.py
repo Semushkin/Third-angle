@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from mainapp.models import Book, BookCategory, News, Quote
+from mainapp.models import Book, BookCategory, News, Quote, Authors
 from authapp.forms import UserRegisterForm, UserLoginForm, UserEditForm, SetNewPassword
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -41,6 +41,7 @@ def catalog(request):
         object_list = Book.objects.all().order_by(request.session["sort"]).filter(
             Q(author__icontains=request.session["filt"]) | Q(category__name__icontains=request.session["filt"]))
     genre = BookCategory.objects.all()
+    authors = Authors.objects.all()
     items_per_page = 1
     paginator = Paginator(object_list, items_per_page)
     page_number = request.GET.get('page', 1)
@@ -50,7 +51,7 @@ def catalog(request):
         page_obj = paginator.get_page(1)
     except EmptyPage:
         page_obj = paginator.get_page(paginator.num_pages)
-    context = {'page_obj': page_obj, 'f_filed': f_filed, 'o_field': o_field, 'genre': genre}
+    context = {'page_obj': page_obj, 'f_filed': f_filed, 'o_field': o_field, 'genre': genre, 'authors': authors}
     return render(request, 'mainapp/catalog.html', context)
 
 
