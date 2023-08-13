@@ -16,6 +16,9 @@ namespace Thrid_angle.Database.RestAPI.DTO
         public Guid IdBasket { get; set; }
         public Guid? IdUser { get; set; }
         public Guid? IdBook { get; set; }
+        public Guid? NumberOrderCard { get; set; }
+        public string? StatusOrderCard { get; set; }
+        public int? NumberCard { get; set; }
         public int? QuantityBooks { get; set; }
         public int? PricePerBook { get; set; }  // цена за книгу
         public DateTime? DateCreationBasket { get; set; }

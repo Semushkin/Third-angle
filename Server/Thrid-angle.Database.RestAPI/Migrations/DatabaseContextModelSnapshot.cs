@@ -43,6 +43,16 @@ namespace Thrid_angle.Database.RestAPI.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("NumberCard")
+                        .IsRequired()
+                        .HasMaxLength(4)
+                        .HasColumnType("INTEGER");
+
+                    b.Property<Guid?>("NumberOrderCard")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
                     b.Property<int?>("PricePerBook")
                         .IsRequired()
                         .HasMaxLength(10)
@@ -52,6 +62,11 @@ namespace Thrid_angle.Database.RestAPI.Migrations
                         .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("StatusOrderCard")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
 
                     b.HasKey("IdBasket");
 

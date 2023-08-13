@@ -10,8 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Thrid_angle.Database.RestAPI.DTO;
 using Thrid_angle.Database.RestAPI.Mehtods;
-using Thrid_angle.Database.RestAPI.HttpServices;
-using System.Reflection.Metadata.Ecma335;
+using System.Reflection.Metadata.Ecma335;   
+
 
 namespace Thrid_angle.Database.RestAPI.ControllersREST
 {
@@ -20,24 +20,37 @@ namespace Thrid_angle.Database.RestAPI.ControllersREST
     [ApiController]
     public class ServicesRest :  ControllerBase, IControllers
     {
-        HttpServicesCreateDatabaseUserCard Http;
+        
         MethodsEntityFrameworcSQLite methodsEntityFrameworcSQLite;
+       static  HelperMethodsDatabase helperMethodsDatabase = new HelperMethodsDatabase();
 
-      public ServicesRest()
+        public ServicesRest()
         {
+           // helperMethodsDatabase = _helperMethodsDatabase;
+
              methodsEntityFrameworcSQLite = new MethodsEntityFrameworcSQLite();
             
 
+
+
         }
 
-        //CreateDatabaseBaskets/{IdUser}/{IdBook}/{QuantityBooks}/{PricePerBook}
+        //CreateDatabaseBaskets/{IdUser}/{IdBook}/{QuantityBooks}/{PricePerBook}  - Метод создания записи корзины (добавление в корзину) ***
         [HttpGet("{IdUser}/{IdBook}/{QuantityBooks}/{PricePerBook}")]
-        public void CreateDatabaseBaskets([FromRoute] Guid IdUser, [FromRoute] Guid IdBook, [FromRoute] int QuantityBooks, [FromRoute] int PricePerBook)
+        public void CreateDatabaseBaskets([FromRoute] Guid IdUser, [FromRoute] Guid IdBook, [FromRoute] int QuantityBooks, [FromRoute] int PricePerBook )
         {
-            Baskets _baskets = new Baskets();
-        
+           
+
+
+                        Baskets _baskets = new Baskets();
+
+            
+
             _baskets.IdUser = IdUser;
             _baskets.IdBook = IdBook;
+            _baskets.StatusOrderCard = "basket"; 
+            _baskets.NumberOrderCard = helperMethodsDatabase.BasketNewGuidOrderCard(IdUser, false);
+            _baskets.NumberCard = helperMethodsDatabase.BasketNewNumberCard(IdUser, false);
             _baskets.QuantityBooks = QuantityBooks;
             _baskets.PricePerBook = PricePerBook;
             _baskets.DateCreationBasket = DateTime.Now;
@@ -47,13 +60,9 @@ namespace Thrid_angle.Database.RestAPI.ControllersREST
              methodsEntityFrameworcSQLite.CreateDatabaseBaskets(_baskets);
 
 
-           
 
 
-
-        }
-
-        //ServicesRest/CreateDatabaseBookCard/{NameBook}/{AuthorBook}/{PhotoBook}/{VendorCodeBook}/{GenreBook}/{DescriptionBook}/{PriceBook}
+    }   //ServicesRest/CreateDatabaseBookCard/{NameBook}/{AuthorBook}/{PhotoBook}/{VendorCodeBook}/{GenreBook}/{DescriptionBook}/{PriceBook}
         [HttpGet("{NameBook}/{AuthorBook}/{PhotoBook}/{VendorCodeBook}/{GenreBook}/{DescriptionBook}/{PriceBook}")]
         public void CreateDatabaseBookCard([FromRoute] string NameBook, [FromRoute] string AuthorBook, [FromRoute] int PhotoBook, [FromRoute] string VendorCodeBook, [FromRoute] string GenreBook, [FromRoute] string DescriptionBook, [FromRoute] decimal PriceBook)
         {
@@ -78,22 +87,8 @@ namespace Thrid_angle.Database.RestAPI.ControllersREST
 
         }
 
-        //ServicesRest/CreateDatabaseOrderCard{OrderCardBooksList}/{StatusOrderCard}/{IdUsers}/
-        [HttpGet("{OrderCardBooksList}/{StatusOrderCard}/{IdUsers}")]
-        public void CreateDatabaseOrderCard([FromRoute] String OrderCardBooksList,  [FromRoute] string StatusOrderCard, [FromRoute] Guid IdUsers)
-        {
-            OrderCard orderCard = new OrderCard();
-
-            orderCard.OrderCardBooksList = OrderCardBooksList;
-            orderCard.DateCreationOrderCard = DateTime.Now;
-            orderCard.DateUpdateOrderCard = DateTime.Now;
-            orderCard.StatusOrderCard = StatusOrderCard;
-            orderCard.IdUsers = IdUsers;
-            methodsEntityFrameworcSQLite.CreateDatabaseOrderCard(orderCard);
-
-            
-
-        }
+        //ServicesRest/CreateDatabaseOrderCard{OrderCardBooksList}/{StatusOrderCard}/{IdUsers}/ - метод удален
+       
 
         //ServicesRest/CreateDatabaseQuoteCard/{QuoteTitle}/{QuoteText}/{QuoteAutor}
         [HttpGet("{QuoteTitle}/{QuoteText}/{QuoteAutor}")]
@@ -161,15 +156,8 @@ namespace Thrid_angle.Database.RestAPI.ControllersREST
 
         }
 
-        //ServicesRest/IDReadDatabaseBaskets/{IdBasket}
-        [HttpGet("{IdBasket}")]
-        public Baskets IDReadDatabaseBaskets([FromRoute]  Guid IdBasket)
-
-        {
-            Baskets baskets = methodsEntityFrameworcSQLite.IDReadDatabaseBaskets(IdBasket);
-            return baskets;
-
-        }
+        //ServicesRest/IDReadDatabaseBaskets/{IdBasket} - метод удален
+     
 
         //ServicesRest/IDReadDatabaseBookCard/{IdBook}
         [HttpGet("{IdBook}")]
@@ -180,14 +168,7 @@ namespace Thrid_angle.Database.RestAPI.ControllersREST
 
         }
 
-        //ServicesRest/IDReadDatabaseOrderCard/{IdOrder}
-        [HttpGet("{IdOrder}")]
-        public OrderCard IDReadDatabaseOrderCard([FromRoute] Guid IdOrder)
-        {
-            OrderCard orderCard = methodsEntityFrameworcSQLite.IDReadDatabaseOrderCard(IdOrder);
-            return orderCard;
-
-        }
+       
 
         //ServicesRest/IDReadDatabaseQuoteCard/{IdQuote}
         [HttpGet("{IdQuote}")]
@@ -251,18 +232,17 @@ namespace Thrid_angle.Database.RestAPI.ControllersREST
 
            
        }
-        //ServicesRest/UpdateDatabaseOrderCard/{IdOrder}/{OrderCardBooksList}/StatusOrderCard}
-        [HttpGet("{IdOrder}/{OrderCardBooksList}/{StatusOrderCard}")]
-       public void UpdateDatabaseOrderCard([FromRoute] Guid IdOrder, [FromRoute] String OrderCardBooksList, [FromRoute] string StatusOrderCard)
+        //ServicesRest/UpdateDatabaseOrderCard/{NumberOrderCard}/{StatusOrderCard}  - обновляет в таблице корзины статуз заказа по номеру заказа NumberOrderCard при этом статус заказа может быть и basket    ****
+        [HttpGet("{NumberOrderCard}/{StatusOrderCard}")]
+       public void UpdateDatabaseOrderCard([FromRoute] Guid NumberOrderCard, [FromRoute] string StatusOrderCard)
        {
 
-           OrderCard orderCard = new OrderCard();
+           Baskets orderCard = new Baskets();
 
-            orderCard.IdOrder = IdOrder;
-            orderCard.OrderCardBooksList = OrderCardBooksList;
-            orderCard.DateUpdateOrderCard = DateTime.Now        ;
+            orderCard.NumberOrderCard = NumberOrderCard;
             orderCard.StatusOrderCard = StatusOrderCard;
-
+            orderCard.DateUbdateBasket = DateTime.Now        ;
+            
 
             methodsEntityFrameworcSQLite.UpdateDatabaseOrderCard(orderCard);
            
@@ -325,7 +305,7 @@ namespace Thrid_angle.Database.RestAPI.ControllersREST
            
           
        }
-        //ServicesRest/DeleteDatabaseBaskets/{IdBasket}
+        //ServicesRest/DeleteDatabaseBaskets/{IdBasket} -  удаляет из таблици корзины записи отмечены в поле StatusOrderCard - как basket ***
         [HttpGet("{IdBasket}")]
        public void DeleteDatabaseBaskets([FromRoute] Guid IdBasket)
        {
@@ -342,12 +322,12 @@ namespace Thrid_angle.Database.RestAPI.ControllersREST
             methodsEntityFrameworcSQLite.DeleteDatabaseBookCard(IdBook);
            
        }
-        //ServicesRest/DeleteDatabaseOrderCard/{IdOrder}
-        [HttpGet("{IdOrder}")]
-       public void DeleteDatabaseOrderCard([FromRoute] Guid IdOrder)
+        //ServicesRest/DeleteDatabaseOrderCard/{NumberOrderCard}  - удаляет из таблици корзины записи заказа отмечены в поле StatusOrderCard - как order  *****
+        [HttpGet("{NumberOrderCard}")]
+       public void DeleteDatabaseOrderCard([FromRoute] Guid NumberOrderCard)
        {
            
-            methodsEntityFrameworcSQLite.DeleteDatabaseOrderCard(IdOrder);
+            methodsEntityFrameworcSQLite.DeleteDatabaseOrderCard(NumberOrderCard);
            
      
        }
@@ -378,7 +358,7 @@ namespace Thrid_angle.Database.RestAPI.ControllersREST
         }
 
 
-        // UserReadDatabaseBaskets/{IdUser} - читате содержание корзины по IdUser индивикатору записи БД User-а
+        // UserReadDatabaseBaskets/{IdUser} - читате содержание корзины по IdUser  и полю StatusOrderCard  со значением basket ****
         [HttpGet("{IdUser}")]
         public IEnumerable<Baskets> UserReadDatabaseBaskets([FromRoute] Guid IdUser)
         {
@@ -404,15 +384,15 @@ namespace Thrid_angle.Database.RestAPI.ControllersREST
 
         }
 
-        //UserReadDatabaseOrderCard/{IdUser}  - читатет карточку заказа по IdUser пользователя
+        //UserReadDatabaseOrderCard/{IdUser}  - читатет карточку заказа по IdUser пользователя заказы находятся в таблице корзина отмечены в поле StatusOrderCard - как order ***
         [HttpGet("{IdUser}")]
-        public IEnumerable<OrderCard> UserReadDatabaseOrderCard([FromRoute] Guid IdUser)
+        public IEnumerable<Baskets> UserReadDatabaseOrderCard([FromRoute] Guid IdUser)
 
         {
 
-            List<OrderCard> t = methodsEntityFrameworcSQLite.UserReadDatabaseOrderCard(IdUser);
+            List<Baskets> t = methodsEntityFrameworcSQLite.UserReadDatabaseOrderCard(IdUser);
 
-            foreach (OrderCard m in t) { yield return m; }
+            foreach (Baskets m in t) { yield return m; }
 
 
 
@@ -443,7 +423,7 @@ namespace Thrid_angle.Database.RestAPI.ControllersREST
 
         }
 
-        //LoginUserReadDatabaseUserCard/{LoginUser}/{PasswordUser} - Читатет карточку запроса по Логину и Паролю User
+        //LoginUserReadDatabaseUserCard/{LoginUser}/{PasswordUser} - Читатет карточку пользователя по Логину и Паролю User
         [HttpGet("{LoginUser}/{PasswordUser}")]
         public IEnumerable<UserCard> LoginUserReadDatabaseUserCard([FromRoute] string LoginUser, [FromRoute] string PasswordUser) 
         {
@@ -451,6 +431,19 @@ namespace Thrid_angle.Database.RestAPI.ControllersREST
             List<UserCard> t = methodsEntityFrameworcSQLite.LoginUserReadDatabaseUserCard(LoginUser, PasswordUser);
 
             foreach (UserCard m in t) { yield return m; }
+
+        }
+
+        //CreateDatabaseBasketsStatusOrderCard/{IdUser} - изменяет статус из корзины (basket) на статус заказа (order) ***
+        [HttpGet("{IdUser}")]
+        public void CreateDatabaseBasketsStatusOrderCard(Guid IdUser)
+        {
+
+            methodsEntityFrameworcSQLite.CreateDatabaseBasketsStatusOrderCard(IdUser);
+
+            helperMethodsDatabase.BasketNewGuidOrderCard(IdUser, true);
+            helperMethodsDatabase.BasketNewNumberCard(IdUser, true);
+
 
         }
 
