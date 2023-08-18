@@ -5,8 +5,55 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25b6bceb-7d50-49d5-9c48-40af1c5286fb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Third-angle.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Third-angle.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/Shop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/Shop/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/authapp/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/authapp/migrations/0002_alter_user_gender.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/authapp/migrations/0003_user_moderator_alter_user_gender_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/authapp/migrations/0004_remove_user_moderator_user_in_group_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/authapp/migrations/0005_alter_user_gender.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/authapp/migrations/0006_alter_user_gender_alter_user_in_group.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/authapp/migrations/0007_alter_user_gender_alter_user_in_group.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/authapp/migrations/0008_alter_user_gender_alter_user_in_group.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/authapp/migrations/0009_alter_user_gender.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/authapp/migrations/0009_alter_user_gender_alter_user_in_group.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/authapp/migrations/0010_alter_user_gender_alter_user_in_group.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/authapp/migrations/0011_alter_user_gender.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/authapp/migrations/0012_alter_user_in_group.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/basketapp/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/basketapp/migrations/0002_alter_basket_status_alter_request_status.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/basketapp/migrations/0003_alter_basket_status_alter_request_status.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/basketapp/migrations/0004_alter_basket_status_alter_request_status.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/basketapp/migrations/0005_alter_basket_status_alter_request_status.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/basketapp/migrations/0006_alter_basket_status_alter_request_status.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/basketapp/migrations/0007_alter_basket_status_alter_request_status.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/basketapp/migrations/0008_alter_basket_status_alter_request_status.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/basketapp/migrations/0008_remove_basket_status_alter_request_status_order_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/basketapp/migrations/0009_alter_basket_status_alter_request_status.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/basketapp/migrations/0009_alter_order_status_alter_request_status.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/basketapp/migrations/0010_alter_basket_status_alter_request_status.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/basketapp/migrations/0011_alter_basket_status_alter_request_status.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/migrations/0002_book_author_alter_comment_starts.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/migrations/0003_alter_comment_starts.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/migrations/0004_alter_comment_starts.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/migrations/0005_alter_comment_starts.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/migrations/0005_news_description_news_foto_news_name_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/migrations/0006_alter_comment_starts_alter_news_description.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/migrations/0007_quote_alter_comment_starts.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/migrations/0008_merge_20230801_2140.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/migrations/0009_alter_comment_starts.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/migrations/0010_alter_comment_starts.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/migrations/0011_alter_comment_starts.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/m_product_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/m_product_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/products_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/products_list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shop/sellerapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -17,19 +64,14 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;
-  }
-}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -46,14 +88,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Матвей/Documents/Education/django framework&quot;
-  }
-}</component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Матвей\Documents\Education\Third-angle\Shop\basketapp" />
@@ -67,9 +107,9 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Shop" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/.." />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Shop/manage.py" />
@@ -103,5 +143,17 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from mainapp.models import Book, News, Quote, Comment
+from mainapp.models import Book, News, Quote, Comment, ImageBook
 from authapp.forms import UserRegisterForm, UserLoginForm, UserEditForm, SetNewPassword
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -7,9 +7,11 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q, Sum
-from mainapp.forms import BoorCreateUpdateForm, NewsCreateUpdateForm, QuoteCreateUpdateForm, CommentCreateUpdateForm
+from mainapp.forms import BoorCreateUpdateForm, NewsCreateUpdateForm, QuoteCreateUpdateForm, CommentCreateUpdateForm, ImagesForBookForm
 from basketapp.models import Request, Order, Basket
 from basketapp.forms import RequestCreateForm, RequestUpdateForm, OrderStatusChangeForm
+from database import BookNew
+import os
 
 
 def s_order_detail(request, order_id):
@@ -315,50 +317,62 @@ def quote_delete(request, quote_id):
 
 
 def products_list(request):
-    if "b_sort" not in request.session:
-        request.session["b_sort"] = "id"
-    if "b_search" not in request.session:
-        request.session["b_search"] = ""
-    b_order = request.GET.get('b_sort')
-    if b_order:
-        request.session["b_sort"] = b_order
-    b_o_field = request.session["b_sort"]
-    b_query = request.GET.get('b_q')
-    stop = request.GET.get('stop_search')
-    if stop:
-        request.session["b_search"] = ""
-    if b_query:
-        request.session["b_search"] = b_query
-        object_list = Book.objects.filter(
-            Q(name__iregex=b_query) | Q(author__iregex=b_query) | Q(price__iregex=b_query)).order_by(
-            request.session["b_sort"])
-    else:
-        if request.session["b_search"] == "":
-            object_list = Book.objects.order_by(request.session["b_sort"])
-        else:
-            object_list = Book.objects.filter(
-                Q(name__iregex=request.session["b_search"]) | Q(author__iregex=request.session["b_search"]) | Q(
-                    price__iregex=request.session["b_search"])).order_by(request.session["b_sort"])
-    m_b_field = request.session["b_search"]
-    items_per_page = 1
-    paginator = Paginator(object_list, items_per_page)
-    page_number = request.GET.get('page', 1)
-    try:
-        page_obj = paginator.get_page(page_number)
-    except PageNotAnInteger:
-        page_obj = paginator.get_page(1)
-    except EmptyPage:
-        page_obj = paginator.get_page(paginator.num_pages)
-    context = {'object_list': object_list, 'page_obj': page_obj, 'b_o_field': b_o_field, 'm_b_field': m_b_field}
+    # if "b_sort" not in request.session:
+    #     request.session["b_sort"] = "id"
+    # if "b_search" not in request.session:
+    #     request.session["b_search"] = ""
+    # b_order = request.GET.get('b_sort')
+    # if b_order:
+    #     request.session["b_sort"] = b_order
+    # b_o_field = request.session["b_sort"]
+    # b_query = request.GET.get('b_q')
+    # stop = request.GET.get('stop_search')
+    # if stop:
+    #     request.session["b_search"] = ""
+    # if b_query:
+    #     request.session["b_search"] = b_query
+    #     object_list = Book.objects.filter(
+    #         Q(name__iregex=b_query) | Q(author__iregex=b_query) | Q(price__iregex=b_query)).order_by(
+    #         request.session["b_sort"])
+    # else:
+    #     if request.session["b_search"] == "":
+    #         object_list = Book.objects.order_by(request.session["b_sort"])
+    #     else:
+    #         object_list = Book.objects.filter(
+    #             Q(name__iregex=request.session["b_search"]) | Q(author__iregex=request.session["b_search"]) | Q(
+    #                 price__iregex=request.session["b_search"])).order_by(request.session["b_sort"])
+    # m_b_field = request.session["b_search"]
+    # items_per_page = 5
+    # paginator = Paginator(object_list, items_per_page)
+    # page_number = request.GET.get('page', 1)
+    # try:
+    #     page_obj = paginator.get_page(page_number)
+    # except PageNotAnInteger:
+    #     page_obj = paginator.get_page(1)
+    # except EmptyPage:
+    #     page_obj = paginator.get_page(paginator.num_pages)
+    # context = {'object_list': object_list, 'page_obj': page_obj, 'b_o_field': b_o_field, 'm_b_field': m_b_field}
+
+    context = {
+        'books': BookNew.get_all()
+    }
+
     return render(request, 'sellerapp/products_list.html', context)
 
 
 def product_create(request):
     if request.method == 'POST':
         form = BoorCreateUpdateForm(data=request.POST, files=request.FILES)
+
         if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('m_product_detail', args=[form.instance.id]))
+            book = BookNew.create(data=request.POST, files=request.FILES)
+            if book:
+                book_name = request.FILES['foto'].name
+                request.FILES['foto'].name = book + os.path.splitext(book_name)[1]
+                images_form = ImagesForBookForm(data={'guid': book}, files=request.FILES)
+                if images_form.is_valid():
+                    images_form.save()
+                return HttpResponseRedirect(reverse('m_product_detail', args=[book]))
     else:
         form = BoorCreateUpdateForm()
     context = {
@@ -368,16 +382,24 @@ def product_create(request):
 
 
 def product_edit(request, book_id):
-    book = Book.objects.get(pk=book_id)
     if request.method == 'POST':
-        form = BoorCreateUpdateForm(instance=book, data=request.POST, files=request.FILES)
+        form = BoorCreateUpdateForm(data=request.POST, files=request.FILES)
         if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('m_product_detail', args=[form.instance.id]))
+            book = BookNew.update(data=request.POST, guid=book_id)
+            if book:
+                image = ImageBook.objects.filter(guid=book_id)
+                if image:
+                    images_form = ImagesForBookForm(instance=image.first(), data={'guid': book}, files=request.FILES)
+                else:
+                    images_form = ImagesForBookForm(data={'guid': book}, files=request.FILES)
+                if images_form.is_valid():
+                    images_form.save()
+            return HttpResponseRedirect(reverse('m_product_detail', args=[book]))
         else:
             pass
     else:
-        form = BoorCreateUpdateForm(instance=book)
+        book = BookNew.get_by_guid(book_id)
+        form = BoorCreateUpdateForm(data=book)
     context = {
         'form': form,
         'book': book,
@@ -386,8 +408,9 @@ def product_edit(request, book_id):
 
 
 def product_delete(request, book_id):
-    book = Book.objects.get(pk=book_id)
-    book.delete()
+    # book = Book.objects.get(pk=book_id)
+    # book.delete()
+    BookNew.delete(book_id)
     return HttpResponseRedirect(reverse('products_list'))
 
 
@@ -407,7 +430,9 @@ def m_new_detail(request, news_id):
 
 def m_product_detail(request, book_id):
     context = {
-        'book': Book.objects.get(pk=book_id)
+        # 'book': Book.objects.get(pk=book_id)
+        'book': BookNew.get_by_guid(book_id),
+        'image_book': ImageBook.objects.filter(guid=book_id).first()
     }
     return render(request, 'sellerapp/m_product_detail.html', context)
 

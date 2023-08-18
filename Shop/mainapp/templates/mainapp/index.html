@@ -32,8 +32,10 @@
                                         class="icon icon-ns-arrow-right"></i></a>
                             </div>
                         </div>
-                        <img src="{{ book.foto.url }}" href="{% url 'product_detail' book.id %}" alt="banner"
-                             class="banner-image" width="400" height="500" style="margin: auto;">
+                        {% if book.foto %}
+                            <img src="{{ book.foto.url }}" href="{% url 'product_detail' book.id %}" alt="banner"
+                                 class="banner-image" width="400" height="500" style="margin: auto;">
+                        {% endif %}
                     </div>
                     {% endif %}
                     {% endfor %}
@@ -67,8 +69,10 @@
                         {% if forloop.counter < 5 %}
                         <div class="col-md-3">
                             <figure class="product-style">
+                                {% if book.foto %}
                                 <a href="{% url 'product_detail' book.id %}"><img src="{{ book.foto.url }}" alt="Books"
                                                                                   class="product-item"></a>
+                                {% endif %}
                                 <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart
                                 </button>
                                 <figcaption>
@@ -180,11 +184,12 @@
                     <div class="col-md-4">
 
                         <article class="column" data-aos="fade-up">
-
                             <figure>
+                                {% if new.foto %}
                                 <a href="{% url 'new_detail' new.id %}" class="image-hvr-effect">
                                     <img src="{{ new.foto.url }}" alt="post" class="post-image">
                                 </a>
+                                {% endif %}
                             </figure>
 
                             <div class="post-item">

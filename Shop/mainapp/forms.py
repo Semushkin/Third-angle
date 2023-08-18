@@ -1,22 +1,30 @@
 from django import forms
-from mainapp.models import Book, News, Quote, Comment
+from mainapp.models import Book, News, Quote, Comment, ImageBook
 
 
-class BoorCreateUpdateForm(forms.ModelForm):
-    foto = forms.ImageField(widget=forms.FileInput())
+class BoorCreateUpdateForm(forms.Form):
+    name = forms.CharField(max_length=64)
+    author = forms.CharField(max_length=64)
+    foto = forms.ImageField(widget=forms.FileInput(), required=False)
+    article = forms.IntegerField()
+    date_receipt = forms.DateField()
+    category = forms.CharField(max_length=64)
+    description = forms.CharField(widget=forms.Textarea)
+    price = forms.DecimalField(max_digits=8, decimal_places=2)
 
-    class Meta:
-        model = Book
-        fields = (
-            'name',
-            'author',
-            'foto',
-            'article',
-            'date_receipt',
-            'category',
-            'description',
-            'price',
-        )
+
+    # class Meta:
+    #     model = Book
+    #     fields = (
+    #         'name',
+    #         'author',
+    #         'foto',
+    #         'article',
+    #         'date_receipt',
+    #         'category',
+    #         'description',
+    #         'price',
+    #     )
 
     def __init__(self, *args, **kwargs):
         super(BoorCreateUpdateForm, self).__init__(*args, **kwargs)
@@ -30,6 +38,21 @@ class BoorCreateUpdateForm(forms.ModelForm):
 
         for filed_name, field in self.fields.items():
             field.widget.attrs['class'] = 'u-full-width'
+
+
+class ImagesForBookForm(forms.ModelForm):
+    foto = forms.ImageField(widget=forms.FileInput())
+
+    class Meta:
+        model = ImageBook
+        fields = (
+            'guid',
+            'foto',
+        )
+
+    def __init__(self, *args, **kwargs):
+        super(ImagesForBookForm, self).__init__(*args, **kwargs)
+        self.fields['foto'].widget.attrs['class'] = 'u-full-width'
 
 
 class NewsCreateUpdateForm(forms.ModelForm):

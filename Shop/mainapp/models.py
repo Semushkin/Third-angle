@@ -25,6 +25,14 @@ class Book(models.Model):
         return f'{self.name}'
 
 
+class ImageBook(models.Model):
+    guid = models.CharField(max_length=128)
+    foto = models.ImageField(upload_to='book_images', blank=True)
+
+    def __str__(self):
+        return f'Images for{self.guid}'
+
+
 class News(models.Model):
     name = models.CharField(max_length=128, default='')
     description = models.TextField()

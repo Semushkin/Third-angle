@@ -10,6 +10,10 @@ from django.db.models import Q
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 import random
+from requests import get
+import json
+import pprint
+# from database import get_books
 
 # Create your views here.
 
@@ -17,7 +21,10 @@ import random
 def index(request):
 
     context = {
-        'books': Book.objects.order_by('-id'), 'main_books': Book.objects.order_by('?'), 'news': News.objects.order_by('-id'), 'quotes': Quote.objects.all()
+        'books': Book.objects.order_by('-id'),
+        'main_books': Book.objects.order_by('?'),
+        'news': News.objects.order_by('-id'),
+        'quotes': Quote.objects.all()
     }
     return render(request, 'mainapp/index.html', context)
 
@@ -81,7 +88,6 @@ def search_result(request):
         page_obj = paginator.get_page(paginator.num_pages)
     context = {'object_list' : object_list, 'page_obj': page_obj, 'o_field': o_field}
     return render(request, 'mainapp/search_result.html', context)
-
 
 
 def news(request):

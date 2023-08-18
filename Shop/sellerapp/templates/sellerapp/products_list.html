@@ -134,7 +134,7 @@
                 <th></th>
             </tr>
             </thead>
-            {% for book in page_obj.object_list %}
+            {% for book in books %}
             <tbody>
             <tr>
                 <td class="page-item active"><a href="{% url 'm_product_detail' book.id %}" class="page-link nav-link"
