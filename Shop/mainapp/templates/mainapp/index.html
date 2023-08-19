@@ -21,23 +21,23 @@
 
                 <div class="main-slider pattern-overlay">
                     {% for book in main_books %}
-                    {% if forloop.counter < 3 %}
-                    <div class="slider-item">
-                        <div class="banner-content">
-                            <h2 class="banner-title">{{ book.name }}</h2>
-                            <p>{{ book.description }}</p>
-                            <div class="btn-wrap">
-                                <a href="{% url 'product_detail' book.id %}"
-                                   class="btn btn-outline-accent btn-accent-arrow">Подробности<i
-                                        class="icon icon-ns-arrow-right"></i></a>
+                        {% if forloop.counter < 3 %}
+                            <div class="slider-item">
+                                <div class="banner-content">
+                                    <h2 class="banner-title">{{ book.name }}</h2>
+                                    <p>{{ book.description }}</p>
+                                    <div class="btn-wrap">
+                                        <a href="{% url 'product_detail' book.id %}"
+                                           class="btn btn-outline-accent btn-accent-arrow">Подробности<i
+                                                class="icon icon-ns-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                                {% if book.foto %}
+                                    <img src="{{ book.foto }}" href="{% url 'product_detail' book.id %}" alt="banner"
+                                         class="banner-image" width="400" height="500" style="margin: auto;">
+                                {% endif %}
                             </div>
-                        </div>
-                        {% if book.foto %}
-                            <img src="{{ book.foto.url }}" href="{% url 'product_detail' book.id %}" alt="banner"
-                                 class="banner-image" width="400" height="500" style="margin: auto;">
                         {% endif %}
-                    </div>
-                    {% endif %}
                     {% endfor %}
                 </div><!--slider-->
 
@@ -70,7 +70,7 @@
                         <div class="col-md-3">
                             <figure class="product-style">
                                 {% if book.foto %}
-                                <a href="{% url 'product_detail' book.id %}"><img src="{{ book.foto.url }}" alt="Books"
+                                <a href="{% url 'product_detail' book.id %}"><img src="{{ book.foto }}" alt="Books"
                                                                                   class="product-item"></a>
                                 {% endif %}
                                 <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart

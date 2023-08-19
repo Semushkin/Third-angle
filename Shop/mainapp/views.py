@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from mainapp.models import Book, BookCategory, News, Quote
+from mainapp.models import Book, BookCategory, News, Quote, ImageBook
 from authapp.forms import UserRegisterForm, UserLoginForm, UserEditForm, SetNewPassword
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -13,7 +13,8 @@ import random
 from requests import get
 import json
 import pprint
-# from database import get_books
+from database import BookNew
+
 
 # Create your views here.
 
@@ -21,8 +22,10 @@ import pprint
 def index(request):
 
     context = {
-        'books': Book.objects.order_by('-id'),
-        'main_books': Book.objects.order_by('?'),
+        # 'books': Book.objects.order_by('-id'),
+        # 'main_books': Book.objects.order_by('?'),
+        'books': BookNew.get_all_reverse(),
+        'main_books': BookNew.random(),
         'news': News.objects.order_by('-id'),
         'quotes': Quote.objects.all()
     }

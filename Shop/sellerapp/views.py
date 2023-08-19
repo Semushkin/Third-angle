@@ -430,9 +430,7 @@ def m_new_detail(request, news_id):
 
 def m_product_detail(request, book_id):
     context = {
-        # 'book': Book.objects.get(pk=book_id)
-        'book': BookNew.get_by_guid(book_id),
-        'image_book': ImageBook.objects.filter(guid=book_id).first()
+        'book': BookNew.get_by_guid(book_id)
     }
     return render(request, 'sellerapp/m_product_detail.html', context)
 

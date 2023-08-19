@@ -30,7 +30,7 @@ class ImageBook(models.Model):
     foto = models.ImageField(upload_to='book_images', blank=True)
 
     def __str__(self):
-        return f'Images for{self.guid}'
+        return f'Images for {self.guid}'
 
 
 class News(models.Model):

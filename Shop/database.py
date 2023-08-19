@@ -2,6 +2,8 @@ from requests import get
 import json
 from pprint import pprint
 import datetime
+from random import shuffle
+from mainapp.models import ImageBook
 
 
 class BookNew:
@@ -24,6 +26,9 @@ class BookNew:
                 'date_create': datetime.datetime.strptime(item['dateCreationBook'][:-1], '%Y-%m-%dT%H:%M:%S.%f').date(),
                 'date_update': datetime.datetime.strptime(item['dateUpdateBook'][:-1], '%Y-%m-%dT%H:%M:%S.%f').date(),
             }
+            image = ImageBook.objects.filter(guid=book['id']).first()
+            if image:
+                book['foto'] = image.foto.url
             books.append(book)
         return books
 
@@ -64,6 +69,9 @@ class BookNew:
             'date_create': datetime.datetime.strptime(item['dateCreationBook'][:-1], '%Y-%m-%dT%H:%M:%S.%f').date(),
             'date_update': datetime.datetime.strptime(item['dateUpdateBook'][:-1], '%Y-%m-%dT%H:%M:%S.%f').date(),
         }
+        image = ImageBook.objects.filter(guid=book['id']).first()
+        if image:
+            book['foto'] = image.foto.url
         return book
 
     @staticmethod
@@ -85,6 +93,18 @@ class BookNew:
     @staticmethod
     def delete(guid):
         return get(f'https://localhost:5001/ServicesRest/DeleteDatabaseBookCard/{guid}', verify=False)
+
+    @staticmethod
+    def random():
+        data = BookNew.get_all()
+        shuffle(data)
+        return data
+
+    @staticmethod
+    def get_all_reverse():
+        books = BookNew.get_all()
+        books.reverse()
+        return books
 
 
 class Basket:
