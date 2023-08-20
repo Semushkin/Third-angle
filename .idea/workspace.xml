@@ -8,14 +8,15 @@
       <change beforePath="$PROJECT_DIR$/.idea/Third-angle.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Third-angle.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/adminapp/templates/adminapp/admin_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/adminapp/templates/adminapp/admin_base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/adminapp/templates/adminapp/admin_book_update_delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/adminapp/templates/adminapp/admin_book_update_delete.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/adminapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/adminapp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/adminapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/adminapp/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shop/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/includes/goods_card.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/includes/goods_card.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/includes/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/includes/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/search_result.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/search_result.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/mainapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/product_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/product_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/products_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/products_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shop/sellerapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +35,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="test" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -124,6 +125,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value=" Скорректирован главный контроллер. Добавлено подтягивание url фото книги" />

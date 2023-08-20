@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from mainapp.models import Book, News, Quote, Comment, ImageBook
+from mainapp.models import Book, News, Quote, Comment, ImageBook, Authors
 from authapp.forms import UserRegisterForm, UserLoginForm, UserEditForm, SetNewPassword
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -353,9 +353,6 @@ def products_list(request):
     except EmptyPage:
         page_obj = paginator.get_page(paginator.num_pages)
     context = {'object_list': object_list, 'page_obj': page_obj, 'b_o_field': b_o_field, 'm_b_field': m_b_field, 'num': num}
-
-
-
     return render(request, 'sellerapp/products_list.html', context)
 
 
@@ -366,6 +363,21 @@ def product_create(request):
         if form.is_valid():
             book = BookNew.create(data=request.POST, files=request.FILES)
             if book:
+
+                #-----------Проверяем автора и записываем при необходимости.
+                all_new_authors = request.POST['author'].split(',')
+                all_authors_base = Authors.objects.all()
+                for new_author in all_new_authors:
+                    write = True
+                    for author_base in all_authors_base:
+                        if new_author == author_base.person:
+                            write = False
+                            break
+                    if write:
+                        author = Authors.objects.create(person=new_author)
+                        author.save()
+                #-----------------------------------------------------------
+
                 book_name = request.FILES['foto'].name
                 request.FILES['foto'].name = book + os.path.splitext(book_name)[1]
                 images_form = ImagesForBookForm(data={'guid': book}, files=request.FILES)

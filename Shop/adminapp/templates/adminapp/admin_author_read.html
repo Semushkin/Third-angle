@@ -1,0 +1,43 @@
+{% extends 'adminapp/admin_base.html' %}
+{% block context %}
+            <div class="container-fluid">
+                <h1 class="mt-4">Авторы</h1>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-table mr-1"></i>
+                        Авторы
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Автор</th>
+                                </tr>
+                                </thead>
+                                <tfoot>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Автор</th>
+                                </tr>
+                                </tfoot>
+                                <tbody>
+                                {% for author in authors %}
+                                    <tr>
+                                        <td>{{ author.id }}</td>
+                                        <td><a href="{% url 'adminapp:admin_author_update' author.id %}" style="color: dodgerblue">{{ author.person }}</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'adminapp:admin_author_create' %}">
+                            <button class="btn btn-success">Добавить автора</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+{% endblock %}

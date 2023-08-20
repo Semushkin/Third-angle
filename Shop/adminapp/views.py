@@ -8,8 +8,8 @@ from django.urls import reverse
 
 from authapp.models import User
 from database import BookNew
-from mainapp.forms import BoorCreateUpdateForm, ImagesForBookForm
-from mainapp.models import ImageBook
+from mainapp.forms import BoorCreateUpdateForm, ImagesForBookForm, AuthorForm
+from mainapp.models import ImageBook, Authors
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -99,6 +99,53 @@ def admin_book_delete(request, book_id):
 
 
 @user_passes_test(lambda u: u.is_superuser)
+def admin_author_read(request):
+    context = {
+        'authors': Authors.objects.all()
+    }
+    return render(request, 'adminapp/admin_author_read.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def admin_author_create(request):
+    if request.method == 'POST':
+        form = AuthorForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('adminapp:admin_author_read'))
+    else:
+        form = AuthorForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'adminapp/admin_author_create.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def admin_author_update(request, author_id):
+    author = Authors.objects.get(pk=author_id)
+    if request.method == 'POST':
+        form = AuthorForm(instance=author, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('adminapp:admin_author_read'))
+    else:
+        form = AuthorForm(instance=author)
+    context = {
+        'form': form,
+        'author': author
+    }
+    return render(request, 'adminapp/admin_author_update_delete.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def admin_author_delete(request, author_id):
+    author = Authors.objects.get(pk=author_id)
+    author.delete()
+    return HttpResponseRedirect(reverse('adminapp:admin_author_read'))
+
+
+@user_passes_test(lambda u: u.is_superuser)
 def admin_qoute_read(request):
     pass
 
@@ -121,3 +168,4 @@ def admin_basket_read(request):
 @user_passes_test(lambda u: u.is_superuser)
 def admin_order_read(request):
     pass
+

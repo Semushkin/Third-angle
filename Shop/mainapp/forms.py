@@ -1,5 +1,5 @@
 from django import forms
-from mainapp.models import Book, News, Quote, Comment, ImageBook
+from mainapp.models import Book, News, Quote, Comment, ImageBook, Authors
 
 
 class BoorCreateUpdateForm(forms.Form):
@@ -121,3 +121,14 @@ class CommentCreateUpdateForm(forms.ModelForm):
         self.fields['text'].widget.attrs['class'] = 'u-full-width'
 
 
+class AuthorForm(forms.ModelForm):
+
+    class Meta:
+        model = Authors
+        fields = (
+            'person',
+        )
+
+    def __init__(self, *args, **kwargs):
+        super(AuthorForm, self).__init__(*args, **kwargs)
+        self.fields['person'].widget.attrs['placeholder'] = 'Укажите автора'

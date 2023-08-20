@@ -29,7 +29,7 @@
                                         class="icon icon-user"></i><span>Продавец</span></a>
                             {% endif %}
                         {% if user.is_superuser %}
-                        <a href="{% url 'sellerapp:admin_main' %}" class="user-account for-buy"><i
+                        <a href="{% url 'adminapp:admin_main' %}" class="user-account for-buy"><i
                                 class="fas fa-users-cog"></i><span>Админ</span></a>
                         {% endif %}
                         <a href="{% url 'profile' %}" class="user-account for-buy"><i
