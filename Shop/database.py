@@ -106,6 +106,26 @@ class BookNew:
         books.reverse()
         return books
 
+    @staticmethod
+    def get_sorted(o_field):
+        books = BookNew.get_all()
+        books.sort(key=lambda dictionary: dictionary[o_field])
+        return books
+
+    @staticmethod
+    def get_sorted_filtered(o_field, f_filed):
+        books = BookNew.get_all()
+        books.sort(key=lambda dictionary: dictionary[o_field])
+        books_list = [x for x in books if f_filed in x['category'] or f_filed in x['author']]
+        return books_list
+
+    @staticmethod
+    def get_search(o_field, s_filed):
+        books = BookNew.get_all()
+        books.sort(key=lambda dictionary: dictionary[o_field])
+        books_list = [x for x in books if s_filed.lower() in x['category'].lower() or s_filed.lower() in x['author'].lower() or s_filed.lower() in x['name'].lower() or s_filed in str(x['price'])]
+        return books_list
+
 
 class BasketNew:
 

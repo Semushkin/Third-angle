@@ -82,7 +82,7 @@
                                type="search">
                     </form>
                     {% if m_b_field == '' %}{% else %}
-                    <span>Найдено совпадений : {{ object_list.count }}</span>
+                    <span>Найдено совпадений : {{ num }}</span>
                     <span>Запрос: "{{ m_b_field }}"</span>
                     <form style="height: 30px;" method="get" action="{% url 'products_list' %}">
                         <button class= "btn-text" name="stop_search" value="stop">
@@ -97,7 +97,7 @@
                     <div class="colored">
                         <h2>Сортировка</h2>
                         <form style="height: 30px;" method="get" action="{% url 'products_list' %}">
-                            <button class="{% if b_o_field == 'id' %} btn-text  {% else %} btn-text-f {% endif %}" name="b_sort" value="id">
+                            <button class="{% if b_o_field == 'date_create' %} btn-text  {% else %} btn-text-f {% endif %}" name="b_sort" value="date_create">
                                 <li>По номеру</li>
                             </button>
                         </form>
@@ -126,7 +126,7 @@
         <table class="u-full-width">
             <thead>
             <tr>
-                <th>Номер</th>
+                <th></th>
                 <th>Название</th>
                 <th>Автор</th>
                 <th>Стоимость</th>
@@ -134,12 +134,13 @@
                 <th></th>
             </tr>
             </thead>
-            {% for book in books %}
+            {% for book in page_obj.object_list %}
             <tbody>
             <tr>
                 <td class="page-item active"><a href="{% url 'm_product_detail' book.id %}" class="page-link nav-link"
-                >{{ book.id }}</a></td>
-                <td>{{ book.name }}</td>
+                ></a></td>
+                <td><a href="{% url 'm_product_detail' book.id %}"
+                >{{ book.name }}</a></td>
                 <td>
                     {{ book.author }}
                 </td>

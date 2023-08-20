@@ -5,17 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25b6bceb-7d50-49d5-9c48-40af1c5286fb" name="Changes" comment=" Скорректирован главный контроллер. Добавлено подтягивание url фото книги">
+      <change beforePath="$PROJECT_DIR$/.idea/Third-angle.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Third-angle.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/Shop/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/Shop/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/Shop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/Shop/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/authapp/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/authapp/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/authapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/authapp/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/authapp/templates/authapp/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/authapp/templates/authapp/registration.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/authapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/authapp/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shop/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/database.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shop/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/mainapp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/includes/goods_card.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/includes/goods_card.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/includes/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/includes/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/search_result.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/search_result.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/product_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/product_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/products_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/products_list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shop/sellerapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -124,7 +124,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value=" Скорректирован главный контроллер. Добавлено подтягивание url фото книги" />
@@ -135,7 +134,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Shop/database.py</url>
-          <line>244</line>
+          <line>264</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

@@ -126,31 +126,34 @@ def new_detail(request, new_id):
 
 
 def product_detail(request, book_id):
-    book = Book.objects.get(pk=book_id)
-    comment = Comment.objects.filter(book=book_id)
-
-    if request.user.is_anonymous:
-        context = {
-            'book': book, 'comment': comment
-        }
-    else:
-        comment_valid = Comment.objects.filter(book=book_id, user=request.user)
-        if comment_valid:
-            context = {
-                'book': book, 'comment': comment
-            }
-        else:
-            if request.method == 'POST':
-                starts = request.POST.get('starts')
-                text = request.POST.get('text')
-                form = Comment.objects.create(book=Book.objects.get(pk=book_id), user=request.user, text=text,
-                                              starts=starts)
-                form.save()
-                return HttpResponseRedirect(reverse('product_detail', args=[book_id]))
-            else:
-                form = CommentCreateUpdateForm()
-            context = {
-                'form': form, 'book': book, 'comment': comment
+    book = BookNew.get_by_guid(book_id)
+    # comment = Comment.objects.filter(book=book_id)
+    #
+    # if request.user.is_anonymous:
+    #     context = {
+    #         'book': book, 'comment': comment
+    #     }
+    # else:
+    #     comment_valid = Comment.objects.filter(book=book_id, user=request.user)
+    #     if comment_valid:
+    #         context = {
+    #             'book': book, 'comment': comment
+    #         }
+    #     else:
+    #         if request.method == 'POST':
+    #             starts = request.POST.get('starts')
+    #             text = request.POST.get('text')
+    #             form = Comment.objects.create(book=Book.objects.get(pk=book_id), user=request.user, text=text,
+    #                                           starts=starts)
+    #             form.save()
+    #             return HttpResponseRedirect(reverse('product_detail', args=[book_id]))
+    #         else:
+    #             form = CommentCreateUpdateForm()
+    #         context = {
+    #             'form': form, 'book': book, 'comment': comment
+    #         }
+    context = {
+                'book': book,
             }
     return render(request, 'sellerapp/product_detail.html', context)
 
@@ -318,45 +321,40 @@ def quote_delete(request, quote_id):
 
 
 def products_list(request):
-    # if "b_sort" not in request.session:
-    #     request.session["b_sort"] = "id"
-    # if "b_search" not in request.session:
-    #     request.session["b_search"] = ""
-    # b_order = request.GET.get('b_sort')
-    # if b_order:
-    #     request.session["b_sort"] = b_order
-    # b_o_field = request.session["b_sort"]
-    # b_query = request.GET.get('b_q')
-    # stop = request.GET.get('stop_search')
-    # if stop:
-    #     request.session["b_search"] = ""
-    # if b_query:
-    #     request.session["b_search"] = b_query
-    #     object_list = Book.objects.filter(
-    #         Q(name__iregex=b_query) | Q(author__iregex=b_query) | Q(price__iregex=b_query)).order_by(
-    #         request.session["b_sort"])
-    # else:
-    #     if request.session["b_search"] == "":
-    #         object_list = Book.objects.order_by(request.session["b_sort"])
-    #     else:
-    #         object_list = Book.objects.filter(
-    #             Q(name__iregex=request.session["b_search"]) | Q(author__iregex=request.session["b_search"]) | Q(
-    #                 price__iregex=request.session["b_search"])).order_by(request.session["b_sort"])
-    # m_b_field = request.session["b_search"]
-    # items_per_page = 5
-    # paginator = Paginator(object_list, items_per_page)
-    # page_number = request.GET.get('page', 1)
-    # try:
-    #     page_obj = paginator.get_page(page_number)
-    # except PageNotAnInteger:
-    #     page_obj = paginator.get_page(1)
-    # except EmptyPage:
-    #     page_obj = paginator.get_page(paginator.num_pages)
-    # context = {'object_list': object_list, 'page_obj': page_obj, 'b_o_field': b_o_field, 'm_b_field': m_b_field}
+    if "b_sort" not in request.session:
+        request.session["b_sort"] = "id"
+    if "b_search" not in request.session:
+        request.session["b_search"] = ""
+    b_order = request.GET.get('b_sort')
+    if b_order:
+        request.session["b_sort"] = b_order
+    b_o_field = request.session["b_sort"]
+    b_query = request.GET.get('b_q')
+    stop = request.GET.get('stop_search')
+    if stop:
+        request.session["b_search"] = ""
+    if b_query:
+        request.session["b_search"] = b_query
+        object_list = BookNew.get_search(b_o_field, b_query)
+    else:
+        if request.session["b_search"] == "":
+            object_list = BookNew.get_sorted(b_o_field)
+        else:
+            object_list = BookNew.get_search(b_o_field, b_query)
+    m_b_field = request.session["b_search"]
+    num = len(object_list)
+    items_per_page = 4
+    paginator = Paginator(object_list, items_per_page)
+    page_number = request.GET.get('page', 1)
+    try:
+        page_obj = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        page_obj = paginator.get_page(1)
+    except EmptyPage:
+        page_obj = paginator.get_page(paginator.num_pages)
+    context = {'object_list': object_list, 'page_obj': page_obj, 'b_o_field': b_o_field, 'm_b_field': m_b_field, 'num': num}
 
-    context = {
-        'books': BookNew.get_all()
-    }
+
 
     return render(request, 'sellerapp/products_list.html', context)
 

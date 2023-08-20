@@ -46,10 +46,9 @@ def catalog(request):
     f_filed = request.session["filt"]
     o_field = request.session["sort"]
     if f_filed == "все":
-        object_list = Book.objects.all().order_by(request.session["sort"])
+        object_list = BookNew.get_sorted(o_field)
     else:
-        object_list = Book.objects.all().order_by(request.session["sort"]).filter(
-            Q(author__icontains=request.session["filt"]) | Q(category__name__icontains=request.session["filt"]))
+        object_list = BookNew.get_sorted_filtered(o_field, f_filed)
     genre = BookCategory.objects.all()
     items_per_page = 1
     paginator = Paginator(object_list, items_per_page)
@@ -73,14 +72,15 @@ def search_result(request):
     if order:
         request.session["sort"] = order
     o_field = request.session["sort"]
+    s_filed = request.session["search"]
     query = request.GET.get('q')
     items_per_page = 1
     if query:
         request.session["search"] = query
-        object_list = Book.objects.filter(Q(name__iregex=query) | Q(author__iregex=query) | Q(price__iregex=query)).order_by(request.session["sort"])
+        object_list = BookNew.get_search(o_field, query)
     else:
-        object_list = Book.objects.filter(
-            Q(name__iregex=request.session["search"]) | Q(author__iregex=request.session["search"]) | Q(price__iregex=request.session["search"])).order_by(request.session["sort"])
+        object_list = BookNew.get_search(o_field, s_filed)
+    num = len(object_list)
     paginator = Paginator(object_list, items_per_page)
     page_number = request.GET.get('page', 1)
     try:
@@ -89,7 +89,7 @@ def search_result(request):
         page_obj = paginator.get_page(1)
     except EmptyPage:
         page_obj = paginator.get_page(paginator.num_pages)
-    context = {'object_list' : object_list, 'page_obj': page_obj, 'o_field': o_field}
+    context = {'object_list': object_list, 'page_obj': page_obj, 'o_field': o_field, 'num': num}
     return render(request, 'mainapp/search_result.html', context)
 
 
