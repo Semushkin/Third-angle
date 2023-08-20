@@ -12,6 +12,7 @@ from basketapp.models import Request, Order, Basket
 from basketapp.forms import RequestCreateForm, RequestUpdateForm, OrderStatusChangeForm
 from database import BookNew
 import os
+from django.views.generic import ListView
 
 
 def s_order_detail(request, order_id):
@@ -506,3 +507,5 @@ def order_list(request):
     context = {'object_list': object_list, 'page_obj': page_obj, 'o_f_field': o_f_field, 'o_o_field': o_o_field,
                's_o_field': s_o_field}
     return render(request, 'sellerapp/order_list.html', context)
+
+

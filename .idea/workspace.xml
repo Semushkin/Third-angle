@@ -4,15 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25b6bceb-7d50-49d5-9c48-40af1c5286fb" name="Changes" comment="test_2">
+    <list default="true" id="25b6bceb-7d50-49d5-9c48-40af1c5286fb" name="Changes" comment=" Скорректирован главный контроллер. Добавлено подтягивание url фото книги">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/Shop/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/Shop/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shop/Shop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/Shop/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/authapp/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/authapp/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/authapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/authapp/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/authapp/templates/authapp/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/authapp/templates/authapp/registration.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/authapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/authapp/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shop/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/database.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shop/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/mainapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/mainapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/m_product_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/templates/sellerapp/m_product_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/includes/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/mainapp/templates/mainapp/includes/header.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shop/sellerapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Shop/sellerapp/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,8 +26,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -53,13 +56,19 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\GeekBrains\Third-Angle\Third-angle\Shop\static\js" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\GeekBrains\Third-Angle\Third-angle\Shop\adminapp\templates\adminapp" />
+      <recent name="C:\GeekBrains\Third-Angle\Third-angle\Shop\static\css" />
       <recent name="C:\Users\Матвей\Documents\Education\Third-angle\Shop\basketapp" />
     </key>
   </component>
@@ -95,6 +104,14 @@
       <option name="presentableId" value="Default" />
       <updated>1688753282533</updated>
     </task>
+    <task id="LOCAL-00001" summary=" Скорректирован главный контроллер. Добавлено подтягивание url фото книги">
+      <created>1692458443770</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1692458443770</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -109,8 +126,19 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value=" Скорректирован главный контроллер. Добавлено подтягивание url фото книги" />
+    <option name="LAST_COMMIT_MESSAGE" value=" Скорректирован главный контроллер. Добавлено подтягивание url фото книги" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Shop/database.py</url>
+          <line>244</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">

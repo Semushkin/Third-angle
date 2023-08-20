@@ -107,7 +107,7 @@ class BookNew:
         return books
 
 
-class Basket:
+class BasketNew:
 
     @staticmethod
     def create(**kwargs):
@@ -134,7 +134,7 @@ class Basket:
         pass
 
 
-class Order:
+class OrderNew:
 
     @staticmethod
     def create():
@@ -157,11 +157,21 @@ class Order:
         pass
 
 
-class Quote:
+class QuoteNew:
 
     @staticmethod
     def get_all():
-        pass
+        quotes_base = get('https://localhost:5001/ServicesRest/ReadDatabaseQuoteCard', verify=False)
+        quotes = []
+        for item in decode_data(quotes_base):
+            quote = {
+                'id': item['idQuote'],
+                'name': item['QuoteTitle'],
+                'text': item['QuoteText'],
+                'author': item['QuoteAutor'],
+            }
+            quotes.append(quote)
+        return quotes
 
     @staticmethod
     def create(data):
@@ -201,7 +211,7 @@ class Quote:
         return get(f'https://localhost:5001/ServicesRest/DeleteDatabaseQuoteCard/{guid}', verify=False)
 
 
-class Request:
+class RequestNew:
 
     @staticmethod
     def create():
@@ -228,24 +238,25 @@ class Request:
         pass
 
 
-class User:
+class UserNew:
 
     @staticmethod
-    def create(data):
+    def create(data, user_id):
         result = get(f'https://localhost:5001/ServicesRest/CreateDatabaseUserCard/'
                      f'{data["first_name"]}/'
                      f'{data["last_name"]}/'
-                     f'{"RoleUser"}/'
+                     f'RoleUser/'
                      f'{data["gender"]}/'
                      f'{data["age"]}/'
                      f'{data["address"]}/'
                      f'{data["telephone"]}/'
                      f'{data["email"]}/'
-                     f'{LoginUser}/'
-                     f'{PasswordUser}',
+                     f'{user_id}/'
+                     f'{user_id}',
                      verify=False)
+        print(result.status_code)
         if result.status_code == 200:
-            return BookNew.get_last()['id']
+            return True
         else:
             return False
 
@@ -256,6 +267,14 @@ class User:
     @staticmethod
     def get_by_guid(guid):
         pass
+
+    @staticmethod
+    def get_by_login(login, password):
+        result = get(f'https://localhost:5001/LoginUserReadDatabaseUserCard/'
+                   f'{login}/'
+                   f'{password}', verify=False)
+        result = decode_data(result)
+        return result
 
     @staticmethod
     def update(data):

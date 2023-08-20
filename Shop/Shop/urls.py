@@ -51,6 +51,7 @@ urlpatterns = [
     path('m_product_detail/<str:book_id>/', m_product_detail, name='m_product_detail'),
 
     path('basket/', include('basketapp.urls', namespace='basket')),
+    path('adminapp/', include('adminapp.urls', namespace='adminapp'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

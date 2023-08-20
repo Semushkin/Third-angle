@@ -1,7 +1,9 @@
 from django.shortcuts import render
+
+from database import UserNew
 from mainapp.models import Book
 from basketapp.models import Order
-from authapp.forms import UserRegisterForm, UserLoginForm, UserEditForm, SetNewPassword
+from authapp.forms import UserRegisterForm, UserLoginForm, UserEditForm, SetNewPassword, UserDataCreateUpdateForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import auth
@@ -83,12 +85,14 @@ def registration(request):
         form = UserRegisterForm(data=request.POST)
         if form.is_valid():
             form.save()
+            user_data = UserNew.create(data=request.POST, user_id=[form.instance.id])
             return HttpResponseRedirect(reverse('index'))
         else:
             print(f'Ошибка формы регистрации формы "{form.errors}"')
     else:
         form = UserRegisterForm()
     context = {
-     'form': form
+        'form': form,
+        'form_data': UserDataCreateUpdateForm()
     }
     return render(request, 'authapp/registration.html', context)
