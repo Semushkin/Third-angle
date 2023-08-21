@@ -222,7 +222,7 @@ def new_create(request):
 def new_edit(request, news_id):
     news = News.objects.get(pk=news_id)
     if request.method == 'POST':
-        form = NewsCreateUpdateForm(instance=news, data=request.POST)
+        form = NewsCreateUpdateForm(instance=news, data=request.POST, files=request.FILES)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('m_new_detail', args=[form.instance.id]))

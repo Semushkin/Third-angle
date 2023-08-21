@@ -8,8 +8,9 @@ from django.urls import reverse
 
 from authapp.models import User
 from database import BookNew
-from mainapp.forms import BoorCreateUpdateForm, ImagesForBookForm, AuthorForm, QuoteCreateUpdateForm, GenreForm
-from mainapp.models import ImageBook, Authors, Quote, Genre
+from mainapp.forms import BoorCreateUpdateForm, ImagesForBookForm, AuthorForm, QuoteCreateUpdateForm, GenreForm, \
+    NewsCreateUpdateForm
+from mainapp.models import ImageBook, Authors, Quote, Genre, News
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -237,6 +238,55 @@ def admin_quote_delete(request, quote_id):
     quote = Quote.objects.get(pk=quote_id)
     quote.delete()
     return HttpResponseRedirect(reverse('adminapp:admin_quote_read'))
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def admin_new_read(request):
+    context = {
+        'news': News.objects.all()
+    }
+    return render(request, 'adminapp/admin_new_read.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def admin_new_create(request):
+    if request.method == 'POST':
+        form = NewsCreateUpdateForm(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('adminapp:admin_new_read'))
+    else:
+        form = NewsCreateUpdateForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'adminapp/admin_new_create.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def admin_new_update(request, new_id):
+    news = News.objects.get(pk=new_id)
+    if request.method == 'POST':
+        form = NewsCreateUpdateForm(instance=news, data=request.POST, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('adminapp:admin_new_read'))
+        else:
+            pass
+    else:
+        form = NewsCreateUpdateForm(instance=news)
+    context = {
+        'form': form,
+        'news': news,
+    }
+    return render(request, 'adminapp/admin_new_update_delete.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def admin_new_delete(request, new_id):
+    news = News.objects.get(pk=new_id)
+    news.delete()
+    return HttpResponseRedirect(reverse('adminapp:admin_new_read'))
 
 
 @user_passes_test(lambda u: u.is_superuser)

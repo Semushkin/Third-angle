@@ -4,7 +4,7 @@ from adminapp.views import admin_main, admin_user_read, admin_user_create, admin
     admin_book_create, admin_book_update, admin_book_delete, admin_author_read, admin_author_create, \
     admin_author_update, admin_author_delete, admin_quote_read, admin_quote_create, \
     admin_quote_update, admin_quote_delete, admin_genre_read, admin_genre_create, admin_genre_update, \
-    admin_genre_delete
+    admin_genre_delete, admin_new_read, admin_new_create, admin_new_update, admin_new_delete
 
 app_name = 'adminapp'
 
@@ -33,4 +33,9 @@ urlpatterns = [
     path('quote_create/', admin_quote_create, name='admin_quote_create'),
     path('admin_quote_update/<int:quote_id>/', admin_quote_update, name='admin_quote_update'),
     path('admin_quote_delete/<int:quote_id>/', admin_quote_delete, name='admin_quote_delete'),
+
+    path('new_read/', admin_new_read, name='admin_new_read'),
+    path('new_create/', admin_new_create, name='admin_new_create'),
+    path('admin_new_update/<int:new_id>/', admin_new_update, name='admin_new_update'),
+    path('admin_new_delete/<int:new_id>/', admin_new_delete, name='admin_new_delete'),
 ]

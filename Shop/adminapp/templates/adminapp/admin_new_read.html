@@ -1,0 +1,49 @@
+{% extends 'adminapp/admin_base.html' %}
+{% block context %}
+            <div class="container-fluid">
+                <h1 class="mt-4">Новости</h1>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-table mr-1"></i>
+                        Новости
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Название</th>
+                                    <th>Описание</th>
+                                    <th>Текст</th>
+                                </tr>
+                                </thead>
+                                <tfoot>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Название</th>
+                                    <th>Описание</th>
+                                    <th>Текст</th>
+                                </tr>
+                                </tfoot>
+                                <tbody>
+                                {% for new in news %}
+                                    <tr>
+                                        <td>{{ new.id }}</td>
+                                        <td><a href="{% url 'adminapp:admin_new_update' new.id %}" style="color: dodgerblue">{{ new.name }}</a></td>
+                                        <td>{{ new.description }}</td>
+                                        <td>{{ new }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'adminapp:admin_new_create' %}">
+                            <button class="btn btn-success">Добавить новость</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+{% endblock %}
