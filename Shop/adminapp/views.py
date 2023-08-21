@@ -8,8 +8,8 @@ from django.urls import reverse
 
 from authapp.models import User
 from database import BookNew
-from mainapp.forms import BoorCreateUpdateForm, ImagesForBookForm, AuthorForm, QuoteCreateUpdateForm
-from mainapp.models import ImageBook, Authors, Quote
+from mainapp.forms import BoorCreateUpdateForm, ImagesForBookForm, AuthorForm, QuoteCreateUpdateForm, GenreForm
+from mainapp.models import ImageBook, Authors, Quote, Genre
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -143,6 +143,53 @@ def admin_author_delete(request, author_id):
     author = Authors.objects.get(pk=author_id)
     author.delete()
     return HttpResponseRedirect(reverse('adminapp:admin_author_read'))
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def admin_genre_read(request):
+    context = {
+        'genres': Genre.objects.all()
+    }
+    return render(request, 'adminapp/admin_genre_read.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def admin_genre_create(request):
+    if request.method == 'POST':
+        form = GenreForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('adminapp:admin_genre_read'))
+    else:
+        form = GenreForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'adminapp/admin_genre_create.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def admin_genre_update(request, genre_id):
+    genre = Genre.objects.get(pk=genre_id)
+    if request.method == 'POST':
+        form = GenreForm(instance=genre, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('adminapp:admin_genre_read'))
+    else:
+        form = GenreForm(instance=genre)
+    context = {
+        'form': form,
+        'genre': genre
+    }
+    return render(request, 'adminapp/admin_genre_update_delete.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def admin_genre_delete(request, genre_id):
+    genre = Genre.objects.get(pk=genre_id)
+    genre.delete()
+    return HttpResponseRedirect(reverse('adminapp:admin_genre_read'))
 
 
 @user_passes_test(lambda u: u.is_superuser)

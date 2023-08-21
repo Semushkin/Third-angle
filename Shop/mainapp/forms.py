@@ -1,5 +1,5 @@
 from django import forms
-from mainapp.models import Book, News, Quote, Comment, ImageBook, Authors
+from mainapp.models import Book, News, Quote, Comment, ImageBook, Authors, Genre
 
 
 class BoorCreateUpdateForm(forms.Form):
@@ -132,3 +132,16 @@ class AuthorForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AuthorForm, self).__init__(*args, **kwargs)
         self.fields['person'].widget.attrs['placeholder'] = 'Укажите автора'
+
+
+class GenreForm(forms.ModelForm):
+
+    class Meta:
+        model = Genre
+        fields = (
+            'category',
+        )
+
+    def __init__(self, *args, **kwargs):
+        super(GenreForm, self).__init__(*args, **kwargs)
+        self.fields['category'].widget.attrs['placeholder'] = 'Укажите жанр'
