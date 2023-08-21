@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from mainapp.models import Book, News, Quote, Comment, ImageBook, Authors
+from mainapp.models import Book, News, Quote, Comment, ImageBook, Authors, Genre
 from authapp.forms import UserRegisterForm, UserLoginForm, UserEditForm, SetNewPassword
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -377,6 +377,20 @@ def product_create(request):
                         author = Authors.objects.create(person=new_author)
                         author.save()
                 #-----------------------------------------------------------
+
+                # -----------Проверяем жанр и записываем при необходимости.
+                all_new_categories = request.POST['category'].split(',')
+                all_category_base = Genre.objects.all()
+                for new_category in all_new_categories:
+                    write = True
+                    for category_base in all_category_base:
+                        if new_category == category_base.category:
+                            write = False
+                            break
+                    if write:
+                        genre = Genre.objects.create(category=new_category)
+                        genre.save()
+                # -----------------------------------------------------------
 
                 book_name = request.FILES['foto'].name
                 request.FILES['foto'].name = book + os.path.splitext(book_name)[1]

@@ -95,11 +95,17 @@
                                     <div id="collapseOne" class="accordion-collapse collapse"
                                          aria-labelledby="headingOne">
                                         <div class="accordion-body">
+                                            <form style="height: 30px;" method="get" action="{% url 'catalog' %}">
+                                                <button class="{% if f_filed == 'все' %} btn-text  {% else %} btn-text-f {% endif %}"
+                                                        name="filt" value="все">
+                                                    <li>Все</li>
+                                                </button>
+                                            </form>
                                             {% for genre in genre %}
                                             <form style="height: 30px;" method="get" action="{% url 'catalog' %}">
-                                                <button class="{% if f_filed in genre.name %} btn-text  {% else %} btn-text-f {% endif %}"
-                                                        name="filt" value="{{ genre.name }}">
-                                                    <li>{{ genre.name }}</li>
+                                                <button class="{% if f_filed in genre.category %} btn-text  {% else %} btn-text-f {% endif %}"
+                                                        name="filt" value="{{ genre.category }}">
+                                                    <li>{{ genre.category }}</li>
                                                 </button>
                                             </form>
                                             {% endfor %}
@@ -132,20 +138,14 @@
                                                     <li>Все</li>
                                                 </button>
                                             </form>
-
+                                            {% for author in authors %}
                                             <form style="height: 30px;" method="get" action="{% url 'catalog' %}">
-                                                <button class="{% if f_filed == 'Стругацкие'%} btn-text  {% else %} btn-text-f {% endif %}"
-                                                        name="filt" value="Стругацкие">
-                                                    <li>Стругацкие</li>
+                                                <button class="{% if f_filed in author.person %} btn-text  {% else %} btn-text-f {% endif %}"
+                                                        name="filt" value="{{ author.person }}">
+                                                    <li>{{ author.person }}</li>
                                                 </button>
                                             </form>
-
-                                            <form style="height: 30px;" method="het" action="{% url 'catalog' %}">
-                                                <button class="{% if f_filed == 'Киплинг'%} btn-text {% else %} btn-text-f {% endif %}"
-                                                        name="filt" value="Киплинг">
-                                                    <li>Киплинг</li>
-                                                </button>
-                                            </form>
+                                            {% endfor %}
 
                                         </div>
                                     </div>

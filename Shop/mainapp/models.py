@@ -76,3 +76,10 @@ class Authors(models.Model):
 
     def __str__(self):
         return self.person
+
+
+class Genre(models.Model):
+    category = models.CharField(max_length=128, unique=True)
+
+    def __str__(self):
+        return self.category
