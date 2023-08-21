@@ -13,7 +13,7 @@ import random
 from requests import get
 import json
 import pprint
-from database import BookNew
+from database import BookNew, QuoteNew
 
 
 # Create your views here.

@@ -8,8 +8,8 @@ from django.urls import reverse
 
 from authapp.models import User
 from database import BookNew
-from mainapp.forms import BoorCreateUpdateForm, ImagesForBookForm, AuthorForm
-from mainapp.models import ImageBook, Authors
+from mainapp.forms import BoorCreateUpdateForm, ImagesForBookForm, AuthorForm, QuoteCreateUpdateForm
+from mainapp.models import ImageBook, Authors, Quote
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -146,8 +146,50 @@ def admin_author_delete(request, author_id):
 
 
 @user_passes_test(lambda u: u.is_superuser)
-def admin_qoute_read(request):
-    pass
+def admin_quote_read(request):
+    context = {
+        'quotes': Quote.objects.all()
+    }
+    return render(request, 'adminapp/admin_quote_read.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def admin_quote_create(request):
+    if request.method == 'POST':
+        form = QuoteCreateUpdateForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('adminapp:admin_quote_read'))
+    else:
+        form = QuoteCreateUpdateForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'adminapp/admin_quote_create.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def admin_quote_update(request, quote_id):
+    quote = Quote.objects.get(pk=quote_id)
+    if request.method == 'POST':
+        form = QuoteCreateUpdateForm(instance=quote, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('adminapp:admin_quote_read'))
+    else:
+        form = QuoteCreateUpdateForm(instance=quote)
+    context = {
+        'form': form,
+        'quote': quote
+    }
+    return render(request, 'adminapp/admin_quote_update_delete.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def admin_quote_delete(request, quote_id):
+    quote = Quote.objects.get(pk=quote_id)
+    quote.delete()
+    return HttpResponseRedirect(reverse('adminapp:admin_quote_read'))
 
 
 @user_passes_test(lambda u: u.is_superuser)

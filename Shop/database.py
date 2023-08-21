@@ -230,6 +230,25 @@ class QuoteNew:
     def delete(guid):
         return get(f'https://localhost:5001/ServicesRest/DeleteDatabaseQuoteCard/{guid}', verify=False)
 
+    @staticmethod
+    def random():
+        data = QuoteNew.get_all()
+        shuffle(data)
+        return data
+
+    @staticmethod
+    def get_sorted(o_field):
+        books = QuoteNew.get_all()
+        books.sort(key=lambda dictionary: dictionary[o_field])
+        return books
+
+    @staticmethod
+    def get_search(o_field, s_filed):
+        books = QuoteNew.get_all()
+        books.sort(key=lambda dictionary: dictionary[o_field])
+        books_list = [x for x in books if s_filed.lower() in x['name'].lower() or s_filed.lower() in x['text'].lower() or s_filed.lower() in x['author'].lower()]
+        return books_list
+
 
 class RequestNew:
 
