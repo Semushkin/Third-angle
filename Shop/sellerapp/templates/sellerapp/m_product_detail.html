@@ -104,7 +104,12 @@
                         <div class="col-md-12">
                             <figure>
                                 <div class="col-md-12">
-                                    <a href="#" class="product-image"><img src="{{ book.foto.url }}"></a>
+                                    {% if book.foto %}
+                                        <a href="#" class="product-image"><img src="{{ book.foto }}"></a>
+                                    {% endif %}
+<!--                                    {% if image_book.foto %}-->
+<!--                                        <a href="#" class="product-image"><img src="{{ image_book.foto.url }}"></a>-->
+<!--                                    {% endif %}-->
                                 </div>
                             </figure>
                         </div>

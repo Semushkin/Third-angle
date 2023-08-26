@@ -1,0 +1,65 @@
+{% extends 'adminapp/admin_base.html' %}
+{% block context %}
+            <div class="container-fluid">
+                <h1 class="mt-4">Книги</h1>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-table mr-1"></i>
+                        Книги
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Наименование</th>
+                                    <th>Автор</th>
+                                    <th>Article</th>
+                                    <th>Дата поступления</th>
+                                    <th>Категория</th>
+                                    <th>Описание</th>
+                                    <th>Цена</th>
+                                    <th>Фото</th>
+                                </tr>
+                                </thead>
+                                <tfoot>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Наименование</th>
+                                    <th>Автор</th>
+                                    <th>Article</th>
+                                    <th>Дата поступления</th>
+                                    <th>Категория</th>
+                                    <th>Описание</th>
+                                    <th>Цена</th>
+                                    <th>Фото</th>
+
+                                </tr>
+                                </tfoot>
+                                <tbody>
+                                {% for book in books %}
+                                    <tr>
+                                        <td>{{ book.id }}</td>
+                                        <td><a href="{% url 'adminapp:admin_book_update' book.id %}" style="color: dodgerblue">{{ book.name }}</a></td>
+                                        <td>{{ book.author }}</td>
+                                        <td>{{ book.article }}</td>
+                                        <td>{{ book.date_receipt }}</td>
+                                        <td>{{ book.category }}</td>
+                                        <td>{{ book.description }}</td>
+                                        <td>{{ book.price }}</td>
+                                        <td>{{ book.foto }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'adminapp:admin_book_create' %}">
+                            <button class="btn btn-success">Создать книгу</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+{% endblock %}

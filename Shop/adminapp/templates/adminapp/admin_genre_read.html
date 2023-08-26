@@ -1,0 +1,43 @@
+{% extends 'adminapp/admin_base.html' %}
+{% block context %}
+            <div class="container-fluid">
+                <h1 class="mt-4">Жанры</h1>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-table mr-1"></i>
+                        Жанры
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Жанр</th>
+                                </tr>
+                                </thead>
+                                <tfoot>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Жанр</th>
+                                </tr>
+                                </tfoot>
+                                <tbody>
+                                {% for genre in genres %}
+                                    <tr>
+                                        <td>{{ genre.id }}</td>
+                                        <td><a href="{% url 'adminapp:admin_genre_update' genre.id %}" style="color: dodgerblue">{{ genre.category }}</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'adminapp:admin_genre_create' %}">
+                            <button class="btn btn-success">Добавить жанр</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+{% endblock %}

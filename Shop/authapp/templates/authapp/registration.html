@@ -41,36 +41,36 @@
                         {% csrf_token %}
                         <div class="row">
                             <label class="u-full-width text-center">Имя</label>
-                            {{ form.first_name }}
+                            {{ data_form.first_name }}
                             <label class="u-full-width text-center">Фамилия</label>
-                            {{ form.last_name }}
+                            {{ data_form.last_name }}
                             <label class="u-full-width text-center">Пол</label>
-                            {{ form.gender }}
+                            {{ data_form.gender }}
                             <label class="u-full-width text-center">Возраст</label>
                             <div class="form-group u-full-width">
-                                {{ form.age }}
+                                {{ data_form.age }}
                             </div>
 
                             <label class="u-full-width text-center">Адрес</label>
-                                {{ form.address }}
+                                {{ data_form.address }}
 
                             <label class="u-full-width text-center">Телефон</label>
                             <!--input class="u-full-width" type="tel" id="phone" name="phone"
                                    value="+7 (___) ___ - __ - __" mask="+7 (___) ___ - __ - __"
                                    placeholder="+7 (___) ___ - __ - __"-->
-                            {{ form.telephone }}
+                            {{ data_form.telephone }}
 
                             <label class="u-full-width text-center">Электронная почта</label>
-                            {{ form.email }}
+                            {{ data_form.email }}
 
                             <label class="u-full-width text-center">Логин</label>
-                            {{ form.username }}
+                            {{ main_form.username }}
 
                             <label class="u-full-width text-center">Пароль</label>
-                            {{ form.password1 }}
+                            {{ main_form.password1 }}
 <i class="far fa-eye" id="togglePassword1" style="margin-left: -30px; padding-top: 10px; cursor: pointer;"></i>
                             <label class="u-full-width text-center">Введите пароль еще раз</label>
-                             {{ form.password2 }}
+                             {{ main_form.password2 }}
 <i class="far fa-eye" id="togglePassword2"
                                style="margin-left: -30px; padding-top: 10px; cursor: pointer;"></i>
                             <label>

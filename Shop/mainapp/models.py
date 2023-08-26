@@ -25,6 +25,14 @@ class Book(models.Model):
         return f'{self.name}'
 
 
+class ImageBook(models.Model):
+    guid = models.CharField(max_length=128)
+    foto = models.ImageField(upload_to='book_images', blank=True)
+
+    def __str__(self):
+        return f'Images bok for {self.guid}'
+
+
 class News(models.Model):
     name = models.CharField(max_length=128, default='')
     description = models.TextField()
@@ -35,6 +43,14 @@ class News(models.Model):
 
     def __str__(self):
         return f'{self.text[0:20]}'
+
+
+class ImageNews(models.Model):
+    guid = models.CharField(max_length=128)
+    foto = models.ImageField(upload_to='news_images', blank=True)
+
+    def __str__(self):
+        return f'Images news for {self.guid}'
 
 
 class Quote(models.Model):
@@ -68,3 +84,10 @@ class Authors(models.Model):
 
     def __str__(self):
         return self.person
+
+
+class Genre(models.Model):
+    category = models.CharField(max_length=128, unique=True)
+
+    def __str__(self):
+        return self.category

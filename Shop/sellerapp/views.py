@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from mainapp.models import Book, News, Quote, Comment, Authors
+from mainapp.models import Book, News, Quote, Comment, ImageBook, Authors, Genre
 from authapp.forms import UserRegisterForm, UserLoginForm, UserEditForm, SetNewPassword
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -7,9 +7,12 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q, Sum
-from mainapp.forms import BoorCreateUpdateForm, NewsCreateUpdateForm, QuoteCreateUpdateForm, CommentCreateUpdateForm
+from mainapp.forms import BoorCreateUpdateForm, NewsCreateUpdateForm, QuoteCreateUpdateForm, CommentCreateUpdateForm, ImagesForBookForm
 from basketapp.models import Request, Order, Basket
 from basketapp.forms import RequestCreateForm, RequestUpdateForm, OrderStatusChangeForm
+from database import BookNew
+import os
+from django.views.generic import ListView
 
 
 def s_order_detail(request, order_id):
@@ -356,21 +359,45 @@ def products_list(request):
 def product_create(request):
     if request.method == 'POST':
         form = BoorCreateUpdateForm(data=request.POST, files=request.FILES)
-        all_new_authors = request.POST['author'].split(',')
-        all_authors_base = Authors.objects.all()
 
-        for new_author in all_new_authors:
-            write = True
-            for author_base in all_authors_base:
-                if new_author == author_base.person:
-                    write = False
-                    break
-            if write:
-                author = Authors.objects.create(person=new_author)
-                author.save()
         if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('m_product_detail', args=[form.instance.id]))
+            book = BookNew.create(data=request.POST, files=request.FILES)
+            if book:
+
+                #-----------Проверяем автора и записываем при необходимости.
+                all_new_authors = request.POST['author'].split(',')
+                all_authors_base = Authors.objects.all()
+                for new_author in all_new_authors:
+                    write = True
+                    for author_base in all_authors_base:
+                        if new_author == author_base.person:
+                            write = False
+                            break
+                    if write:
+                        author = Authors.objects.create(person=new_author)
+                        author.save()
+                #-----------------------------------------------------------
+
+                # -----------Проверяем жанр и записываем при необходимости.
+                all_new_categories = request.POST['category'].split(',')
+                all_category_base = Genre.objects.all()
+                for new_category in all_new_categories:
+                    write = True
+                    for category_base in all_category_base:
+                        if new_category == category_base.category:
+                            write = False
+                            break
+                    if write:
+                        genre = Genre.objects.create(category=new_category)
+                        genre.save()
+                # -----------------------------------------------------------
+
+                book_name = request.FILES['foto'].name
+                request.FILES['foto'].name = book + os.path.splitext(book_name)[1]
+                images_form = ImagesForBookForm(data={'guid': book}, files=request.FILES)
+                if images_form.is_valid():
+                    images_form.save()
+                return HttpResponseRedirect(reverse('m_product_detail', args=[book]))
     else:
         form = BoorCreateUpdateForm()
     context = {
@@ -380,16 +407,24 @@ def product_create(request):
 
 
 def product_edit(request, book_id):
-    book = Book.objects.get(pk=book_id)
     if request.method == 'POST':
-        form = BoorCreateUpdateForm(instance=book, data=request.POST, files=request.FILES)
+        form = BoorCreateUpdateForm(data=request.POST, files=request.FILES)
         if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('m_product_detail', args=[form.instance.id]))
+            book = BookNew.update(data=request.POST, guid=book_id)
+            if book:
+                image = ImageBook.objects.filter(guid=book_id)
+                if image:
+                    images_form = ImagesForBookForm(instance=image.first(), data={'guid': book}, files=request.FILES)
+                else:
+                    images_form = ImagesForBookForm(data={'guid': book}, files=request.FILES)
+                if images_form.is_valid():
+                    images_form.save()
+            return HttpResponseRedirect(reverse('m_product_detail', args=[book]))
         else:
             pass
     else:
-        form = BoorCreateUpdateForm(instance=book)
+        book = BookNew.get_by_guid(book_id)
+        form = BoorCreateUpdateForm(data=book)
     context = {
         'form': form,
         'book': book,
@@ -398,8 +433,9 @@ def product_edit(request, book_id):
 
 
 def product_delete(request, book_id):
-    book = Book.objects.get(pk=book_id)
-    book.delete()
+    # book = Book.objects.get(pk=book_id)
+    # book.delete()
+    BookNew.delete(book_id)
     return HttpResponseRedirect(reverse('products_list'))
 
 
@@ -419,7 +455,7 @@ def m_new_detail(request, news_id):
 
 def m_product_detail(request, book_id):
     context = {
-        'book': Book.objects.get(pk=book_id)
+        'book': BookNew.get_by_guid(book_id)
     }
     return render(request, 'sellerapp/m_product_detail.html', context)
 
@@ -495,3 +531,5 @@ def order_list(request):
     context = {'object_list': object_list, 'page_obj': page_obj, 'o_f_field': o_f_field, 'o_o_field': o_o_field,
                's_o_field': s_o_field}
     return render(request, 'sellerapp/order_list.html', context)
+
+
