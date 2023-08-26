@@ -1,5 +1,5 @@
 from django import forms
-from mainapp.models import Book, News, Quote, Comment, ImageBook, Authors, Genre
+from mainapp.models import Book, News, Quote, Comment, ImageBook, Authors, Genre, ImageNews
 
 
 class BoorCreateUpdateForm(forms.Form):
@@ -75,6 +75,39 @@ class NewsCreateUpdateForm(forms.ModelForm):
 
         for filed_name, field in self.fields.items():
             field.widget.attrs['class'] = 'u-full-width'
+
+
+#-----------Новости вариант 2 -------------------------------------
+# class NewsCreateUpdateForm(forms.Form):
+#     name = forms.CharField(max_length=128)
+#     description = forms.CharField(widget=forms.Textarea)
+#     text = forms.CharField(widget=forms.Textarea)
+#     foto = forms.ImageField(widget=forms.FileInput())
+#
+#     def __init__(self, *args, **kwargs):
+#         super(NewsCreateUpdateForm, self).__init__(*args, **kwargs)
+#         self.fields['name'].widget.attrs['placeholder'] = 'Введите название'
+#         self.fields['description'].widget.attrs['placeholder'] = 'Введите краткое содержание'
+#         self.fields['text'].widget.attrs['placeholder'] = 'Введите текст'
+#
+#         for filed_name, field in self.fields.items():
+#             field.widget.attrs['class'] = 'u-full-width'
+#
+#
+class ImagesForNewsForm(forms.ModelForm):
+    foto = forms.ImageField(widget=forms.FileInput())
+
+    class Meta:
+        model = ImageNews
+        fields = (
+            'guid',
+            'foto',
+        )
+
+    def __init__(self, *args, **kwargs):
+        super(ImagesForNewsForm, self).__init__(*args, **kwargs)
+        self.fields['foto'].widget.attrs['class'] = 'u-full-width'
+#------------------------------------------------------------------
 
 
 class QuoteCreateUpdateForm(forms.ModelForm):

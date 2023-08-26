@@ -12,11 +12,11 @@ class RequestCreateForm(forms.ModelForm):
             'user',
         )
 
-
     def __init__(self, *args, **kwargs):
         super(RequestCreateForm, self).__init__(*args, **kwargs)
         self.fields['text'].widget.attrs['placeholder'] = 'Введите текст'
         self.fields['text'].widget.attrs['class'] = 'u-full-width'
+
 
 class RequestUpdateForm(forms.ModelForm):
 

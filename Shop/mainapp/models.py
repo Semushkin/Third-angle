@@ -30,7 +30,7 @@ class ImageBook(models.Model):
     foto = models.ImageField(upload_to='book_images', blank=True)
 
     def __str__(self):
-        return f'Images for {self.guid}'
+        return f'Images bok for {self.guid}'
 
 
 class News(models.Model):
@@ -43,6 +43,14 @@ class News(models.Model):
 
     def __str__(self):
         return f'{self.text[0:20]}'
+
+
+class ImageNews(models.Model):
+    guid = models.CharField(max_length=128)
+    foto = models.ImageField(upload_to='news_images', blank=True)
+
+    def __str__(self):
+        return f'Images news for {self.guid}'
 
 
 class Quote(models.Model):

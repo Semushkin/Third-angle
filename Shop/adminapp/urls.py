@@ -1,10 +1,10 @@
 from django.urls import path
 
-from adminapp.views import admin_main, admin_user_read, admin_user_create, admin_user_update_delete, admin_book_read, \
-    admin_book_create, admin_book_update, admin_book_delete, admin_author_read, admin_author_create, \
+from adminapp.views import admin_main, admin_user_read, admin_user_create, admin_user_update, admin_user_delete,\
+    admin_book_read, admin_book_create, admin_book_update, admin_book_delete, admin_author_read, admin_author_create, \
     admin_author_update, admin_author_delete, admin_quote_read, admin_quote_create, \
     admin_quote_update, admin_quote_delete, admin_genre_read, admin_genre_create, admin_genre_update, \
-    admin_genre_delete
+    admin_genre_delete, admin_news_read, admin_news_create, admin_news_update, admin_news_delete
 
 app_name = 'adminapp'
 
@@ -12,7 +12,8 @@ urlpatterns = [
     path('', admin_main, name='admin_main'),
     path('user_read/', admin_user_read, name='admin_user_read'),
     path('user_create/', admin_user_create, name='admin_user_create'),
-    path('user_update_delete/', admin_user_update_delete, name='admin_user_update_delete'),
+    path('user_user_update/<int:user_pk>/', admin_user_update, name='admin_user_update'),
+    path('user_user_delete/<int:user_pk>/', admin_user_delete, name='admin_user_delete'),
 
     path('book_read/', admin_book_read, name='admin_book_read'),
     path('book_create/', admin_book_create, name='admin_book_create'),
@@ -33,4 +34,9 @@ urlpatterns = [
     path('quote_create/', admin_quote_create, name='admin_quote_create'),
     path('admin_quote_update/<int:quote_id>/', admin_quote_update, name='admin_quote_update'),
     path('admin_quote_delete/<int:quote_id>/', admin_quote_delete, name='admin_quote_delete'),
+
+    path('news_read/', admin_news_read, name='admin_news_read'),
+    path('news_create/', admin_news_create, name='admin_news_create'),
+    path('admin_news_update/<int:news_id>/', admin_news_update, name='admin_news_update'),
+    path('admin_news_delete/<int:news_id>/', admin_news_delete, name='admin_news_delete'),
 ]

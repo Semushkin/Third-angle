@@ -1,0 +1,49 @@
+{% extends 'adminapp/admin_base.html' %}
+{% block context %}
+            <div class="container-fluid">
+                <h1 class="mt-4">Редактирование Новости</h1>
+                <form action="{% url 'adminapp:admin_news_update' news.id %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="small mb-1" for="{{ form.name.id_for_label }}">Название</label>
+                                {{ form.name }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="small mb-1" for="{{ form.description.id_for_label }}">Описание</label>
+                                {{ form.description }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="small mb-1" for="{{ form.text.id_for_label }}">Текст</label>
+                                {{ form.text }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row mb-2">
+                        <div class="col-lg-12">
+                            <div class="custom-file">
+                                {{ form.foto }}
+                                <label class="custom-file-label" for="{{ form.foto.id_for_label }}">Изображение</label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form action="{% url 'adminapp:admin_news_delete' news.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-12" style="margin-top: 33px;">
+                            <input class="btn btn-danger btn-block" type="submit" value="Удалить">
+                        </div>
+                    </div>
+                </form>
+            </div>
+{% endblock %}

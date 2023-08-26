@@ -6,9 +6,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.urls import reverse
 
+from authapp.forms import UserRegisterForm, UserDataForm, SetNewPassword, UserEditForm
 from authapp.models import User
-from database import BookNew
-from mainapp.forms import BoorCreateUpdateForm, ImagesForBookForm, AuthorForm, QuoteCreateUpdateForm, GenreForm
+from database import BookNew, NewsNew, UserNew
+from mainapp.forms import BoorCreateUpdateForm, ImagesForBookForm, AuthorForm, QuoteCreateUpdateForm, GenreForm, \
+    NewsCreateUpdateForm, ImagesForNewsForm
 from mainapp.models import ImageBook, Authors, Quote, Genre
 
 
@@ -19,19 +21,85 @@ def admin_main(request):
 
 @user_passes_test(lambda u: u.is_superuser)
 def admin_user_read(request):
+
+    users_shop = User.objects.all()
+    users_data = UserNew.get_all()
+    users = []
+    for user_shop in users_shop:
+        user = {
+            'username': user_shop.username,
+            'pk': user_shop.pk
+        }
+        for user_data in users_data:
+            if user_shop.guid == user_data['id']:
+                user.update(user_data)
+                continue
+        users.append(user)
+
     context = {
-        'users': User.objects.all()
+        'users': users,
+        # 'users_data': UserNew.get_all()
     }
     return render(request, 'adminapp/admin_user_read.html', context)
 
 
 @user_passes_test(lambda u: u.is_superuser)
 def admin_user_create(request):
-    return render(request, 'adminapp/admin.html')
+    if request.method == 'POST':
+        main_form = UserRegisterForm(data=request.POST)
+        data_form = UserDataForm(data=request.POST)
+        if main_form.is_valid() and data_form.is_valid():
+            user_data = UserNew.create(data=request.POST)
+            if user_data:
+                main_form.save()
+
+                user = User.objects.get(id=main_form.instance.id)
+                user.guid = user_data
+                user.save()
+
+            return HttpResponseRedirect(reverse('adminapp:admin_user_read'))
+    else:
+        main_form = UserRegisterForm()
+        data_form = UserDataForm()
+    context = {
+        'main_form': main_form,
+        'data_form': data_form
+    }
+    return render(request, 'adminapp/admin_user_create.html', context)
 
 
 @user_passes_test(lambda u: u.is_superuser)
-def admin_user_update_delete(request):
+def admin_user_update(request, user_pk):
+    user = User.objects.get(pk=user_pk)
+    if request.method == 'POST':
+        main_form = UserEditForm(instance=user, data=request.POST)
+        data_form = UserDataForm(data=request.POST)
+        if main_form.is_valid() and data_form.is_valid():
+            main_form.save()
+            updated_data = UserNew.update(data=request.POST, guid=user.guid)
+            if not updated_data:
+                user_guid = UserNew.create(data=request.POST)
+                if user_guid:
+                    user.guid = user_guid
+                    user.save()
+            return HttpResponseRedirect(reverse('adminapp:admin_user_read'))
+    else:
+        user_data = UserNew.get_by_guid(user.guid)
+        if user_data:
+            data_form = UserDataForm(data=user_data)
+        else:
+            data_form = UserDataForm()
+        main_form = UserEditForm(instance=user)
+    context = {
+        'main_form': main_form,
+        'data_form': data_form,
+        'user': user
+    }
+    return render(request, 'adminapp/admin_user_update_delete.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def admin_user_delete(request, user_id):
     return render(request, 'adminapp/admin.html')
 
 
@@ -241,7 +309,65 @@ def admin_quote_delete(request, quote_id):
 
 @user_passes_test(lambda u: u.is_superuser)
 def admin_news_read(request):
-    pass
+    context = {
+        'all_news': NewsNew.get_all_reverse()
+    }
+    return render(request, 'adminapp/admin_news_read.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def admin_news_create(request):
+    if request.method == 'POST':
+        form = NewsCreateUpdateForm(data=request.POST, files=request.FILES)
+
+        if form.is_valid():
+            news = NewsNew.create(data=request.POST)
+            if news:
+                news_name = request.FILES['foto'].name
+                request.FILES['foto'].name = news + os.path.splitext(news_name)[1]
+                images_form = ImagesForNewsForm(data={'guid': news}, files=request.FILES)
+                if images_form.is_valid():
+                    images_form.save()
+                return HttpResponseRedirect(reverse('adminapp:admin_news_read'))
+    else:
+        form = NewsCreateUpdateForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'adminapp/admin_news_create.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def admin_news_update(request, news_id):
+    if request.method == 'POST':
+        form = NewsCreateUpdateForm(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            news = NewsNew.update(data=request.POST, guid=news_id)
+            if news:
+                image = ImageBook.objects.filter(guid=news_id)
+                if image:
+                    images_form = ImagesForBookForm(instance=image.first(), data={'guid': news}, files=request.FILES)
+                else:
+                    images_form = ImagesForBookForm(data={'guid': news}, files=request.FILES)
+                if images_form.is_valid():
+                    images_form.save()
+            return HttpResponseRedirect(reverse('adminapp:admin_news_read'))
+        else:
+            pass
+    else:
+        news = BookNew.get_by_guid(news_id)
+        form = BoorCreateUpdateForm(data=news)
+    context = {
+        'form': form,
+        'news': news,
+    }
+    return render(request, 'adminapp/admin_news_update_delete.html', context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def admin_news_delete(request, news_id):
+    NewsNew.delete(news_id)
+    return HttpResponseRedirect(reverse('adminapp:admin_new_read'))
 
 
 @user_passes_test(lambda u: u.is_superuser)
