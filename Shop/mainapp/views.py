@@ -10,6 +10,7 @@ from django.db.models import Q
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 import random
+from database import BookNew
 
 # Create your views here.
 
